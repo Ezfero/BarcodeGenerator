@@ -2,11 +2,11 @@
 {
 	"buildFiles" : 
 	[
-		"/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/CMakeLists.txt"
+		"/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/CMakeLists.txt"
 	],
 	"cleanCommands" : 
 	[
-		"/Users/Andriy/Android/android-sdk-macosx/cmake/3.6.3155560/bin/cmake --build /Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips --target clean"
+		"/Users/Andriy/Android/android-sdk-macosx/cmake/3.6.3155560/bin/cmake --build /Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
@@ -15,36 +15,36 @@
 		{
 			"abi" : "mips",
 			"artifactName" : "native-lib",
-			"buildCommand" : "/Users/Andriy/Android/android-sdk-macosx/cmake/3.6.3155560/bin/cmake --build /Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips --target native-lib",
+			"buildCommand" : "/Users/Andriy/Android/android-sdk-macosx/cmake/3.6.3155560/bin/cmake --build /Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips --target native-lib",
 			"buildType" : "release",
 			"files" : 
 			[
 				
 				{
 					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/Andriy/Android/android-sdk-macosx/ndk-bundle/platforms/android-14/arch-mips  -Dnative_lib_EXPORTS -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/src/main/cpp/BarcodeGenerator.cpp",
-					"workingDirectory" : "/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips"
+					"src" : "/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/src/main/cpp/BarcodeGenerator.cpp",
+					"workingDirectory" : "/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips"
 				},
 				
 				{
 					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/Andriy/Android/android-sdk-macosx/ndk-bundle/platforms/android-14/arch-mips  -Dnative_lib_EXPORTS -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/src/main/cpp/code128/CharacterSet.cpp",
-					"workingDirectory" : "/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips"
+					"src" : "/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/src/main/cpp/code128/CharacterSet.cpp",
+					"workingDirectory" : "/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips"
 				},
 				
 				{
 					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/Andriy/Android/android-sdk-macosx/ndk-bundle/platforms/android-14/arch-mips  -Dnative_lib_EXPORTS -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/src/main/cpp/code128/CharacterRow.cpp",
-					"workingDirectory" : "/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips"
+					"src" : "/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/src/main/cpp/code128/CharacterRow.cpp",
+					"workingDirectory" : "/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips"
 				},
 				
 				{
 					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/Andriy/Android/android-sdk-macosx/ndk-bundle/platforms/android-14/arch-mips  -Dnative_lib_EXPORTS -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/Andriy/Android/android-sdk-macosx/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/src/main/cpp/native-lib.cpp",
-					"workingDirectory" : "/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips"
+					"src" : "/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips"
 				}
 			],
-			"output" : "/Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/build/intermediates/cmake/release/obj/mips/libnative-lib.so",
+			"output" : "/Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/build/intermediates/cmake/release/obj/mips/libnative-lib.so",
 			"toolchain" : "15759345526418831495"
 		}
 	},

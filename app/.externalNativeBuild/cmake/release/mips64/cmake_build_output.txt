@@ -12,4 +12,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/Andriy/Android/Projects/Github/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips64
+-- Build files have been written to: /Users/Andriy/Android/Projects/Github/Barcode/BarcodeGenerator/app/.externalNativeBuild/cmake/release/mips64
