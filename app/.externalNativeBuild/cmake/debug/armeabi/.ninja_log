@@ -1,6 +1,0 @@
-# ninja log v5
-0	130	0	CMakeFiles/native-lib.dir/src/main/cpp/code128/CharacterRow.cpp.o	c15bdd4b0d8ba71e
-0	1351	0	CMakeFiles/native-lib.dir/src/main/cpp/code128/CharacterSet.cpp.o	c2e4cb2b1c3ae0b5
-0	1959	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	89f95d8bc87210ad
-0	2021	0	CMakeFiles/native-lib.dir/src/main/cpp/BarcodeGenerator.cpp.o	1a9ca9998b4c4463
-2021	2244	0	../../../../build/intermediates/cmake/debug/obj/armeabi/libnative-lib.so	20f2920b1f7c6d8f
