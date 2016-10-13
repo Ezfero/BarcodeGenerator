@@ -19,24 +19,33 @@ private:
 	JNIEnv* jniEnv;
 	jobject* assetManager;
 
-	CharacterSet setA = CharacterSet("A", regex("(([A-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*[A-Z0-9]*)*)"));
-	CharacterSet setB = CharacterSet("B", regex("(([a-zA-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*[a-zA-Z0-9]*)*)"));
-	CharacterSet setC = CharacterSet("C", regex("\\d+"));
+	vector<string> setsOrder;
+	map<string, CharacterSet> characterSets;
 
 	void parseCharacterSet(vector<string>);
 
-	void addToSet(int ascii, string value, string binary, CharacterSet set);
+	void addToSet(int index, int ascii, string value, string binary, CharacterSet &set);
 
 	vector<string> splitString(string input, char delimiter);
 
-	CharacterSet detectCharacterSet(string& str);
+	const CharacterSet& detectCharacterSet(const string& str);
 
+	const string& calculateChecksum(const string& str, CharacterSet& characterSet);
 
 public:
 
 	BarcodeGenerator(JNIEnv* jniEnv, jobject *assetManager)
 			: jniEnv{jniEnv},
-			assetManager{assetManager} { }
+			  assetManager{assetManager} {
+
+		characterSets["C"] = CharacterSet("C", regex("\\d+"));
+		characterSets["A"] = CharacterSet("A", regex("(([A-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*[A-Z0-9]*)*)"));
+		characterSets["B"] = CharacterSet("B", regex("(([a-zA-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*[a-zA-Z0-9]*)*)"));
+
+		setsOrder.push_back("C");
+		setsOrder.push_back("A");
+		setsOrder.push_back("B");
+	}
 
     ~BarcodeGenerator() { }
 

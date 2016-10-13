@@ -39,6 +39,7 @@ vector<string> BarcodeGenerator::splitString(string input, char delimiter) {
 }
 
 void BarcodeGenerator::parseCharacterSet(vector<string> values) {
+	int index = 0;
 	for (auto &str : values) {
 		vector<string> line = splitString(str, ' ');
 		int ascii = atoi(line[0].c_str());
@@ -47,31 +48,55 @@ void BarcodeGenerator::parseCharacterSet(vector<string> values) {
 		string typeB = line[3];
 		string typeC = line[4];
 
-		addToSet(ascii, typeA, binary, setA);
-		addToSet(ascii, typeB, binary, setB);
-		addToSet(ascii, typeC, binary, setC);
+		addToSet(index, ascii, typeA, binary, characterSets["A"]);
+		addToSet(index, ascii, typeB, binary, characterSets["B"]);
+		addToSet(index, ascii, typeC, binary, characterSets["C"]);
+		index++;
 	}
 }
 
 jobject BarcodeGenerator::generateBarcode(string &code) {
+	CharacterSet set = detectCharacterSet(code);
+
+	string barcode;
+	barcode += set.getRow("Start").getBinaryPattern();
+	for (char &c : code) {
+		string str;
+		str.push_back(c);
+		barcode += set.getRow(str).getBinaryPattern();
+	}
+	barcode += calculateChecksum(code, set);
+	barcode += set.getRow("Stop").getBinaryPattern();
     return nullptr;
 }
 
 
-void BarcodeGenerator::addToSet(int ascii, string value, string binary, CharacterSet set) {
+void BarcodeGenerator::addToSet(int index, int ascii, string value, string binary, CharacterSet &set) {
 	if (value.compare("!!") != 0) {
 		if (value.compare("space") == 0) {
 			value = " ";
 		}
-		CharacterRow row = CharacterRow(ascii, value, binary);
+		CharacterRow row = CharacterRow(index, ascii, value, binary);
 		set.addRow(row);
 	}
 }
 
-CharacterSet BarcodeGenerator::detectCharacterSet(string &str) {
-	return CharacterSet(std::basic_string<char, char_traits<char>, allocator<char>>(),
-						std::basic_regex<char>());
+const CharacterSet& BarcodeGenerator::detectCharacterSet(const string &str) {
+	for (const auto &entry : setsOrder) {
+		if (characterSets[entry].canProcess(str)) {
+			return characterSets[entry];
+		}
+	}
+	throw exception();
 }
 
-
-
+const string& BarcodeGenerator::calculateChecksum(const string &str, CharacterSet &characterSet) {
+	int sum = 0;
+	for (int i = 0; i < str.size(); i++) {
+		string token;
+		token.push_back(str[i]);
+		sum += characterSet.getRow(token).getAsciiCode() * (i + 1);
+	}
+	int remainder = sum % 103;
+	return characterSet.getRow(remainder).getBinaryPattern();
+}

@@ -17,5 +17,11 @@ const string& CharacterRow::getBinaryPattern() const {
 	return binaryPattern;
 }
 
+int CharacterRow::getIndex() const {
+	return index;
+}
+
+
+
 
 

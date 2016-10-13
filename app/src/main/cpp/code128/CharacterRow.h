@@ -11,7 +11,8 @@ using namespace std;
 class CharacterRow {
 
 private:
-	int asciiCode;
+	int index = 0;
+	int asciiCode = 0;
 	string character;
 	string binaryPattern;
 
@@ -19,11 +20,13 @@ public:
 
 	CharacterRow() { }
 
-	CharacterRow(int asciiCode, const string &character, const string &binaryPattern)
-			: asciiCode(asciiCode),
-			  character(character),
+
+	CharacterRow(int index, int asciiCode, const string &character, const string &binaryPattern)
+			: index(index), asciiCode(asciiCode), character(character),
 			  binaryPattern(binaryPattern) { }
 
+
+	int getIndex() const;
 
 	int getAsciiCode() const;
 

@@ -5,9 +5,9 @@
 #ifndef BARCODEGENERATOR_CHARACTERSET_H
 #define BARCODEGENERATOR_CHARACTERSET_H
 
+#include <map>
 #include <regex>
 #include <string>
-#include <map>
 
 #include "CharacterRow.h"
 
@@ -20,19 +20,29 @@ private:
 	regex typeRegex;
 	string setType;
 	map<string, CharacterRow> rows;
+	map<int, string> rowKeys;
 
 public:
 
-	CharacterSet(const string &setType, const regex & typeRegex)
+	CharacterSet() {
+	}
+
+	CharacterSet(const string &setType, const regex& typeRegex)
 			: setType(setType),
 			  typeRegex(typeRegex) {
 	}
 
-	bool canProcess(const string &value);
+
+	virtual ~CharacterSet() {
+	}
+
+	bool canProcess(const string &value) const;
 
 	void addRow(CharacterRow&);
 
-	CharacterRow getRow(string);
+	CharacterRow& getRow(string value);
+
+	CharacterRow& getRow(int index);
 };
 
 
