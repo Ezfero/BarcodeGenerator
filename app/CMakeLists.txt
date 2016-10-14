@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.4.1)
 add_library( native-lib SHARED
 
-             src/main/cpp/BarcodeGenerator.cpp
-             src/main/cpp/code128/CharacterSet.cpp
-             src/main/cpp/code128/CharacterRow.cpp
+             src/main/cpp/common/BarcodeGenerator.cpp
+             src/main/cpp/common/code128/CharacterSet.cpp
+             src/main/cpp/common/code128/CharacterRow.cpp
+             src/main/cpp/android/AndroidBarcodeGenerator.cpp
              src/main/cpp/native-lib.cpp )
 
 # Searches for a specified prebuilt library and stores the path as a
