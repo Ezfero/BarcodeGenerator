@@ -16,5 +16,5 @@ Java_com_silgrid_barcodegenerator_generator_BarcodeGenerator_generateBarcode(JNI
 	jobject bitmap = generator.generateBarcode(value);
 
 	env->ReleaseStringUTFChars(string_, str);
-	return NULL;
+	return bitmap;
 }

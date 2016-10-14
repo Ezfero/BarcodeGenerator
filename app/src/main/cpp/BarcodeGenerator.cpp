@@ -11,18 +11,14 @@ void BarcodeGenerator::loadCharacterSets(string filename) {
 	AAssetManager* manager = AAssetManager_fromJava(jniEnv, *assetManager);
 	AAsset* asset = AAssetManager_open(manager, filename.c_str(), AASSET_MODE_STREAMING);
 
-	size_t fileSize = AAsset_getLength(asset);
+	size_t fileSize = (size_t) AAsset_getLength(asset);
+	char* fileContent = new char[fileSize + 1];
 
 	__android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "asset file opened. size: %lu", fileSize);
 
-	char* fileContent = new char[fileSize + 1];
-
 	AAsset_read(asset, fileContent, fileSize);
-
 	string str(fileContent);
-
 	vector<string> strings = splitString(str, '\n');
-
 	parseCharacterSet(strings);
 
 	delete [] fileContent;
@@ -63,22 +59,25 @@ jobject BarcodeGenerator::generateBarcode(string &code) {
 	for (char &c : code) {
 		string str;
 		str.push_back(c);
-		barcode += set.getRow(str).getBinaryPattern();
+		string letterPattern = set.getRow(str).getBinaryPattern();
+		barcode += letterPattern;
 	}
-	barcode += calculateChecksum(code, set);
-	barcode += set.getRow("Stop").getBinaryPattern();
-    return nullptr;
+	string checksumPattern = calculateChecksum(code, set);
+	barcode += checksumPattern;
+	string stopcode = set.getRow("Stop").getBinaryPattern();
+	barcode += stopcode;
+    return createBitmap(barcode);
 }
 
 
 void BarcodeGenerator::addToSet(int index, int ascii, string value, string binary, CharacterSet &set) {
-	if (value.compare("!!") != 0) {
-		if (value.compare("space") == 0) {
-			value = " ";
-		}
-		CharacterRow row = CharacterRow(index, ascii, value, binary);
-		set.addRow(row);
+	if (value.compare("space") == 0) {
+		value = " ";
+	} else if (value.compare("!!") == 0) {
+		value = "";
 	}
+	CharacterRow row = CharacterRow(index, ascii, value, binary);
+	set.addRow(row);
 }
 
 const CharacterSet& BarcodeGenerator::detectCharacterSet(const string &str) {
@@ -95,8 +94,12 @@ const string& BarcodeGenerator::calculateChecksum(const string &str, CharacterSe
 	for (int i = 0; i < str.size(); i++) {
 		string token;
 		token.push_back(str[i]);
-		sum += characterSet.getRow(token).getAsciiCode() * (i + 1);
+		sum += characterSet.getRow(token).getIndex() * (i + 1);
 	}
 	int remainder = sum % 103;
 	return characterSet.getRow(remainder).getBinaryPattern();
+}
+
+jobject BarcodeGenerator::createBitmap(const string &binaryCode) {
+	return jniEnv->NewStringUTF(binaryCode.c_str());
 }

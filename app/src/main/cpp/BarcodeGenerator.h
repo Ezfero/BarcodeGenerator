@@ -32,6 +32,8 @@ private:
 
 	const string& calculateChecksum(const string& str, CharacterSet& characterSet);
 
+	jobject createBitmap(const string& binaryCode);
+
 public:
 
 	BarcodeGenerator(JNIEnv* jniEnv, jobject *assetManager)
