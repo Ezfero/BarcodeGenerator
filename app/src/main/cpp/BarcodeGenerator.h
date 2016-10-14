@@ -40,7 +40,7 @@ public:
 			: jniEnv{jniEnv},
 			  assetManager{assetManager} {
 
-		characterSets["C"] = CharacterSet("C", regex("\\d+"));
+		characterSets["C"] = CharacterSet("C", regex("(\\d\\d)+"));
 		characterSets["A"] = CharacterSet("A", regex("(([A-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*[A-Z0-9]*)*)"));
 		characterSets["B"] = CharacterSet("B", regex("(([a-zA-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*[a-zA-Z0-9]*)*)"));
 

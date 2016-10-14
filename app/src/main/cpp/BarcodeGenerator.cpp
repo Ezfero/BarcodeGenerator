@@ -56,16 +56,14 @@ jobject BarcodeGenerator::generateBarcode(string &code) {
 
 	string barcode;
 	barcode += set.getRow("Start").getBinaryPattern();
-	for (char &c : code) {
-		string str;
-		str.push_back(c);
-		string letterPattern = set.getRow(str).getBinaryPattern();
-		barcode += letterPattern;
+	vector<string>* tokens = set.split(code);
+	for (auto& str : *tokens) {
+		barcode += set.getRow(str).getBinaryPattern();
 	}
-	string checksumPattern = calculateChecksum(code, set);
-	barcode += checksumPattern;
-	string stopcode = set.getRow("Stop").getBinaryPattern();
-	barcode += stopcode;
+	barcode += calculateChecksum(code, set);
+	barcode += set.getRow("Stop").getBinaryPattern();
+
+	delete tokens;
     return createBitmap(barcode);
 }
 
@@ -91,9 +89,9 @@ const CharacterSet& BarcodeGenerator::detectCharacterSet(const string &str) {
 
 const string& BarcodeGenerator::calculateChecksum(const string &str, CharacterSet &characterSet) {
 	int sum = 0;
-	for (int i = 0; i < str.size(); i++) {
-		string token;
-		token.push_back(str[i]);
+	vector<string>* tokens = characterSet.split(str);
+	for (int i = 0; i < tokens->size(); i++) {
+		string token = (*tokens)[i];
 		sum += characterSet.getRow(token).getIndex() * (i + 1);
 	}
 	int remainder = sum % 103;

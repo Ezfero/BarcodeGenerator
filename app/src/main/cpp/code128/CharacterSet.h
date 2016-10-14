@@ -43,6 +43,8 @@ public:
 	CharacterRow& getRow(string value);
 
 	CharacterRow& getRow(int index);
+
+	vector<string>* split(const string& input);
 };
 
 
