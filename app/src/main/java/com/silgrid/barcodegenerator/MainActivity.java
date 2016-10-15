@@ -14,10 +14,12 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		Bitmap bitmap = BarcodeGenerator.generateBarcode("1234", this);
+		BarcodeGenerator.generateQRCode("1234", getAssets());
 
-		ImageView barcode = (ImageView) findViewById(R.id.barcode);
-		barcode.setImageBitmap(bitmap);
+//		Bitmap bitmap = BarcodeGenerator.generateBarcode("1234", this);
+//
+//		ImageView barcode = (ImageView) findViewById(R.id.barcode);
+//		barcode.setImageBitmap(bitmap);
 	}
 
 }

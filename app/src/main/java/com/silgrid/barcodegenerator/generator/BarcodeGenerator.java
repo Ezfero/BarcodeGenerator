@@ -15,4 +15,6 @@ public class BarcodeGenerator {
 	}
 
 	private static native Bitmap generateBarcode(String string, AssetManager assetManager);
+
+	public static native Bitmap generateQRCode(String string, AssetManager assetManager);
 }

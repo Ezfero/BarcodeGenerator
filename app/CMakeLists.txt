@@ -6,6 +6,14 @@ add_library( barcodegenerator-lib SHARED
              src/main/cpp/common/code128/CharacterRow.cpp
              src/main/cpp/common/json/json11.cpp
              src/main/cpp/android/AndroidBarcodeGenerator.cpp
+
+             src/main/cpp/common/QRCodeGenerator.cpp
+             src/main/cpp/common/qr/encoders/Encoder.cpp
+             src/main/cpp/common/qr/encoders/NumericEncoder.cpp
+             src/main/cpp/common/qr/encoders/AlphanumericEncoder.cpp
+             src/main/cpp/common/qr/encoders/ByteEncoder.cpp
+             src/main/cpp/common/qr/encoders/EncoderFactory.cpp
+
              src/main/cpp/barcodegenerator-lib.cpp )
 
 # Searches for a specified prebuilt library and stores the path as a
