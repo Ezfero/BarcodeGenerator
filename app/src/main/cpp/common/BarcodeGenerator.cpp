@@ -5,23 +5,25 @@
 #include "android/asset_manager_jni.h"
 
 #include "BarcodeGenerator.h"
+#include "json/json11.hpp"
 
-vector<string> BarcodeGenerator::splitString(string input, char delimiter) {
-	vector<string> strings;
-	istringstream stream(input);
-	string s;
-	while (getline(stream, s, delimiter)) {
-		strings.push_back(s);
+void* BarcodeGenerator::generateBarcode(string &code) {
+	CharacterSet set = detectCharacterSet(code);
+
+	string barcode;
+	barcode += set.getRow("Start").getBinaryPattern();
+	vector<string>* tokens = set.split(code);
+	for (auto& str : *tokens) {
+		barcode += set.getRow(str).getBinaryPattern();
 	}
-	return strings;
+	barcode += calculateChecksum(code, set);
+	barcode += set.getRow("Stop").getBinaryPattern();
+
+	delete tokens;
+	return createBitmap(barcode);
 }
 
 void BarcodeGenerator::addToSet(int index, int ascii, string value, string binary, CharacterSet &set) {
-	if (value.compare("space") == 0) {
-		value = " ";
-	} else if (value.compare("!!") == 0) {
-		value = "";
-	}
 	CharacterRow row = CharacterRow(index, ascii, value, binary);
 	set.addRow(row);
 }
@@ -46,3 +48,18 @@ const string& BarcodeGenerator::calculateChecksum(const string &str, CharacterSe
 	return characterSet.getRow(remainder).getBinaryPattern();
 }
 
+void BarcodeGenerator::parseCharacterSetsJson(const string &jsonString) {
+	string err;
+	auto json = json11::Json::parse(jsonString, err);
+
+	for (auto& k : json.array_items()) {
+		json11::Json val = k.object_items();
+		int index = val["index"].int_value();
+		int asciiCode = val["asciiCode"].int_value();
+		string binary = val["binaryCode"].string_value();
+
+		addToSet(index, asciiCode, val["typeAValue"].string_value(), binary, characterSets["A"]);
+		addToSet(index, asciiCode, val["typeBValue"].string_value(), binary, characterSets["B"]);
+		addToSet(index, asciiCode, val["typeCValue"].string_value(), binary, characterSets["C"]);
+	}
+}

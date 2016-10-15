@@ -14,9 +14,9 @@ private:
 	JNIEnv* jniEnv;
 	jobject* assetManager;
 
-	void parseCharacterSet(vector<string>);
+protected:
 
-	jobject createBitmap(const string& binaryCode);
+	virtual void* createBitmap(const string& binaryRepresentation);
 
 public:
 
@@ -26,8 +26,6 @@ public:
 			  assetManager(assetManager) { }
 
 	virtual void loadCharacterSets(string filename);
-
-	virtual void* generateBarcode(string& code);
 };
 
 

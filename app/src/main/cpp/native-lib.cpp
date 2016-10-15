@@ -13,7 +13,7 @@ Java_com_silgrid_barcodegenerator_generator_BarcodeGenerator_generateBarcode(JNI
 	string value(str);
 
 	AndroidBarcodeGenerator generator(env, &assetManager);
-	generator.loadCharacterSets("code128.txt");
+	generator.loadCharacterSets("code128.json");
 	jobject bitmap = (jobject) generator.generateBarcode(value);
 
 	env->ReleaseStringUTFChars(string_, str);

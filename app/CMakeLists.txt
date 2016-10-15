@@ -4,6 +4,7 @@ add_library( native-lib SHARED
              src/main/cpp/common/BarcodeGenerator.cpp
              src/main/cpp/common/code128/CharacterSet.cpp
              src/main/cpp/common/code128/CharacterRow.cpp
+             src/main/cpp/common/json/json11.cpp
              src/main/cpp/android/AndroidBarcodeGenerator.cpp
              src/main/cpp/native-lib.cpp )
 

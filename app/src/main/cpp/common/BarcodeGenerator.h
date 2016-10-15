@@ -12,22 +12,24 @@
 
 class BarcodeGenerator {
 
-protected:
-#define APPNAME "BarcodeGenerator"
+private:
 
 	vector<string> setsOrder;
 	map<string, CharacterSet> characterSets;
 
 	void addToSet(int index, int ascii, string value, string binary, CharacterSet &set);
 
-	vector<string> splitString(string input, char delimiter);
+protected:
 
 	const CharacterSet& detectCharacterSet(const string& str);
 
 	const string& calculateChecksum(const string& str, CharacterSet& characterSet);
 
-public:
+	void parseCharacterSetsJson(const string& json);
 
+	virtual void* createBitmap(const string& binaryRepresentation) = 0;
+
+public:
 
 	BarcodeGenerator() {
 		characterSets["C"] = CharacterSet("C", regex("(\\d\\d)+"));
@@ -39,11 +41,11 @@ public:
 		setsOrder.push_back("B");
 	}
 
-    ~BarcodeGenerator() { }
+    virtual ~BarcodeGenerator() { }
 
 	virtual void loadCharacterSets(string filename) = 0;
 
-	virtual void* generateBarcode(string& code) = 0;
+	void* generateBarcode(string& code);
 };
 
 
