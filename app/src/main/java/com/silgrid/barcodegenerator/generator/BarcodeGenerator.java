@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
 public class BarcodeGenerator {
 
 	static {
-		System.loadLibrary("native-lib");
+		System.loadLibrary("barcodegenerator-lib");
 	}
 
 	public static Bitmap generateBarcode(String string, Context context) {

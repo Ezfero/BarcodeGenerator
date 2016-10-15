@@ -2,8 +2,6 @@
 // Created by Andriy on 10/12/16.
 //
 
-#include "android/asset_manager_jni.h"
-
 #include "BarcodeGenerator.h"
 #include "json/json11.hpp"
 
