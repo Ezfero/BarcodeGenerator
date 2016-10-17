@@ -4,6 +4,8 @@
 
 #include "AlphanumericEncoder.h"
 
+const string AlphanumericEncoder::NAME = "alphanumeric";
+
 string& AlphanumericEncoder::encode(string& input) {
 	string temp("hello");
 	return temp;

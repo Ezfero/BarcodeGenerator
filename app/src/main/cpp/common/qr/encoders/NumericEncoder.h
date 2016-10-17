@@ -11,7 +11,10 @@
 class NumericEncoder : public Encoder {
 
 public:
-	NumericEncoder() : Encoder(regex("\\d+")) { }
+
+	static const string NAME;
+
+	NumericEncoder() : Encoder(regex("\\d+"), NAME, "0001") { }
 
 	virtual string& encode(string& input);
 

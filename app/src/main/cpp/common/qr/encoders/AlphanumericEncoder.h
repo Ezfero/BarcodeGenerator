@@ -12,7 +12,9 @@ class AlphanumericEncoder : public Encoder {
 
 public:
 
-	AlphanumericEncoder() : Encoder(regex("([A-Z0-9]+)([$%*+-./: ]+)")) { }
+	static const string NAME;
+
+	AlphanumericEncoder() : Encoder(regex("([A-Z0-9]+)([$%*+-./: ]+)"), NAME, "0010") { }
 
 	virtual string& encode(string& input);
 

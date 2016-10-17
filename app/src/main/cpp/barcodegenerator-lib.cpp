@@ -2,7 +2,7 @@
 #include <string>
 #include "common/BarcodeGenerator.h"
 #include "android/AndroidBarcodeGenerator.h"
-#include "common/QRCodeGenerator.h"
+#include "android/AndroidQRcodeGenerator.h"
 
 extern "C"
 JNIEXPORT jobject JNICALL
@@ -30,7 +30,8 @@ Java_com_silgrid_barcodegenerator_generator_BarcodeGenerator_generateQRCode(JNIE
 	const char* str = env->GetStringUTFChars(string_, 0);
 	string value(str);
 
-	QRCodeGenerator generator;
+	AndroidQRCodeGenerator generator(env, &assetManager);
+	generator.loadVersionsDetails("qrVersionCapacities.json");
 	generator.generateQRCode(value);
 	// TODO
 

@@ -31,7 +31,7 @@ public:
 		}
 	}
 
-	Encoder& getEncoder(string& code);
+	Encoder* getEncoder(string& code);
 };
 
 

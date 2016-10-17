@@ -4,6 +4,8 @@
 
 #include "NumericEncoder.h"
 
+const string NumericEncoder::NAME = "numeric";
+
 string& NumericEncoder::encode(string& input) {
 	string result;
 

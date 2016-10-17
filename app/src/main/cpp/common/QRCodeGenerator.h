@@ -7,14 +7,20 @@
 
 #include <string>
 #include "qr/encoders/Encoder.h"
+#include "qr/VersionInfo.h"
+#include "qr/VersionFactory.h"
 
 using namespace std;
 
 class QRCodeGenerator {
 
-private:
+protected:
+
+	VersionFactory versionFactory;
 
 public:
+
+	virtual void loadVersionsDetails(const string& filename) = 0;
 
 	void* generateQRCode(string& code);
 

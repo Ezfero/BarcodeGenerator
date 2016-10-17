@@ -12,7 +12,9 @@ class ByteEncoder : public Encoder {
 
 public:
 
-	ByteEncoder() : Encoder(regex("(\\d+)(\\w+)")) { }
+	static const string NAME;
+
+	ByteEncoder() : Encoder(regex("(\\d+)(\\w+)"), NAME, "0100") { }
 
 	virtual string& encode(string& input);
 
