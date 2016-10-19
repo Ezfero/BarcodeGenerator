@@ -14,24 +14,22 @@
 class EncoderFactory {
 private:
 
-	vector<Encoder*> encoders;
+	vector<shared_ptr<Encoder>> encoders;
 
 public:
 
 	EncoderFactory() {
-		encoders.push_back(new NumericEncoder());
-		encoders.push_back(new AlphanumericEncoder());
-		encoders.push_back(new ByteEncoder());
+		encoders.push_back(make_shared<NumericEncoder>());
+		encoders.push_back(make_shared<AlphanumericEncoder>());
+		encoders.push_back(make_shared<ByteEncoder>());
 	}
 
 
 	virtual ~EncoderFactory() {
-		for (auto& encoder : encoders) {
-			delete encoder;
-		}
+
 	}
 
-	Encoder* getEncoder(string& code);
+	shared_ptr<Encoder> getEncoder(string& code);
 };
 
 

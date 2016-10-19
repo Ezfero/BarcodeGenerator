@@ -24,7 +24,7 @@ private:
 
 public:
 
-	Version(Version* version) {
+	Version(shared_ptr<Version> version) {
 		versionNumber = version->versionNumber;
 		barcodeSize = version->barcodeSize;
 		characterCountBitSize = version->characterCountBitSize;

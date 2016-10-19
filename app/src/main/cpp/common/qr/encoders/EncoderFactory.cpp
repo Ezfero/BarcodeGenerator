@@ -4,7 +4,7 @@
 
 #include "EncoderFactory.h"
 
-Encoder* EncoderFactory::getEncoder(string& code) {
+shared_ptr<Encoder> EncoderFactory::getEncoder(string& code) {
 	for (auto& encoder : encoders) {
 		if (encoder->canProcess(code)) {
 			return encoder;

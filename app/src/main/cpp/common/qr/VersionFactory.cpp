@@ -5,7 +5,7 @@
 #include "VersionFactory.h"
 #include "../json/json11.hpp"
 
-void VersionFactory::init(ResourceLoader* resourceLoader) {
+void VersionFactory::init(shared_ptr<ResourceLoader> resourceLoader) {
 	auto jsonString = resourceLoader->loadResource(infosFilename);
 
 	string err;
@@ -24,7 +24,7 @@ void VersionFactory::init(ResourceLoader* resourceLoader) {
 	}
 }
 
-Version* VersionFactory::getVersion(const Encoder encoder, const string& code) {
+shared_ptr<Version> VersionFactory::getVersion(const Encoder encoder, const string& code) {
 	auto length = code.length();
 	auto corrector = encoder.getErrorCorrector();
 
@@ -32,7 +32,7 @@ Version* VersionFactory::getVersion(const Encoder encoder, const string& code) {
 		if (info.getErrorCorrectionLevel() != corrector.getLevelName()) {
 			continue;
 		}
-		Version* version = find((const int) length, encoder, info);
+		auto version = find((const int) length, encoder, info);
 		if (version != nullptr) {
 			return version;
 		}
@@ -41,19 +41,19 @@ Version* VersionFactory::getVersion(const Encoder encoder, const string& code) {
 	throw exception();
 }
 
-Version *VersionFactory::find(const int length, const Encoder& encoder, const VersionInfo& info) {
+shared_ptr<Version> VersionFactory::find(const int length, const Encoder& encoder, const VersionInfo& info) {
 	if (encoder.getName().compare(NumericEncoder::NAME) == 0) {
 		if (length <= info.getNumericModeSymbols()) {
-			return new Version(encoder, info);
+			return make_shared<Version>(encoder, info);
 		}
 	} else if (encoder.getName().compare(AlphanumericEncoder::NAME) == 0) {
 		if (length <= info.getAlphanumericModeSymbols()) {
-			return new Version(encoder, info);
+			return make_shared<Version>(encoder, info);
 		}
 	} else if (encoder.getName().compare(ByteEncoder::NAME) == 0) {
 		if (length <= info.getByteModeSymbols()) {
-			return new Version(encoder, info);
+			return make_shared<Version>(encoder, info);
 		}
 	}
-	return nullptr;
+	return shared_ptr<Version>();
 }

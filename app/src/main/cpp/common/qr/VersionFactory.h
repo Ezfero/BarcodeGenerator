@@ -21,7 +21,7 @@ private:
 	string infosFilename;
 	vector<VersionInfo> versionInfos;
 
-	Version* find(const int length, const Encoder& encoder, const VersionInfo& info);
+	shared_ptr<Version> find(const int length, const Encoder& encoder, const VersionInfo& info);
 
 public:
 
@@ -30,9 +30,9 @@ public:
 	VersionFactory(const string& versionInfosJsonFile)
 			: infosFilename(versionInfosJsonFile) { };
 
-	void init(ResourceLoader* resourceLoader);
+	void init(shared_ptr<ResourceLoader> resourceLoader);
 
-	Version* getVersion(const Encoder encoder, const string& code);
+	shared_ptr<Version> getVersion(const Encoder encoder, const string& code);
 
 };
 

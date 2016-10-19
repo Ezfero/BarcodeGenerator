@@ -44,7 +44,7 @@ public:
 
 	CharacterRow& getRow(int index);
 
-	vector<string>* split(const string& input);
+	shared_ptr<vector<string>> split(const string& input);
 };
 
 

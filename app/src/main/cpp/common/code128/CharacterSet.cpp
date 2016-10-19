@@ -21,8 +21,8 @@ CharacterRow& CharacterSet::getRow(int index) {
 	return getRow(rowKeys[index]);
 }
 
-vector<string>* CharacterSet::split(const string &input) {
-	vector<string>* result = new vector<string>;
+shared_ptr<vector<string>> CharacterSet::split(const string &input) {
+	shared_ptr<vector<string>> result(new vector<string>);
 	int step = setType.compare("C") == 0 ? 2 : 1;
 	for (int i = 0; i < input.size(); i += step) {
 		string substring = input.substr(i, step);

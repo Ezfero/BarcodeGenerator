@@ -10,14 +10,13 @@ void* BarcodeGenerator::generateBarcode(string &code) {
 
 	string barcode;
 	barcode += set.getRow("Start").getBinaryPattern();
-	vector<string>* tokens = set.split(code);
+	shared_ptr<vector<string>> tokens = set.split(code);
 	for (auto& str : *tokens) {
 		barcode += set.getRow(str).getBinaryPattern();
 	}
 	barcode += calculateChecksum(code, set);
 	barcode += set.getRow("Stop").getBinaryPattern();
 
-	delete tokens;
 	return createBitmap(barcode);
 }
 
@@ -37,7 +36,7 @@ const CharacterSet& BarcodeGenerator::detectCharacterSet(const string &str) {
 
 const string& BarcodeGenerator::calculateChecksum(const string &str, CharacterSet &characterSet) {
 	int sum = 0;
-	vector<string>* tokens = characterSet.split(str);
+	shared_ptr<vector<string>> tokens = characterSet.split(str);
 	for (int i = 0; i < tokens->size(); i++) {
 		string token = (*tokens)[i];
 		sum += characterSet.getRow(token).getIndex() * (i + 1);

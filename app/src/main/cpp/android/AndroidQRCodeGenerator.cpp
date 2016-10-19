@@ -6,9 +6,6 @@
 #include "AssetLoader.h"
 
 void AndroidQRCodeGenerator::loadVersionsDetails(const string& filename) {
-	ResourceLoader* resourceLoader = new AssetLoader(jniEnv, assetManager);
 	versionFactory = VersionFactory(filename);
-	versionFactory.init(resourceLoader);
-
-	delete resourceLoader;
+	versionFactory.init(make_shared<AssetLoader>(jniEnv, assetManager));
 }
