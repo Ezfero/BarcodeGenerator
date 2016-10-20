@@ -6,8 +6,6 @@
 
 const string AlphanumericEncoder::NAME = "alphanumeric";
 
-string& AlphanumericEncoder::encode(string& input) {
-	string temp("hello");
-	return temp;
+shared_ptr<string> AlphanumericEncoder::encodeData(string& data) {
+	return make_shared<string>();
 }
-

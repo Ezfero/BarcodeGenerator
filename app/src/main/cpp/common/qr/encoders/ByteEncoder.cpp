@@ -6,8 +6,6 @@
 
 const string ByteEncoder::NAME = "byte";
 
-string& ByteEncoder::encode(string& input) {
-	string temp("hello");
-	return temp;
+shared_ptr<string> ByteEncoder::encodeData(string& data) {
+	return make_shared<string>();
 }
-

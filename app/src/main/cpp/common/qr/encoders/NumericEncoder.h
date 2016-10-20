@@ -16,7 +16,7 @@ public:
 
 	NumericEncoder() : Encoder(regex("\\d+"), NAME, "0001") { }
 
-	virtual string& encode(string& input);
+	shared_ptr<string> encodeData(string& data);
 
 };
 

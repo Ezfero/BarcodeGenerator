@@ -6,15 +6,14 @@
 
 const string NumericEncoder::NAME = "numeric";
 
-string& NumericEncoder::encode(string& input) {
-	string result;
+shared_ptr<string> NumericEncoder::encodeData(string& data) {
+	shared_ptr<string> result = make_shared<string>();
 
-	for (unsigned long i = 0; i < input.size(); i += 3) {
+	for (unsigned long i = 0; i < data.size(); i += 3) {
 		unsigned long long int intVal = (unsigned long long int) atoi(
-				input.substr(i, i + 3 < input.size() ? 3 : input.size() - i).c_str());
-		string binary = bitset<16>(intVal).to_string();
-		result += binary.substr(binary.find("1"));
-		result.size();
+				data.substr(i, i + 3 < data.size() ? 3 : data.size() - i).c_str());
+		auto binary = bitset<16>(intVal).to_string();
+		*result += binary.substr(binary.find("1"));
 	}
 	return result;
 }

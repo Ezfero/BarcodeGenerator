@@ -10,35 +10,36 @@ class VersionInfo {
 
 private:
 	int version;
-	char errorCorrectionLevel;
+	int codewords;
+	int byteModeSymbols;
 	int numericModeSymbols;
 	int alphanumericModeSymbols;
-	int byteModeSymbols;
+	char errorCorrectionLevel;
 
 public:
 
-	VersionInfo()
-			: version(0),
-			  errorCorrectionLevel(0),
-			  numericModeSymbols(0),
-			  alphanumericModeSymbols(0),
-			  byteModeSymbols(0) { }
+	VersionInfo() : VersionInfo(0, 0, 0, 0, 0, 0) { }
 
 	VersionInfo(int version, char errorCorrectionLevel, int numericModeSymbols,
-				int alphanumericModeSymbols, int byteModeSymbols)
+				int alphanumericModeSymbols, int byteModeSymbols, int codewords)
 			: version(version),
 			  errorCorrectionLevel(errorCorrectionLevel),
 			  numericModeSymbols(numericModeSymbols),
 			  alphanumericModeSymbols(alphanumericModeSymbols),
-			  byteModeSymbols(byteModeSymbols) { }
+			  byteModeSymbols(byteModeSymbols),
+			  codewords(codewords) { }
 
 
 	int getVersion() const {
 		return version;
 	}
 
-	char getErrorCorrectionLevel() const {
-		return errorCorrectionLevel;
+	int getCodewords() const {
+		return codewords;
+	}
+
+	int getByteModeSymbols() const {
+		return byteModeSymbols;
 	}
 
 	int getNumericModeSymbols() const {
@@ -49,8 +50,8 @@ public:
 		return alphanumericModeSymbols;
 	}
 
-	int getByteModeSymbols() const {
-		return byteModeSymbols;
+	char getErrorCorrectionLevel() const {
+		return errorCorrectionLevel;
 	}
 };
 

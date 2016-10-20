@@ -7,6 +7,7 @@
 
 #include <regex>
 #include "../ErrorCorrector.h"
+#include "../Version.h"
 
 using namespace std;
 
@@ -17,7 +18,10 @@ protected:
 	regex stringValidationRegex;
 	string name;
 	string modeIndicator;
+	Version version;
 	ErrorCorrector errorCorrector;
+
+	virtual shared_ptr<string> encodeData(string& data) = 0;
 
 public:
 
@@ -36,9 +40,11 @@ public:
 
 	void setErrorCorrector(const ErrorCorrector& errorCorrector);
 
+	void setVersion(const Version& version);
+
 	bool canProcess(string& input);
 
-	virtual string& encode(string& input) = 0;
+	virtual string& encode(string& input);
 
 };
 

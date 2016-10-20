@@ -16,7 +16,7 @@ public:
 
 	AlphanumericEncoder() : Encoder(regex("([A-Z0-9]+)([$%*+-./: ]+)"), NAME, "0010") { }
 
-	virtual string& encode(string& input);
+	shared_ptr<string> encodeData(string& data);
 
 };
 

@@ -12,7 +12,7 @@ void *QRCodeGenerator::generateQRCode(string& code) {
 
 	auto encoder = factory.getEncoder(code);
 	encoder->setErrorCorrector(corrector);
-	auto version = versionFactory.getVersion(*encoder, code);
+	encoder->setVersion(versionFactory.getVersion(*encoder, code));
 	encoder->encode(code);
 	return nullptr;
 }

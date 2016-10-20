@@ -4,1119 +4,1279 @@
       "errorType":"L",
       "numeric":41,
       "alphanumeric":25,
-      "byte":17
+      "byte":17,
+      "codewords":19
    },
    {
       "version":1,
       "errorType":"M",
       "numeric":34,
       "alphanumeric":20,
-      "byte":14
+      "byte":14,
+      "codewords":16
    },
    {
       "version":1,
       "errorType":"Q",
       "numeric":27,
       "alphanumeric":16,
-      "byte":11
+      "byte":11,
+      "codewords":13
    },
    {
       "version":1,
       "errorType":"H",
       "numeric":17,
       "alphanumeric":10,
-      "byte":7
+      "byte":7,
+      "codewords":9
    },
    {
       "version":2,
       "errorType":"L",
       "numeric":77,
       "alphanumeric":47,
-      "byte":32
+      "byte":32,
+      "codewords":34
    },
    {
       "version":2,
       "errorType":"M",
       "numeric":63,
       "alphanumeric":38,
-      "byte":26
+      "byte":26,
+      "codewords":28
    },
    {
       "version":2,
       "errorType":"Q",
       "numeric":48,
       "alphanumeric":29,
-      "byte":20
+      "byte":20,
+      "codewords":22
    },
    {
       "version":2,
       "errorType":"H",
       "numeric":34,
       "alphanumeric":20,
-      "byte":14
+      "byte":14,
+      "codewords":16
    },
    {
       "version":3,
       "errorType":"L",
       "numeric":127,
       "alphanumeric":77,
-      "byte":53
+      "byte":53,
+      "codewords":55
    },
    {
       "version":3,
       "errorType":"M",
       "numeric":101,
       "alphanumeric":61,
-      "byte":42
+      "byte":42,
+      "codewords":44
    },
    {
       "version":3,
       "errorType":"Q",
       "numeric":77,
       "alphanumeric":47,
-      "byte":32
+      "byte":32,
+      "codewords":34
    },
    {
       "version":3,
       "errorType":"H",
       "numeric":58,
       "alphanumeric":35,
-      "byte":24
+      "byte":24,
+      "codewords":26
    },
    {
       "version":4,
       "errorType":"L",
       "numeric":187,
       "alphanumeric":114,
-      "byte":78
+      "byte":78,
+      "codewords":80
    },
    {
       "version":4,
       "errorType":"M",
       "numeric":149,
       "alphanumeric":90,
-      "byte":62
+      "byte":62,
+      "codewords":64
    },
    {
       "version":4,
       "errorType":"Q",
       "numeric":111,
       "alphanumeric":67,
-      "byte":46
+      "byte":46,
+      "codewords":48
    },
    {
       "version":4,
       "errorType":"H",
       "numeric":82,
       "alphanumeric":50,
-      "byte":34
+      "byte":34,
+      "codewords":36
    },
    {
       "version":5,
       "errorType":"L",
       "numeric":255,
       "alphanumeric":154,
-      "byte":106
+      "byte":106,
+      "codewords":108
    },
    {
       "version":5,
       "errorType":"M",
       "numeric":202,
       "alphanumeric":122,
-      "byte":84
+      "byte":84,
+      "codewords":86
    },
    {
       "version":5,
       "errorType":"Q",
       "numeric":144,
       "alphanumeric":87,
-      "byte":60
+      "byte":60,
+      "codewords":62
    },
    {
       "version":5,
       "errorType":"H",
       "numeric":106,
       "alphanumeric":64,
-      "byte":44
+      "byte":44,
+      "codewords":46
    },
    {
       "version":6,
       "errorType":"L",
       "numeric":322,
       "alphanumeric":195,
-      "byte":134
+      "byte":134,
+      "codewords":136
    },
    {
       "version":6,
       "errorType":"M",
       "numeric":255,
       "alphanumeric":154,
-      "byte":106
+      "byte":106,
+      "codewords":108
    },
    {
       "version":6,
       "errorType":"Q",
       "numeric":178,
       "alphanumeric":108,
-      "byte":74
+      "byte":74,
+      "codewords":76
    },
    {
       "version":6,
       "errorType":"H",
       "numeric":139,
       "alphanumeric":84,
-      "byte":58
+      "byte":58,
+      "codewords":60
    },
    {
       "version":7,
       "errorType":"L",
       "numeric":370,
       "alphanumeric":224,
-      "byte":154
+      "byte":154,
+      "codewords":156
    },
    {
       "version":7,
       "errorType":"M",
       "numeric":293,
       "alphanumeric":178,
-      "byte":122
+      "byte":122,
+      "codewords":124
    },
    {
       "version":7,
       "errorType":"Q",
       "numeric":207,
       "alphanumeric":125,
-      "byte":86
+      "byte":86,
+      "codewords":88
    },
    {
       "version":7,
       "errorType":"H",
       "numeric":154,
       "alphanumeric":93,
-      "byte":64
+      "byte":64,
+      "codewords":66
    },
    {
       "version":8,
       "errorType":"L",
       "numeric":461,
       "alphanumeric":279,
-      "byte":192
+      "byte":192,
+      "codewords":194
    },
    {
       "version":8,
       "errorType":"M",
       "numeric":365,
       "alphanumeric":221,
-      "byte":152
+      "byte":152,
+      "codewords":154
    },
    {
       "version":8,
       "errorType":"Q",
       "numeric":259,
       "alphanumeric":157,
-      "byte":108
+      "byte":108,
+      "codewords":110
    },
    {
       "version":8,
       "errorType":"H",
       "numeric":202,
       "alphanumeric":122,
-      "byte":84
+      "byte":84,
+      "codewords":86
    },
    {
       "version":9,
       "errorType":"L",
       "numeric":552,
       "alphanumeric":335,
-      "byte":230
+      "byte":230,
+      "codewords":232
    },
    {
       "version":9,
       "errorType":"M",
       "numeric":432,
       "alphanumeric":262,
-      "byte":180
+      "byte":180,
+      "codewords":182
    },
    {
       "version":9,
       "errorType":"Q",
       "numeric":312,
       "alphanumeric":189,
-      "byte":130
+      "byte":130,
+      "codewords":132
    },
    {
       "version":9,
       "errorType":"H",
       "numeric":235,
       "alphanumeric":143,
-      "byte":98
+      "byte":98,
+      "codewords":100
    },
    {
       "version":10,
       "errorType":"L",
       "numeric":652,
       "alphanumeric":395,
-      "byte":271
+      "byte":271,
+      "codewords":274
    },
    {
       "version":10,
       "errorType":"M",
       "numeric":513,
       "alphanumeric":311,
-      "byte":213
+      "byte":213,
+      "codewords":216
    },
    {
       "version":10,
       "errorType":"Q",
       "numeric":364,
       "alphanumeric":221,
-      "byte":151
+      "byte":151,
+      "codewords":154
    },
    {
       "version":10,
       "errorType":"H",
       "numeric":288,
       "alphanumeric":174,
-      "byte":119
+      "byte":119,
+      "codewords":122
    },
    {
       "version":11,
       "errorType":"L",
       "numeric":772,
       "alphanumeric":468,
-      "byte":321
+      "byte":321,
+      "codewords":324
    },
    {
       "version":11,
       "errorType":"M",
       "numeric":604,
       "alphanumeric":366,
-      "byte":251
+      "byte":251,
+      "codewords":254
    },
    {
       "version":11,
       "errorType":"Q",
       "numeric":427,
       "alphanumeric":259,
-      "byte":177
+      "byte":177,
+      "codewords":180
    },
    {
       "version":11,
       "errorType":"H",
       "numeric":331,
       "alphanumeric":200,
-      "byte":137
+      "byte":137,
+      "codewords":140
    },
    {
       "version":12,
       "errorType":"L",
       "numeric":883,
       "alphanumeric":535,
-      "byte":367
+      "byte":367,
+      "codewords":370
    },
    {
       "version":12,
       "errorType":"M",
       "numeric":691,
       "alphanumeric":419,
-      "byte":287
+      "byte":287,
+      "codewords":290
    },
    {
       "version":12,
       "errorType":"Q",
       "numeric":489,
       "alphanumeric":296,
-      "byte":203
+      "byte":203,
+      "codewords":206
    },
    {
       "version":12,
       "errorType":"H",
       "numeric":374,
       "alphanumeric":227,
-      "byte":155
+      "byte":155,
+      "codewords":158
    },
    {
       "version":13,
       "errorType":"L",
       "numeric":1022,
       "alphanumeric":619,
-      "byte":425
+      "byte":425,
+      "codewords":428
    },
    {
       "version":13,
       "errorType":"M",
       "numeric":796,
       "alphanumeric":483,
-      "byte":331
+      "byte":331,
+      "codewords":334
    },
    {
       "version":13,
       "errorType":"Q",
       "numeric":580,
       "alphanumeric":352,
-      "byte":241
+      "byte":241,
+      "codewords":244
    },
    {
       "version":13,
       "errorType":"H",
       "numeric":427,
       "alphanumeric":259,
-      "byte":177
+      "byte":177,
+      "codewords":180
    },
    {
       "version":14,
       "errorType":"L",
       "numeric":1101,
       "alphanumeric":667,
-      "byte":458
+      "byte":458,
+      "codewords":461
    },
    {
       "version":14,
       "errorType":"M",
       "numeric":871,
       "alphanumeric":528,
-      "byte":362
+      "byte":362,
+      "codewords":365
    },
    {
       "version":14,
       "errorType":"Q",
       "numeric":621,
       "alphanumeric":376,
-      "byte":258
+      "byte":258,
+      "codewords":261
    },
    {
       "version":14,
       "errorType":"H",
       "numeric":468,
       "alphanumeric":283,
-      "byte":194
+      "byte":194,
+      "codewords":197
    },
    {
       "version":15,
       "errorType":"L",
       "numeric":1250,
       "alphanumeric":758,
-      "byte":520
+      "byte":520,
+      "codewords":523
    },
    {
       "version":15,
       "errorType":"M",
       "numeric":991,
       "alphanumeric":600,
-      "byte":412
+      "byte":412,
+      "codewords":415
    },
    {
       "version":15,
       "errorType":"Q",
       "numeric":703,
       "alphanumeric":426,
-      "byte":292
+      "byte":292,
+      "codewords":295
    },
    {
       "version":15,
       "errorType":"H",
       "numeric":530,
       "alphanumeric":321,
-      "byte":220
+      "byte":220,
+      "codewords":223
    },
    {
       "version":16,
       "errorType":"L",
       "numeric":1408,
       "alphanumeric":854,
-      "byte":586
+      "byte":586,
+      "codewords":589
    },
    {
       "version":16,
       "errorType":"M",
       "numeric":1082,
       "alphanumeric":656,
-      "byte":450
+      "byte":450,
+      "codewords":453
    },
    {
       "version":16,
       "errorType":"Q",
       "numeric":775,
       "alphanumeric":470,
-      "byte":322
+      "byte":322,
+      "codewords":325
    },
    {
       "version":16,
       "errorType":"H",
       "numeric":602,
       "alphanumeric":365,
-      "byte":250
+      "byte":250,
+      "codewords":253
    },
    {
       "version":17,
       "errorType":"L",
       "numeric":1548,
       "alphanumeric":938,
-      "byte":644
+      "byte":644,
+      "codewords":647
    },
    {
       "version":17,
       "errorType":"M",
       "numeric":1212,
       "alphanumeric":734,
-      "byte":504
+      "byte":504,
+      "codewords":507
    },
    {
       "version":17,
       "errorType":"Q",
       "numeric":876,
       "alphanumeric":531,
-      "byte":364
+      "byte":364,
+      "codewords":367
    },
    {
       "version":17,
       "errorType":"H",
       "numeric":674,
       "alphanumeric":408,
-      "byte":280
+      "byte":280,
+      "codewords":283
    },
    {
       "version":18,
       "errorType":"L",
       "numeric":1725,
       "alphanumeric":1046,
-      "byte":718
+      "byte":718,
+      "codewords":721
    },
    {
       "version":18,
       "errorType":"M",
       "numeric":1346,
       "alphanumeric":816,
-      "byte":560
+      "byte":560,
+      "codewords":563
    },
    {
       "version":18,
       "errorType":"Q",
       "numeric":948,
       "alphanumeric":574,
-      "byte":394
+      "byte":394,
+      "codewords":397
    },
    {
       "version":18,
       "errorType":"H",
       "numeric":746,
       "alphanumeric":452,
-      "byte":310
+      "byte":310,
+      "codewords":313
    },
    {
       "version":19,
       "errorType":"L",
       "numeric":1903,
       "alphanumeric":1153,
-      "byte":792
+      "byte":792,
+      "codewords":795
    },
    {
       "version":19,
       "errorType":"M",
       "numeric":1500,
       "alphanumeric":909,
-      "byte":624
+      "byte":624,
+      "codewords":627
    },
    {
       "version":19,
       "errorType":"Q",
       "numeric":1063,
       "alphanumeric":644,
-      "byte":442
+      "byte":442,
+      "codewords":445
    },
    {
       "version":19,
       "errorType":"H",
       "numeric":813,
       "alphanumeric":493,
-      "byte":338
+      "byte":338,
+      "codewords":341
    },
    {
       "version":20,
       "errorType":"L",
       "numeric":2061,
       "alphanumeric":1249,
-      "byte":858
+      "byte":858,
+      "codewords":861
    },
    {
       "version":20,
       "errorType":"M",
       "numeric":1600,
       "alphanumeric":970,
-      "byte":666
+      "byte":666,
+      "codewords":669
    },
    {
       "version":20,
       "errorType":"Q",
       "numeric":1159,
       "alphanumeric":702,
-      "byte":482
+      "byte":482,
+      "codewords":485
    },
    {
       "version":20,
       "errorType":"H",
       "numeric":919,
       "alphanumeric":557,
-      "byte":382
+      "byte":382,
+      "codewords":385
    },
    {
       "version":21,
       "errorType":"L",
       "numeric":2232,
       "alphanumeric":1352,
-      "byte":929
+      "byte":929,
+      "codewords":932
    },
    {
       "version":21,
       "errorType":"M",
       "numeric":1708,
       "alphanumeric":1035,
-      "byte":711
+      "byte":711,
+      "codewords":714
    },
    {
       "version":21,
       "errorType":"Q",
       "numeric":1224,
       "alphanumeric":742,
-      "byte":509
+      "byte":509,
+      "codewords":512
    },
    {
       "version":21,
       "errorType":"H",
       "numeric":969,
       "alphanumeric":587,
-      "byte":403
+      "byte":403,
+      "codewords":406
    },
    {
       "version":22,
       "errorType":"L",
       "numeric":2409,
       "alphanumeric":1460,
-      "byte":1003
+      "byte":1003,
+      "codewords":1006
    },
    {
       "version":22,
       "errorType":"M",
       "numeric":1872,
       "alphanumeric":1134,
-      "byte":779
+      "byte":779,
+      "codewords":782
    },
    {
       "version":22,
       "errorType":"Q",
       "numeric":1358,
       "alphanumeric":823,
-      "byte":565
+      "byte":565,
+      "codewords":568
    },
    {
       "version":22,
       "errorType":"H",
       "numeric":1056,
       "alphanumeric":640,
-      "byte":439
+      "byte":439,
+      "codewords":442
    },
    {
       "version":23,
       "errorType":"L",
       "numeric":2620,
       "alphanumeric":1588,
-      "byte":1091
+      "byte":1091,
+      "codewords":1094
    },
    {
       "version":23,
       "errorType":"M",
       "numeric":2059,
       "alphanumeric":1248,
-      "byte":857
+      "byte":857,
+      "codewords":860
    },
    {
       "version":23,
       "errorType":"Q",
       "numeric":1468,
       "alphanumeric":890,
-      "byte":611
+      "byte":611,
+      "codewords":614
    },
    {
       "version":23,
       "errorType":"H",
       "numeric":1108,
       "alphanumeric":672,
-      "byte":461
+      "byte":461,
+      "codewords":464
    },
    {
       "version":24,
       "errorType":"L",
       "numeric":2812,
       "alphanumeric":1704,
-      "byte":1171
+      "byte":1171,
+      "codewords":1174
    },
    {
       "version":24,
       "errorType":"M",
       "numeric":2188,
       "alphanumeric":1326,
-      "byte":911
+      "byte":911,
+      "codewords":914
    },
    {
       "version":24,
       "errorType":"Q",
       "numeric":1588,
       "alphanumeric":963,
-      "byte":661
+      "byte":661,
+      "codewords":664
    },
    {
       "version":24,
       "errorType":"H",
       "numeric":1228,
       "alphanumeric":744,
-      "byte":511
+      "byte":511,
+      "codewords":514
    },
    {
       "version":25,
       "errorType":"L",
       "numeric":3057,
       "alphanumeric":1853,
-      "byte":1273
+      "byte":1273,
+      "codewords":1276
    },
    {
       "version":25,
       "errorType":"M",
       "numeric":2395,
       "alphanumeric":1451,
-      "byte":997
+      "byte":997,
+      "codewords":1000
    },
    {
       "version":25,
       "errorType":"Q",
       "numeric":1718,
       "alphanumeric":1041,
-      "byte":715
+      "byte":715,
+      "codewords":718
    },
    {
       "version":25,
       "errorType":"H",
       "numeric":1286,
       "alphanumeric":779,
-      "byte":535
+      "byte":535,
+      "codewords":538
    },
    {
       "version":26,
       "errorType":"L",
       "numeric":3283,
       "alphanumeric":1990,
-      "byte":1367
+      "byte":1367,
+      "codewords":1370
    },
    {
       "version":26,
       "errorType":"M",
       "numeric":2544,
       "alphanumeric":1542,
-      "byte":1059
+      "byte":1059,
+      "codewords":1062
    },
    {
       "version":26,
       "errorType":"Q",
       "numeric":1804,
       "alphanumeric":1094,
-      "byte":751
+      "byte":751,
+      "codewords":754
    },
    {
       "version":26,
       "errorType":"H",
       "numeric":1425,
       "alphanumeric":864,
-      "byte":593
+      "byte":593,
+      "codewords":596
    },
    {
       "version":27,
       "errorType":"L",
       "numeric":3517,
       "alphanumeric":2132,
-      "byte":1465
+      "byte":1465,
+      "codewords":1468
    },
    {
       "version":27,
       "errorType":"M",
       "numeric":2701,
       "alphanumeric":1637,
-      "byte":1125
+      "byte":1125,
+      "codewords":1128
    },
    {
       "version":27,
       "errorType":"Q",
       "numeric":1933,
       "alphanumeric":1172,
-      "byte":805
+      "byte":805,
+      "codewords":808
    },
    {
       "version":27,
       "errorType":"H",
       "numeric":1501,
       "alphanumeric":910,
-      "byte":625
+      "byte":625,
+      "codewords":628
    },
    {
       "version":28,
       "errorType":"L",
       "numeric":3669,
       "alphanumeric":2223,
-      "byte":1528
+      "byte":1528,
+      "codewords":1531
    },
    {
       "version":28,
       "errorType":"M",
       "numeric":2857,
       "alphanumeric":1732,
-      "byte":1190
+      "byte":1190,
+      "codewords":1193
    },
    {
       "version":28,
       "errorType":"Q",
       "numeric":2085,
       "alphanumeric":1263,
-      "byte":868
+      "byte":868,
+      "codewords":871
    },
    {
       "version":28,
       "errorType":"H",
       "numeric":1581,
       "alphanumeric":958,
-      "byte":658
+      "byte":658,
+      "codewords":661
    },
    {
       "version":29,
       "errorType":"L",
       "numeric":3909,
       "alphanumeric":2369,
-      "byte":1628
+      "byte":1628,
+      "codewords":1631
    },
    {
       "version":29,
       "errorType":"M",
       "numeric":3035,
       "alphanumeric":1839,
-      "byte":1264
+      "byte":1264,
+      "codewords":1267
    },
    {
       "version":29,
       "errorType":"Q",
       "numeric":2181,
       "alphanumeric":1322,
-      "byte":908
+      "byte":908,
+      "codewords":911
    },
    {
       "version":29,
       "errorType":"H",
       "numeric":1677,
       "alphanumeric":1016,
-      "byte":698
+      "byte":698,
+      "codewords":701
    },
    {
       "version":30,
       "errorType":"L",
       "numeric":4158,
       "alphanumeric":2520,
-      "byte":1732
+      "byte":1732,
+      "codewords":1735
    },
    {
       "version":30,
       "errorType":"M",
       "numeric":3289,
       "alphanumeric":1994,
-      "byte":1370
+      "byte":1370,
+      "codewords":1373
    },
    {
       "version":30,
       "errorType":"Q",
       "numeric":2358,
       "alphanumeric":1429,
-      "byte":982
+      "byte":982,
+      "codewords":985
    },
    {
       "version":30,
       "errorType":"H",
       "numeric":1782,
       "alphanumeric":1080,
-      "byte":742
+      "byte":742,
+      "codewords":745
    },
    {
       "version":31,
       "errorType":"L",
       "numeric":4417,
       "alphanumeric":2677,
-      "byte":1840
+      "byte":1840,
+      "codewords":1843
    },
    {
       "version":31,
       "errorType":"M",
       "numeric":3486,
       "alphanumeric":2113,
-      "byte":1452
+      "byte":1452,
+      "codewords":1455
    },
    {
       "version":31,
       "errorType":"Q",
       "numeric":2473,
       "alphanumeric":1499,
-      "byte":1030
+      "byte":1030,
+      "codewords":1033
    },
    {
       "version":31,
       "errorType":"H",
       "numeric":1897,
       "alphanumeric":1150,
-      "byte":790
+      "byte":790,
+      "codewords":793
    },
    {
       "version":32,
       "errorType":"L",
       "numeric":4686,
       "alphanumeric":2840,
-      "byte":1952
+      "byte":1952,
+      "codewords":1955
    },
    {
       "version":32,
       "errorType":"M",
       "numeric":3693,
       "alphanumeric":2238,
-      "byte":1538
+      "byte":1538,
+      "codewords":1541
    },
    {
       "version":32,
       "errorType":"Q",
       "numeric":2670,
       "alphanumeric":1618,
-      "byte":1112
+      "byte":1112,
+      "codewords":1115
    },
    {
       "version":32,
       "errorType":"H",
       "numeric":2022,
       "alphanumeric":1226,
-      "byte":842
+      "byte":842,
+      "codewords":845
    },
    {
       "version":33,
       "errorType":"L",
       "numeric":4965,
       "alphanumeric":3009,
-      "byte":2068
+      "byte":2068,
+      "codewords":2071
    },
    {
       "version":33,
       "errorType":"M",
       "numeric":3909,
       "alphanumeric":2369,
-      "byte":1628
+      "byte":1628,
+      "codewords":1631
    },
    {
       "version":33,
       "errorType":"Q",
       "numeric":2805,
       "alphanumeric":1700,
-      "byte":1168
+      "byte":1168,
+      "codewords":1171
    },
    {
       "version":33,
       "errorType":"H",
       "numeric":2157,
       "alphanumeric":1307,
-      "byte":898
+      "byte":898,
+      "codewords":901
    },
    {
       "version":34,
       "errorType":"L",
       "numeric":5253,
       "alphanumeric":3183,
-      "byte":2188
+      "byte":2188,
+      "codewords":2191
    },
    {
       "version":34,
       "errorType":"M",
       "numeric":4134,
       "alphanumeric":2506,
-      "byte":1722
+      "byte":1722,
+      "codewords":1725
    },
    {
       "version":34,
       "errorType":"Q",
       "numeric":2949,
       "alphanumeric":1787,
-      "byte":1228
+      "byte":1228,
+      "codewords":1231
    },
    {
       "version":34,
       "errorType":"H",
       "numeric":2301,
       "alphanumeric":1394,
-      "byte":958
+      "byte":958,
+      "codewords":961
    },
    {
       "version":35,
       "errorType":"L",
       "numeric":5529,
       "alphanumeric":3351,
-      "byte":2303
+      "byte":2303,
+      "codewords":2306
    },
    {
       "version":35,
       "errorType":"M",
       "numeric":4343,
       "alphanumeric":2632,
-      "byte":1809
+      "byte":1809,
+      "codewords":1812
    },
    {
       "version":35,
       "errorType":"Q",
       "numeric":3081,
       "alphanumeric":1867,
-      "byte":1283
+      "byte":1283,
+      "codewords":1286
    },
    {
       "version":35,
       "errorType":"H",
       "numeric":2361,
       "alphanumeric":1431,
-      "byte":983
+      "byte":983,
+      "codewords":986
    },
    {
       "version":36,
       "errorType":"L",
       "numeric":5836,
       "alphanumeric":3537,
-      "byte":2431
+      "byte":2431,
+      "codewords":2434
    },
    {
       "version":36,
       "errorType":"M",
       "numeric":4588,
       "alphanumeric":2780,
-      "byte":1911
+      "byte":1911,
+      "codewords":1914
    },
    {
       "version":36,
       "errorType":"Q",
       "numeric":3244,
       "alphanumeric":1966,
-      "byte":1351
+      "byte":1351,
+      "codewords":1354
    },
    {
       "version":36,
       "errorType":"H",
       "numeric":2524,
       "alphanumeric":1530,
-      "byte":1051
+      "byte":1051,
+      "codewords":1054
    },
    {
       "version":37,
       "errorType":"L",
       "numeric":6153,
       "alphanumeric":3729,
-      "byte":2563
+      "byte":2563,
+      "codewords":2566
    },
    {
       "version":37,
       "errorType":"M",
       "numeric":4775,
       "alphanumeric":2894,
-      "byte":1989
+      "byte":1989,
+      "codewords":1992
    },
    {
       "version":37,
       "errorType":"Q",
       "numeric":3417,
       "alphanumeric":2071,
-      "byte":1423
+      "byte":1423,
+      "codewords":1426
    },
    {
       "version":37,
       "errorType":"H",
       "numeric":2625,
       "alphanumeric":1591,
-      "byte":1093
+      "byte":1093,
+      "codewords":1096
    },
    {
       "version":38,
       "errorType":"L",
       "numeric":6479,
       "alphanumeric":3927,
-      "byte":2699
+      "byte":2699,
+      "codewords":2702
    },
    {
       "version":38,
       "errorType":"M",
       "numeric":5039,
       "alphanumeric":3054,
-      "byte":2099
+      "byte":2099,
+      "codewords":2102
    },
    {
       "version":38,
       "errorType":"Q",
       "numeric":3599,
       "alphanumeric":2181,
-      "byte":1499
+      "byte":1499,
+      "codewords":1502
    },
    {
       "version":38,
       "errorType":"H",
       "numeric":2735,
       "alphanumeric":1658,
-      "byte":1139
+      "byte":1139,
+      "codewords":1142
    },
    {
       "version":39,
       "errorType":"L",
       "numeric":6743,
       "alphanumeric":4087,
-      "byte":2809
+      "byte":2809,
+      "codewords":2812
    },
    {
       "version":39,
       "errorType":"M",
       "numeric":5313,
       "alphanumeric":3220,
-      "byte":2213
+      "byte":2213,
+      "codewords":2216
    },
    {
       "version":39,
       "errorType":"Q",
       "numeric":3791,
       "alphanumeric":2298,
-      "byte":1579
+      "byte":1579,
+      "codewords":1582
    },
    {
       "version":39,
       "errorType":"H",
       "numeric":2927,
       "alphanumeric":1774,
-      "byte":1219
+      "byte":1219,
+      "codewords":1222
    },
    {
       "version":40,
       "errorType":"L",
       "numeric":7089,
       "alphanumeric":4296,
-      "byte":2953
+      "byte":2953,
+      "codewords":2956
    },
    {
       "version":40,
       "errorType":"M",
       "numeric":5596,
       "alphanumeric":3391,
-      "byte":2331
+      "byte":2331,
+      "codewords":2334
    },
    {
       "version":40,
       "errorType":"Q",
       "numeric":3993,
       "alphanumeric":2420,
-      "byte":1663
+      "byte":1663,
+      "codewords":1666
    },
    {
       "version":40,
       "errorType":"H",
       "numeric":3057,
       "alphanumeric":1852,
-      "byte":1273
+      "byte":1273,
+      "codewords":1276
    }
 ]

@@ -8,6 +8,13 @@ import android.widget.ImageView;
 
 import com.silgrid.barcodegenerator.generator.BarcodeGenerator;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class MainActivity extends AppCompatActivity {
 
 	@Override
@@ -15,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		BarcodeGenerator.generateQRCode("1234", getAssets());
+		BarcodeGenerator.generateQRCode("12341234", getAssets());
 
 //		Bitmap bitmap = BarcodeGenerator.generateBarcode("1234", this);
 //

@@ -4,6 +4,9 @@
 
 #include "VersionFactory.h"
 #include "../json/json11.hpp"
+#include "encoders/NumericEncoder.h"
+#include "encoders/AlphanumericEncoder.h"
+#include "encoders/ByteEncoder.h"
 
 void VersionFactory::init(shared_ptr<ResourceLoader> resourceLoader) {
 	auto jsonString = resourceLoader->loadResource(infosFilename);
@@ -19,8 +22,9 @@ void VersionFactory::init(shared_ptr<ResourceLoader> resourceLoader) {
 		auto numericSymbols = val["numeric"].int_value();
 		auto alphanumericSymbols = val["alphanumeric"].int_value();
 		auto byteSymbols = val["byte"].int_value();
+		auto codewords = val["codewords"].int_value();
 
-		versionInfos.push_back(VersionInfo(version, errorCorrectionType[0], numericSymbols, alphanumericSymbols, byteSymbols));
+		versionInfos.push_back(VersionInfo(version, errorCorrectionType[0], numericSymbols, alphanumericSymbols, byteSymbols, codewords));
 	}
 }
 

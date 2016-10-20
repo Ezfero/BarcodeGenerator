@@ -16,7 +16,7 @@ public:
 
 	ByteEncoder() : Encoder(regex("(\\d+)(\\w+)"), NAME, "0100") { }
 
-	virtual string& encode(string& input);
+	shared_ptr<string> encodeData(string& data);
 
 };
 
