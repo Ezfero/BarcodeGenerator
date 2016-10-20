@@ -9,6 +9,7 @@
 
 #include <jni.h>
 #include <android/asset_manager.h>
+#include <memory>
 #include "../common/ResourceLoader.h"
 
 using namespace std;
@@ -28,7 +29,7 @@ public:
 			: jniEnv(jniEnv),
 			  assetManager(assetManager) { }
 
-	virtual string* loadResource(string& filename) override;
+	virtual shared_ptr<string> loadResource(string& filename) override;
 
 };
 

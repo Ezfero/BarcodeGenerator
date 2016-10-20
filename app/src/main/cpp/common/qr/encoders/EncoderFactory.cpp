@@ -10,5 +10,5 @@ shared_ptr<Encoder> EncoderFactory::getEncoder(string& code) {
 			return encoder;
 		}
 	}
-	throw exception();
+	return shared_ptr<Encoder>();
 }

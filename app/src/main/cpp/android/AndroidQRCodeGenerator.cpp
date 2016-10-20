@@ -9,3 +9,7 @@ void AndroidQRCodeGenerator::loadVersionsDetails(const string& filename) {
 	versionFactory = VersionFactory(filename);
 	versionFactory.init(make_shared<AssetLoader>(jniEnv, assetManager));
 }
+
+shared_ptr<EncoderFactory> AndroidQRCodeGenerator::createEncoderFactory() {
+	return make_shared<EncoderFactory>(make_shared<AssetLoader>(jniEnv, assetManager));
+}

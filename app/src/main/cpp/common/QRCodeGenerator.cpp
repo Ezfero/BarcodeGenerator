@@ -7,10 +7,10 @@
 #include "qr/Version.h"
 
 void *QRCodeGenerator::generateQRCode(string& code) {
-	EncoderFactory factory;
 	ErrorCorrector corrector("Q");
 
-	auto encoder = factory.getEncoder(code);
+	auto encoder = createEncoderFactory()->getEncoder(code);
+	encoder->init();
 	encoder->setErrorCorrector(corrector);
 	encoder->setVersion(versionFactory.getVersion(*encoder, code));
 	encoder->encode(code);

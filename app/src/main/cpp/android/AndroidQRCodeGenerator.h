@@ -16,6 +16,9 @@ private:
 	JNIEnv* jniEnv;
 	jobject* assetManager;
 
+protected:
+	virtual shared_ptr<EncoderFactory> createEncoderFactory() override;
+
 public:
 
 	AndroidQRCodeGenerator(JNIEnv *jniEnv, jobject *assetManager)
@@ -29,6 +32,9 @@ public:
 	}
 
 	virtual void loadVersionsDetails(const string& filename) override;
+
+
+
 };
 
 

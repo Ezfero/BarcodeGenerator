@@ -36,6 +36,10 @@ public:
 
 	const string& getName() const;
 
+	virtual void init() { }
+
+	virtual string& encode(string& input);
+
 	const ErrorCorrector& getErrorCorrector() const;
 
 	void setErrorCorrector(const ErrorCorrector& errorCorrector);
@@ -44,7 +48,6 @@ public:
 
 	bool canProcess(string& input);
 
-	virtual string& encode(string& input);
 
 };
 

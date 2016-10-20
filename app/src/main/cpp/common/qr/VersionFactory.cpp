@@ -13,7 +13,6 @@ void VersionFactory::init(shared_ptr<ResourceLoader> resourceLoader) {
 
 	string err;
 	auto json = json11::Json::parse(*jsonString, err);
-	delete jsonString;
 
 	for (auto& k : json.array_items()) {
 		json11::Json val = k.object_items();

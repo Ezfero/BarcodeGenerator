@@ -10,6 +10,7 @@
 #include "NumericEncoder.h"
 #include "AlphanumericEncoder.h"
 #include "ByteEncoder.h"
+#include "../../ResourceLoader.h"
 
 class EncoderFactory {
 private:
@@ -18,18 +19,17 @@ private:
 
 public:
 
-	EncoderFactory() {
+	EncoderFactory(shared_ptr<ResourceLoader> resourceLoader) {
 		encoders.push_back(make_shared<NumericEncoder>());
-		encoders.push_back(make_shared<AlphanumericEncoder>());
+		encoders.push_back(make_shared<AlphanumericEncoder>(resourceLoader));
 		encoders.push_back(make_shared<ByteEncoder>());
 	}
 
-
 	virtual ~EncoderFactory() {
-
 	}
 
 	shared_ptr<Encoder> getEncoder(string& code);
+
 };
 
 

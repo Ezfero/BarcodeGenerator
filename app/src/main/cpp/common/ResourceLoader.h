@@ -5,6 +5,7 @@
 #ifndef BARCODEGENERATOR_RESOURCELOADER_H
 #define BARCODEGENERATOR_RESOURCELOADER_H
 
+#include <memory>
 #include <string>
 
 using namespace std;
@@ -14,7 +15,7 @@ public:
 
 	virtual ~ResourceLoader() { }
 
-	virtual string* loadResource(string& filename) = 0;
+	virtual shared_ptr<string> loadResource(string& filename) = 0;
 };
 
 #endif //BARCODEGENERATOR_RESOURCELOADER_H
