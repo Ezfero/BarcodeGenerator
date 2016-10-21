@@ -16,14 +16,18 @@ void VersionFactory::init(shared_ptr<ResourceLoader> resourceLoader) {
 
 	for (auto& k : json.array_items()) {
 		json11::Json val = k.object_items();
-		auto version = val["version"].int_value();
-		auto errorCorrectionType = val["errorType"].string_value();
-		auto numericSymbols = val["numeric"].int_value();
-		auto alphanumericSymbols = val["alphanumeric"].int_value();
-		auto byteSymbols = val["byte"].int_value();
-		auto codewords = val["codewords"].int_value();
-
-		versionInfos.push_back(VersionInfo(version, errorCorrectionType[0], numericSymbols, alphanumericSymbols, byteSymbols, codewords));
+		versionInfos.push_back(VersionInfoBuilder()
+				.setVersion(val["version"].int_value())
+				.setErrorCorrectionLevel(val["errorType"].string_value()[0])
+				.setNumericModeSymbols(val["numeric"].int_value())
+				.setAlphanumericModeSymbols(val["alphanumeric"].int_value())
+				.setByteModeSymbols(val["byte"].int_value())
+				.setCorrections(val["corrections"].int_value())
+				.setGroup1Blocks(val["blocks1"].int_value())
+				.setGroup1Codewords(val["codewords1"].int_value())
+				.setGroup2Blocks(val["blocks2"].int_value())
+				.setGroup2Codewords(val["codewords2"].int_value())
+				.build());
 	}
 }
 

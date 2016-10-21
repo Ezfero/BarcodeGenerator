@@ -35,7 +35,8 @@ int Version::getCharacterCountBitSize() const {
 Version::Version(const Encoder& encoder, const VersionInfo& versionInfo) {
 	versionNumber = versionInfo.getVersion();
 	barcodeSize = initialSize + 4 * (versionNumber - 1);
-	codewordsAmount = versionInfo.getCodewords();
+	codewordsAmount = versionInfo.getGroup1Blocks() * versionInfo.getGroup1Codewords()
+			+ versionInfo.getGroup2Blocks() * versionInfo.getGroup2Codewords();
 
 	if (encoder.getName().compare(NumericEncoder::NAME) == 0) {
 		characterCountBitSize = getCountBitSize() + 1;

@@ -27,7 +27,7 @@ public:
 			: Encoder(regex("(([A-Z0-9]+)|([$%*+-./: ]+))+"), NAME, "0010"),
 			  resourceLoader(resourceLoader) { }
 
-	shared_ptr<string> encodeData(string& data);
+	shared_ptr<string> encodeData(string& data) override;
 
 	virtual void init() override;
 
