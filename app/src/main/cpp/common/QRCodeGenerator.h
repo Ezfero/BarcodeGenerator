@@ -21,6 +21,8 @@ protected:
 
 	virtual shared_ptr<EncoderFactory> createEncoderFactory() = 0;
 
+	virtual shared_ptr<LogAntilogTable> createLogAntilogTable() = 0;
+
 public:
 
 	virtual void loadVersionsDetails(const string& filename) = 0;

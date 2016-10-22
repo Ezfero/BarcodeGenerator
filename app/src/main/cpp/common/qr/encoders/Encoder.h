@@ -6,12 +6,17 @@
 #define BARCODEGENERATOR_ENCODING_H
 
 #include <regex>
-#include "../ErrorCorrector.h"
+#include "../errorCorrection/ErrorCorrector.h"
 #include "../Version.h"
+#include "../errorCorrection/Polynomial.h"
 
 using namespace std;
 
 class Encoder {
+
+private:
+	vector<shared_ptr<Polynomial>> generatePolynomials(string& code);
+	vector<shared_ptr<Polynomial>> generateGroup(string& code, int start, int blocksCount, int codewordsCount);
 
 protected:
 
@@ -34,11 +39,11 @@ public:
 
 	virtual ~Encoder() { }
 
-	const string& getName() const;
-
 	virtual void init() { }
 
 	virtual string& encode(string& input);
+
+	const string& getName() const;
 
 	const ErrorCorrector& getErrorCorrector() const;
 

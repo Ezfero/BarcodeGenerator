@@ -8,6 +8,10 @@
 
 void *QRCodeGenerator::generateQRCode(string& code) {
 	ErrorCorrector corrector("Q");
+	auto table = createLogAntilogTable();
+	Polynomial::setLogAntilogTable(LogAntilogTable(*table.get()));
+	corrector.setLogAntilogTable(table);
+	corrector.createGeneratorPolynomial(2);
 
 	auto encoder = createEncoderFactory()->getEncoder(code);
 	encoder->init();

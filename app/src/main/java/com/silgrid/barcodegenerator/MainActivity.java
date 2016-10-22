@@ -29,21 +29,19 @@ public class MainActivity extends AppCompatActivity {
 		JSONArray array = new JSONArray();
 
 		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(getAssets().open("qrAlphanumeric.txt")));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(getAssets().open("logAntilogValues.txt")));
 
 			String line;
 			while ((line = reader.readLine()) != null) {
+				line = line.replace("\t", " ");
 				String[] values = line.split(" ");
 
 				JSONObject object = new JSONObject();
-				if (values.length >= 2) {
-					Log.d("debug", "vals " + Arrays.toString(values));
-					object.put("val", values[0]);
-					object.put("code", Integer.valueOf(values[1]));
-				} else {
-					object.put("val", " ");
-					object.put("code", Integer.valueOf(values[0]));
-				}
+				int degree = Integer.valueOf(values[0]);
+				int value = Integer.valueOf(values[1]);
+
+				object.put("degree", degree);
+				object.put("value", value);
 
 				array.put(object);
 			}
@@ -51,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
 			e.printStackTrace();
 		}
 
-		Log.d("debug", array.toString());
+		String stringJson = array.toString();
+
+		for (int i = 0; i < stringJson.length(); i += 1000) {
+			Log.d("debug", stringJson.substring(i, i + 1000 < stringJson.length() ? i + 1000 : stringJson.length()));
+		}
 
 //		Bitmap bitmap = BarcodeGenerator.generateBarcode("1234", this);
 //

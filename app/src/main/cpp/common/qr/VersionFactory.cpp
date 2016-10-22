@@ -40,7 +40,7 @@ shared_ptr<Version> VersionFactory::getVersion(const Encoder encoder, const stri
 			continue;
 		}
 		auto version = find((const int) length, encoder, info);
-		if (version != nullptr) {
+		if (version) {
 			return version;
 		}
 

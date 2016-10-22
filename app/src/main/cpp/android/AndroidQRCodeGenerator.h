@@ -19,6 +19,8 @@ private:
 protected:
 	virtual shared_ptr<EncoderFactory> createEncoderFactory() override;
 
+	virtual shared_ptr<LogAntilogTable> createLogAntilogTable() override;
+
 public:
 
 	AndroidQRCodeGenerator(JNIEnv *jniEnv, jobject *assetManager)

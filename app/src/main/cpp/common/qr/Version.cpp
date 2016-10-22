@@ -24,8 +24,24 @@ int Version::getBarcodeSize() const {
 	return barcodeSize;
 }
 
+int Version::getGroup1Blocks() const {
+	return group1Blocks;
+}
+
+int Version::getGroup2Blocks() const {
+	return group2Blocks;
+}
+
+int Version::getGroup1Codewords() const {
+	return group1Codewords;
+}
+
+int Version::getGroup2Codewords() const {
+	return group2Codewords;
+}
+
 int Version::getCodewordsAmount() const {
-	return codewordsAmount;
+	return group1Blocks * group1Codewords + group2Blocks * group2Codewords;
 }
 
 int Version::getCharacterCountBitSize() const {
@@ -35,8 +51,10 @@ int Version::getCharacterCountBitSize() const {
 Version::Version(const Encoder& encoder, const VersionInfo& versionInfo) {
 	versionNumber = versionInfo.getVersion();
 	barcodeSize = initialSize + 4 * (versionNumber - 1);
-	codewordsAmount = versionInfo.getGroup1Blocks() * versionInfo.getGroup1Codewords()
-			+ versionInfo.getGroup2Blocks() * versionInfo.getGroup2Codewords();
+	group1Blocks = versionInfo.getGroup1Blocks();
+	group1Codewords = versionInfo.getGroup1Codewords();
+	group2Blocks = versionInfo.getGroup2Blocks();
+	group2Codewords = versionInfo.getGroup2Codewords();
 
 	if (encoder.getName().compare(NumericEncoder::NAME) == 0) {
 		characterCountBitSize = getCountBitSize() + 1;
