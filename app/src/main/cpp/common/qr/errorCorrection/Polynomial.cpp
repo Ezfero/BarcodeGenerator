@@ -9,10 +9,10 @@ LogAntilogTable Polynomial::logAntilogTable;
 Polynomial& Polynomial::operator+=(Polynomial& rhs) {
 	int minDegree = min(degree, rhs.degree);
 	for (int i = 0; i <= minDegree; ++i) {
-		params[i] ^= rhs.params[i];
-		if (params[i] > fieldSize) {
-			params[i] ^= fieldDivisor;
-		}
+		params[i] = logAntilogTable.getDegree(logAntilogTable.getValue(params[i]) ^ logAntilogTable.getValue(rhs.params[i]));
+//		if (params[i] > fieldSize) {
+//			params[i] ^= fieldDivisor;
+//		}
 	}
 
 	if (rhs.degree > minDegree) {
@@ -31,34 +31,30 @@ Polynomial& operator+(Polynomial& lhs, Polynomial& rhs) {
 
 Polynomial& Polynomial::operator*=(const Polynomial& rhs) {
 	int length = degree + rhs.degree + 1;
-	int* temp = new int[length];
+	vector<vector<int>> multipliers;
 	for (int i = 0; i < length; ++i) {
-		temp[i] = 0;
+		multipliers.push_back(vector<int>());
 	}
 
 	for (int i = 0; i <= degree; ++i) {
 		for (int j = 0; j <= rhs.degree; ++j) {
-			temp[i + j] ^= params[i] + rhs.params[j];
-			if (temp[i + j] > fieldSize) {
-				temp[i + j] %= fieldSize;
-			}
-//			temp[i + j] = logAntilogTable.getDegree(temp[i + j])
-//						  + logAntilogTable.getDegree(params[i]) + logAntilogTable.getDegree(rhs.params[j]);
-//			if (temp[i + j] > fieldSize) {
-//				temp[i + j] %= fieldSize;
-//			}
-//			temp[i + j] = logAntilogTable.getValue(temp[i + j]);
-//			temp[i + j] += params[i] * rhs.params[j];
-//			if (temp[i + j] > fieldSize) {
-//				temp[i + j] ^= fieldDivisor;
-//			}
+			multipliers[i + j].push_back((params[i] + rhs.params[j]) % 255);
 		}
 	}
 
-	degree = length - 1;
-	params = vector<int>(temp, temp + length);
+	params = vector<int>((unsigned long) length);
 
-	delete[] temp;
+	for (int i = 0; i < multipliers.size(); ++i) {
+		int element = logAntilogTable.getValue(multipliers[i][0]);
+		if (multipliers[i].size() > 1) {
+			for (int j = 1; j < multipliers[i].size(); ++j) {
+				element ^= logAntilogTable.getValue(multipliers[i][j]);
+			}
+		}
+		params[i] = logAntilogTable.getDegree(element) % 255;
+	}
+
+	degree = length - 1;
 	return *this;
 }
 

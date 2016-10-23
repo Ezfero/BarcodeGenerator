@@ -13,8 +13,6 @@ Polynomial& ErrorCorrector::createGeneratorPolynomial(int degree) {
 	list<Polynomial> polynomials;
 	for (int i = 0; i < degree; ++i) {
 		vector<int> params;
-//		params.push_back(1);
-//		params.push_back(logAntilogTable->getValue(i));
 		params.push_back(0);
 		params.push_back(i);
 		polynomials.push_back(Polynomial(1, params));

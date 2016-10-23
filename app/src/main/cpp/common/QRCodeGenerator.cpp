@@ -11,7 +11,7 @@ void *QRCodeGenerator::generateQRCode(string& code) {
 	auto table = createLogAntilogTable();
 	Polynomial::setLogAntilogTable(LogAntilogTable(*table.get()));
 	corrector.setLogAntilogTable(table);
-	corrector.createGeneratorPolynomial(2);
+	corrector.createGeneratorPolynomial(10);
 
 	auto encoder = createEncoderFactory()->getEncoder(code);
 	encoder->init();
