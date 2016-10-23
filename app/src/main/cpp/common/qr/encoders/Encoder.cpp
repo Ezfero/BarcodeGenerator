@@ -46,24 +46,20 @@ string& Encoder::encode(string& input) {
 	if (result.size() < requiredBitSize) {
 		int bytesMissing = (int) ((requiredBitSize - result.size()) / 8);
 		while (bytesMissing-- > 0) {
-			result += bytesMissing % 2 == 0 ? "11101100" : "00010001";
+			result += bytesMissing % 2 == 1 ? "11101100" : "00010001";
 		}
 	}
 
-	generatePolynomials(result);
-
-//	vector<int> vector1;
-//	vector1.push_back(3);
-//	vector1.push_back(1);
-//	vector1.push_back(-1);
-//	Polynomial polynomial1(2, vector1);
-//
-//	vector<int> vector2;
-//	vector2.push_back(1);
-//	vector2.push_back(1);
-//	Polynomial polynomial2(1, vector2);
-//
-//	Polynomial polynomial3 = polynomial1 / polynomial2;
+	auto polynomials = generatePolynomials(result);
+	vector<int> multiplierVector;
+	multiplierVector.push_back(1);
+	for (int i = 0; i < 9; i++) {
+		multiplierVector.push_back(0);
+	}
+	Polynomial multiplier(10, multiplierVector, Polynomial::Mode::NORMAL);
+	for (auto poly : polynomials) {
+		*poly *= multiplier;
+	}
 
 	return result;
 }
@@ -91,7 +87,7 @@ vector<shared_ptr<Polynomial>> Encoder::generateGroup(string& code, int start, i
 			int val = (int) strtol(byte.c_str(), nullptr, 2);
 			polynomialParams.push_back(val);
 		}
-		result.push_back(make_shared<Polynomial>(codewordsCount, polynomialParams));
+		result.push_back(make_shared<Polynomial>(codewordsCount, polynomialParams, Polynomial::Mode::NORMAL));
 	}
 
 	return result;

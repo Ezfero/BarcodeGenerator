@@ -9,7 +9,12 @@ LogAntilogTable Polynomial::logAntilogTable;
 Polynomial& Polynomial::operator+=(Polynomial& rhs) {
 	int minDegree = min(degree, rhs.degree);
 	for (int i = 0; i <= minDegree; ++i) {
-		params[i] = logAntilogTable.getDegree(logAntilogTable.getValue(params[i]) ^ logAntilogTable.getValue(rhs.params[i]));
+		if (mode == Mode::GALOIS) {
+			params[i] = logAntilogTable.getDegree(
+					logAntilogTable.getValue(params[i]) ^ logAntilogTable.getValue(rhs.params[i]));
+		} else {
+			params[i] += rhs.params[i];
+		}
 //		if (params[i] > fieldSize) {
 //			params[i] ^= fieldDivisor;
 //		}
@@ -31,27 +36,42 @@ Polynomial& operator+(Polynomial& lhs, Polynomial& rhs) {
 
 Polynomial& Polynomial::operator*=(const Polynomial& rhs) {
 	int length = degree + rhs.degree + 1;
-	vector<vector<int>> multipliers;
-	for (int i = 0; i < length; ++i) {
-		multipliers.push_back(vector<int>());
-	}
 
-	for (int i = 0; i <= degree; ++i) {
-		for (int j = 0; j <= rhs.degree; ++j) {
-			multipliers[i + j].push_back((params[i] + rhs.params[j]) % 255);
+	if (mode == Mode::GALOIS) {
+		vector<vector<int>> multipliers;
+		for (int i = 0; i < length; ++i) {
+			multipliers.push_back(vector<int>());
 		}
-	}
 
-	params = vector<int>((unsigned long) length);
-
-	for (int i = 0; i < multipliers.size(); ++i) {
-		int element = logAntilogTable.getValue(multipliers[i][0]);
-		if (multipliers[i].size() > 1) {
-			for (int j = 1; j < multipliers[i].size(); ++j) {
-				element ^= logAntilogTable.getValue(multipliers[i][j]);
+		for (int i = 0; i <= degree; ++i) {
+			for (int j = 0; j <= rhs.degree; ++j) {
+				multipliers[i + j].push_back((params[i] + rhs.params[j]) % 255);
 			}
 		}
-		params[i] = logAntilogTable.getDegree(element) % 255;
+
+		params = vector<int>((unsigned long) length);
+
+		for (int i = 0; i < multipliers.size(); ++i) {
+			int element = logAntilogTable.getValue(multipliers[i][0]);
+			if (multipliers[i].size() > 1) {
+				for (int j = 1; j < multipliers[i].size(); ++j) {
+					element ^= logAntilogTable.getValue(multipliers[i][j]);
+				}
+			}
+			params[i] = logAntilogTable.getDegree(element) % 255;
+		}
+	} else {
+		int* temp = new int[length];
+		for (int i = 0; i < length; ++i) {
+			temp[i] = 0;
+		}
+
+		for (int i = 0; i < degree; ++i) {
+			for (int j = 0; j < rhs.degree; ++j) {
+				temp[i + j] += params[i] * rhs.params[j];
+			}
+		}
+		params = vector<int>(temp, temp + length);
 	}
 
 	degree = length - 1;
@@ -99,7 +119,7 @@ Polynomial& Polynomial::operator/=(Polynomial& rhs) {
 		for (int i = 1; i <= multiplierDegree; ++i) {
 			multiplierVector.push_back(0);
 		}
-		Polynomial multiplier(multiplierDegree, multiplierVector);
+		Polynomial multiplier(multiplierDegree, multiplierVector, mode);
 		multiplier *= divisor;
 		for (int i = 0; i < dividend.degree; ++i) {
 			dividend.params[i] -= multiplier.params[i];
@@ -121,4 +141,8 @@ Polynomial& operator/(Polynomial& lhs, Polynomial& rhs) {
 
 void Polynomial::setLogAntilogTable(const LogAntilogTable& logAntilogTable) {
 	Polynomial::logAntilogTable = logAntilogTable;
+}
+
+void Polynomial::setMode(Mode mode) {
+	this->mode = mode;
 }

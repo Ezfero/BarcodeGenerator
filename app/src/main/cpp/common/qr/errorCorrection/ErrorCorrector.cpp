@@ -15,7 +15,7 @@ Polynomial& ErrorCorrector::createGeneratorPolynomial(int degree) {
 		vector<int> params;
 		params.push_back(0);
 		params.push_back(i);
-		polynomials.push_back(Polynomial(1, params));
+		polynomials.push_back(Polynomial(1, params, Polynomial::Mode::GALOIS));
 	}
 
 	do {

@@ -7,11 +7,10 @@
 #include "qr/Version.h"
 
 void *QRCodeGenerator::generateQRCode(string& code) {
-	ErrorCorrector corrector("Q");
+	ErrorCorrector corrector("M");
 	auto table = createLogAntilogTable();
 	Polynomial::setLogAntilogTable(LogAntilogTable(*table.get()));
 	corrector.setLogAntilogTable(table);
-	corrector.createGeneratorPolynomial(10);
 
 	auto encoder = createEncoderFactory()->getEncoder(code);
 	encoder->init();
