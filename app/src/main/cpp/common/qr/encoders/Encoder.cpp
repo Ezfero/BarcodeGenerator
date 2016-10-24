@@ -59,9 +59,10 @@ string& Encoder::encode(string& input) {
 	generator.increaseDegree(polynomials[0]->getDegree());
 	vector<int> multiplierVector;
 	multiplierVector.push_back(polynomials[0]->getParam(0));
-	Polynomial multiplier(0, multiplierVector, Polynomial::Mode::NORMAL);
+	Polynomial multiplier(multiplierVector, Polynomial::Mode::NORMAL);
 	multiplier.toMode(Polynomial::Mode::GALOIS);
 	generator *= multiplier;
+	int i = 0;
 
 	return result;
 }
@@ -89,7 +90,7 @@ vector<shared_ptr<Polynomial>> Encoder::generateGroup(string& code, int start, i
 			int val = (int) strtol(byte.c_str(), nullptr, 2);
 			polynomialParams.push_back(val);
 		}
-		result.push_back(make_shared<Polynomial>(codewordsCount, polynomialParams, Polynomial::Mode::NORMAL));
+		result.push_back(make_shared<Polynomial>(polynomialParams, Polynomial::Mode::NORMAL));
 	}
 
 	return result;

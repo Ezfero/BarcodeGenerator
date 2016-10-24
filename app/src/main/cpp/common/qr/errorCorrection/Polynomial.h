@@ -42,8 +42,8 @@ public:
 			  params(vector<int>(other.params)),
 			  mode(other.mode) { }
 
-	Polynomial(int degree, const vector<int>& params, Mode mode)
-			: degree(degree),
+	Polynomial(const vector<int>& params, Mode mode)
+			: degree((int) (params.size() - 1)),
 			  params(params),
 			  mode(mode) { }
 

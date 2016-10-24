@@ -21,9 +21,6 @@ Polynomial& Polynomial::operator+=(Polynomial& rhs) {
 		} else {
 			params[i] += rhs.params[i];
 		}
-//		if (params[i] > fieldSize) {
-//			params[i] ^= fieldDivisor;
-//		}
 	}
 
 	if (rhs.degree > minDegree) {
@@ -44,25 +41,15 @@ Polynomial& Polynomial::operator*=(const Polynomial& rhs) {
 	int length = degree + rhs.degree + 1;
 
 	if (mode == Mode::GALOIS) {
-		vector<vector<int>> multipliers;
-		for (int i = 0; i < length; ++i) {
-			multipliers.push_back(vector<int>());
-		}
+		vector<vector<int>> multipliers((unsigned long) length);
 
 		for (int i = 0; i <= degree; ++i) {
 			for (int j = 0; j <= rhs.degree; ++j) {
 				if (params[i] != getNeutralElement() && rhs.params[j] != getNeutralElement()) {
 					multipliers[i + j].push_back((params[i] + rhs.params[j]) % 255);
-				} else if (params[i] == getNeutralElement() || rhs.params[j] != getNeutralElement()) {
+				} else {
 					multipliers[i + j].push_back(getNeutralElement());
 				}
-			}
-		}
-
-		length = 0;
-		for (int i = 0; i < multipliers.size(); ++i) {
-			if (multipliers[i].size() > 0) {
-				++length;
 			}
 		}
 
@@ -73,7 +60,7 @@ Polynomial& Polynomial::operator*=(const Polynomial& rhs) {
 				params[i] = getNeutralElement();
 				continue;
 			}
-			int element = logAntilogTable.getValue(multipliers[i][0]);
+			auto element = logAntilogTable.getValue(multipliers[i][0]);
 			if (multipliers[i].size() > 1) {
 				for (int j = 1; j < multipliers[i].size(); ++j) {
 					element ^= logAntilogTable.getValue(multipliers[i][j]);
@@ -82,7 +69,7 @@ Polynomial& Polynomial::operator*=(const Polynomial& rhs) {
 			params[i] = logAntilogTable.getDegree(element) % 255;
 		}
 	} else {
-		int* temp = new int[length];
+		auto temp = new int[length];
 		for (int i = 0; i < length; ++i) {
 			temp[i] = 0;
 		}
@@ -140,7 +127,7 @@ Polynomial& Polynomial::operator/=(Polynomial& rhs) {
 		for (int i = 1; i <= multiplierDegree; ++i) {
 			multiplierVector.push_back(0);
 		}
-		Polynomial multiplier(multiplierDegree, multiplierVector, mode);
+		Polynomial multiplier(multiplierVector, mode);
 		multiplier *= divisor;
 		for (int i = 0; i < dividend.degree; ++i) {
 			dividend.params[i] -= multiplier.params[i];
