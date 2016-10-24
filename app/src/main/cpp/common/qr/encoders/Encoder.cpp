@@ -51,15 +51,17 @@ string& Encoder::encode(string& input) {
 	}
 
 	auto polynomials = generatePolynomials(result);
-	vector<int> multiplierVector;
-	multiplierVector.push_back(1);
-	for (int i = 0; i < 9; i++) {
-		multiplierVector.push_back(0);
-	}
-	Polynomial multiplier(10, multiplierVector, Polynomial::Mode::NORMAL);
 	for (auto poly : polynomials) {
-		*poly *= multiplier;
+		poly->increaseDegree(poly->getDegree() + version.getCorrections());
 	}
+
+	auto generator = errorCorrector.createGeneratorPolynomial(version.getCorrections());
+	generator.increaseDegree(polynomials[0]->getDegree());
+	vector<int> multiplierVector;
+	multiplierVector.push_back(polynomials[0]->getParam(0));
+	Polynomial multiplier(0, multiplierVector, Polynomial::Mode::NORMAL);
+	multiplier.toMode(Polynomial::Mode::GALOIS);
+	generator *= multiplier;
 
 	return result;
 }

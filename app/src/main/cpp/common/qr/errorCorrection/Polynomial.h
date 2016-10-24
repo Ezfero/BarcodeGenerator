@@ -21,14 +21,17 @@ public:
 
 private:
 
-	const int fieldSize = 255;
-	const int fieldDivisor = 285;
+	const static int normalNeutralElement;
+	const static int galoisNeutralElement;
 
 	static LogAntilogTable logAntilogTable;
 
 	int degree;
+
 	Mode mode;
 	vector<int> params;
+
+	int getNeutralElement();
 
 public:
 
@@ -63,8 +66,13 @@ public:
 
 	friend Polynomial& operator/(Polynomial& lhs, Polynomial& rhs);
 
+	int getDegree() const;
 
-	void setMode(Mode mode);
+	int getParam(int position) const;
+
+	void increaseDegree(int degree);
+
+	void toMode(Mode mode);
 };
 
 

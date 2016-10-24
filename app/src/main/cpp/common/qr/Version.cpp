@@ -49,6 +49,7 @@ int Version::getCharacterCountBitSize() const {
 }
 
 Version::Version(const Encoder& encoder, const VersionInfo& versionInfo) {
+	corrections = versionInfo.getCorrections();
 	versionNumber = versionInfo.getVersion();
 	barcodeSize = initialSize + 4 * (versionNumber - 1);
 	group1Blocks = versionInfo.getGroup1Blocks();
@@ -67,4 +68,8 @@ Version::Version(const Encoder& encoder, const VersionInfo& versionInfo) {
 			characterCountBitSize = 16;
 		}
 	}
+}
+
+int Version::getCorrections() const {
+	return corrections;
 }

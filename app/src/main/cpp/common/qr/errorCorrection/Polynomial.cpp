@@ -5,13 +5,19 @@
 #include "Polynomial.h"
 
 LogAntilogTable Polynomial::logAntilogTable;
+const int Polynomial::normalNeutralElement = 0;
+const int Polynomial::galoisNeutralElement = -1;
 
 Polynomial& Polynomial::operator+=(Polynomial& rhs) {
 	int minDegree = min(degree, rhs.degree);
 	for (int i = 0; i <= minDegree; ++i) {
 		if (mode == Mode::GALOIS) {
-			params[i] = logAntilogTable.getDegree(
-					logAntilogTable.getValue(params[i]) ^ logAntilogTable.getValue(rhs.params[i]));
+			if (params[i] != getNeutralElement() && rhs.params[i] != getNeutralElement()) {
+				params[i] = logAntilogTable.getDegree(logAntilogTable.getValue(params[i])
+													  ^ logAntilogTable.getValue(rhs.params[i]));
+			} else if (params[i] == getNeutralElement()) {
+				params[i] = rhs.params[i];
+			}
 		} else {
 			params[i] += rhs.params[i];
 		}
@@ -45,13 +51,28 @@ Polynomial& Polynomial::operator*=(const Polynomial& rhs) {
 
 		for (int i = 0; i <= degree; ++i) {
 			for (int j = 0; j <= rhs.degree; ++j) {
-				multipliers[i + j].push_back((params[i] + rhs.params[j]) % 255);
+				if (params[i] != getNeutralElement() && rhs.params[j] != getNeutralElement()) {
+					multipliers[i + j].push_back((params[i] + rhs.params[j]) % 255);
+				} else if (params[i] == getNeutralElement() || rhs.params[j] != getNeutralElement()) {
+					multipliers[i + j].push_back(getNeutralElement());
+				}
+			}
+		}
+
+		length = 0;
+		for (int i = 0; i < multipliers.size(); ++i) {
+			if (multipliers[i].size() > 0) {
+				++length;
 			}
 		}
 
 		params = vector<int>((unsigned long) length);
 
-		for (int i = 0; i < multipliers.size(); ++i) {
+		for (int i = 0; i < length; ++i) {
+			if (multipliers[i][0] == getNeutralElement()) {
+				params[i] = getNeutralElement();
+				continue;
+			}
 			int element = logAntilogTable.getValue(multipliers[i][0]);
 			if (multipliers[i].size() > 1) {
 				for (int j = 1; j < multipliers[i].size(); ++j) {
@@ -143,6 +164,44 @@ void Polynomial::setLogAntilogTable(const LogAntilogTable& logAntilogTable) {
 	Polynomial::logAntilogTable = logAntilogTable;
 }
 
-void Polynomial::setMode(Mode mode) {
+void Polynomial::increaseDegree(int newDegree) {
+	if (degree >= newDegree) {
+		return;
+	}
+
+	auto diff = newDegree - degree;
+	degree = newDegree;
+
+	for (int i = 0; i < diff; ++i) {
+		params.push_back(getNeutralElement());
+	}
+}
+
+int Polynomial::getDegree() const {
+	return degree;
+}
+
+int Polynomial::getNeutralElement() {
+	return mode == Mode::NORMAL ? normalNeutralElement : galoisNeutralElement;
+}
+
+void Polynomial::toMode(Polynomial::Mode mode) {
+	if (this->mode == mode) {
+		return;
+	}
+
+	if (mode == Mode::NORMAL) {
+		for (int i = 0; i < params.size(); ++i) {
+			params[i] = logAntilogTable.getValue(params[i]);
+		}
+	} else {
+		for (int i = 0; i < params.size(); ++i) {
+			params[i] = logAntilogTable.getDegree(params[i]);
+		}
+	}
 	this->mode = mode;
+}
+
+int Polynomial::getParam(int position) const {
+	return params[position];
 }
