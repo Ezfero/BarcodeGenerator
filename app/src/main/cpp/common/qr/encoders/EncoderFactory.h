@@ -19,9 +19,9 @@ private:
 
 public:
 
-	EncoderFactory(shared_ptr<ResourceLoader> resourceLoader) {
+	EncoderFactory() {
 		encoders.push_back(make_shared<NumericEncoder>());
-		encoders.push_back(make_shared<AlphanumericEncoder>(resourceLoader));
+		encoders.push_back(make_shared<AlphanumericEncoder>());
 		encoders.push_back(make_shared<ByteEncoder>());
 	}
 

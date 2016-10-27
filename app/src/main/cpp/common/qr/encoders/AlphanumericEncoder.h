@@ -14,22 +14,17 @@ class AlphanumericEncoder : public Encoder {
 
 private:
 
-	shared_ptr<ResourceLoader> resourceLoader;
 	map<char, int> codeValues;
 
 public:
 
 	static const string NAME;
 
-	AlphanumericEncoder() : AlphanumericEncoder(shared_ptr<ResourceLoader>()) { }
-
-	AlphanumericEncoder(shared_ptr<ResourceLoader> resourceLoader)
-			: Encoder(regex("(([A-Z0-9]+)|([$%*+-./: ]+))+"), NAME, "0010"),
-			  resourceLoader(resourceLoader) { }
+	AlphanumericEncoder() : Encoder(regex("(([A-Z0-9]+)|([$%*+-./: ]+))+"), NAME, "0010") { }
 
 	shared_ptr<string> encodeData(string& data) override;
 
-	virtual void init() override;
+	virtual void init(shared_ptr<ResourceLoader> resourceLoader) override;
 
 };
 

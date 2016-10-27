@@ -5,11 +5,13 @@
 #ifndef BARCODEGENERATOR_ERRORCORRECTOR_H
 #define BARCODEGENERATOR_ERRORCORRECTOR_H
 
-#include <string>
 #include <map>
+#include <string>
+
 #include "Polynomial.h"
-#include "../../ResourceLoader.h"
+#include "../Version.h"
 #include "LogAntilogTable.h"
+#include "../../ResourceLoader.h"
 
 using namespace std;
 
@@ -18,7 +20,11 @@ private:
 
 	string levelName;
 
-	shared_ptr<LogAntilogTable> logAntilogTable;
+	shared_ptr<Version> version;
+
+	Polynomial& createGeneratorPolynomial(int degree);
+	vector<shared_ptr<Polynomial>> generatePolynomials(string& code);
+	vector<shared_ptr<Polynomial>> generateGroup(string& code, int start, int blocksCount, int codewordsCount);
 
 public:
 
@@ -27,11 +33,18 @@ public:
 	ErrorCorrector(const string& levelName)
 			: levelName(levelName) { }
 
+	ErrorCorrector(const ErrorCorrector& other)
+			: levelName(other.levelName),
+			  version(other.version) { }
+
 	const char getLevelName() const;
 
-	void setLogAntilogTable(const shared_ptr<LogAntilogTable>& logAntilogTable);
 
-	Polynomial& createGeneratorPolynomial(int degree);
+	int getLevelValue() const;
+
+	void setVersion(shared_ptr<Version> version);
+
+	string addErrorCorrection(string& value);
 };
 
 

@@ -9,7 +9,8 @@
     "blocks1": 1,
     "codewords1": 19,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 1,
@@ -21,7 +22,8 @@
     "blocks1": 1,
     "codewords1": 16,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 1,
@@ -33,7 +35,8 @@
     "blocks1": 1,
     "codewords1": 13,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 1,
@@ -45,7 +48,8 @@
     "blocks1": 1,
     "codewords1": 9,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 2,
@@ -57,7 +61,8 @@
     "blocks1": 1,
     "codewords1": 34,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 2,
@@ -69,7 +74,8 @@
     "blocks1": 1,
     "codewords1": 28,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 2,
@@ -81,7 +87,8 @@
     "blocks1": 1,
     "codewords1": 22,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 2,
@@ -93,7 +100,8 @@
     "blocks1": 1,
     "codewords1": 16,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 3,
@@ -105,7 +113,8 @@
     "blocks1": 1,
     "codewords1": 55,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 3,
@@ -117,7 +126,8 @@
     "blocks1": 1,
     "codewords1": 44,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 3,
@@ -129,7 +139,8 @@
     "blocks1": 2,
     "codewords1": 17,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 3,
@@ -141,7 +152,8 @@
     "blocks1": 2,
     "codewords1": 13,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 4,
@@ -153,7 +165,8 @@
     "blocks1": 1,
     "codewords1": 80,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 4,
@@ -165,7 +178,8 @@
     "blocks1": 2,
     "codewords1": 32,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 4,
@@ -177,7 +191,8 @@
     "blocks1": 2,
     "codewords1": 24,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 4,
@@ -189,7 +204,8 @@
     "blocks1": 4,
     "codewords1": 9,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 5,
@@ -201,7 +217,8 @@
     "blocks1": 1,
     "codewords1": 108,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 5,
@@ -213,7 +230,8 @@
     "blocks1": 2,
     "codewords1": 43,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 5,
@@ -225,7 +243,8 @@
     "blocks1": 2,
     "codewords1": 15,
     "blocks2": 2,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 7
   },
   {
     "version": 5,
@@ -237,7 +256,8 @@
     "blocks1": 2,
     "codewords1": 11,
     "blocks2": 2,
-    "codewords2": 12
+    "codewords2": 12,
+    "remainder": 7
   },
   {
     "version": 6,
@@ -249,7 +269,8 @@
     "blocks1": 2,
     "codewords1": 68,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 6,
@@ -261,7 +282,8 @@
     "blocks1": 4,
     "codewords1": 27,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 6,
@@ -273,7 +295,8 @@
     "blocks1": 4,
     "codewords1": 19,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 6,
@@ -285,7 +308,8 @@
     "blocks1": 4,
     "codewords1": 15,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 7
   },
   {
     "version": 7,
@@ -297,7 +321,8 @@
     "blocks1": 2,
     "codewords1": 78,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 7,
@@ -309,7 +334,8 @@
     "blocks1": 4,
     "codewords1": 31,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 7,
@@ -321,7 +347,8 @@
     "blocks1": 2,
     "codewords1": 14,
     "blocks2": 4,
-    "codewords2": 15
+    "codewords2": 15,
+    "remainder": 0
   },
   {
     "version": 7,
@@ -333,7 +360,8 @@
     "blocks1": 4,
     "codewords1": 13,
     "blocks2": 1,
-    "codewords2": 14
+    "codewords2": 14,
+    "remainder": 0
   },
   {
     "version": 8,
@@ -345,7 +373,8 @@
     "blocks1": 2,
     "codewords1": 97,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 8,
@@ -357,7 +386,8 @@
     "blocks1": 2,
     "codewords1": 38,
     "blocks2": 2,
-    "codewords2": 39
+    "codewords2": 39,
+    "remainder": 0
   },
   {
     "version": 8,
@@ -369,7 +399,8 @@
     "blocks1": 4,
     "codewords1": 18,
     "blocks2": 2,
-    "codewords2": 19
+    "codewords2": 19,
+    "remainder": 0
   },
   {
     "version": 8,
@@ -381,7 +412,8 @@
     "blocks1": 4,
     "codewords1": 14,
     "blocks2": 2,
-    "codewords2": 15
+    "codewords2": 15,
+    "remainder": 0
   },
   {
     "version": 9,
@@ -393,7 +425,8 @@
     "blocks1": 2,
     "codewords1": 116,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 9,
@@ -405,7 +438,8 @@
     "blocks1": 3,
     "codewords1": 36,
     "blocks2": 2,
-    "codewords2": 37
+    "codewords2": 37,
+    "remainder": 0
   },
   {
     "version": 9,
@@ -417,7 +451,8 @@
     "blocks1": 4,
     "codewords1": 16,
     "blocks2": 4,
-    "codewords2": 17
+    "codewords2": 17,
+    "remainder": 0
   },
   {
     "version": 9,
@@ -429,7 +464,8 @@
     "blocks1": 4,
     "codewords1": 12,
     "blocks2": 4,
-    "codewords2": 13
+    "codewords2": 13,
+    "remainder": 0
   },
   {
     "version": 10,
@@ -441,7 +477,8 @@
     "blocks1": 2,
     "codewords1": 68,
     "blocks2": 2,
-    "codewords2": 69
+    "codewords2": 69,
+    "remainder": 0
   },
   {
     "version": 10,
@@ -453,7 +490,8 @@
     "blocks1": 4,
     "codewords1": 43,
     "blocks2": 1,
-    "codewords2": 44
+    "codewords2": 44,
+    "remainder": 0
   },
   {
     "version": 10,
@@ -465,7 +503,8 @@
     "blocks1": 6,
     "codewords1": 19,
     "blocks2": 2,
-    "codewords2": 20
+    "codewords2": 20,
+    "remainder": 0
   },
   {
     "version": 10,
@@ -477,7 +516,8 @@
     "blocks1": 6,
     "codewords1": 15,
     "blocks2": 2,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 0
   },
   {
     "version": 11,
@@ -489,7 +529,8 @@
     "blocks1": 4,
     "codewords1": 82,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 11,
@@ -501,7 +542,8 @@
     "blocks1": 1,
     "codewords1": 50,
     "blocks2": 4,
-    "codewords2": 51
+    "codewords2": 51,
+    "remainder": 0
   },
   {
     "version": 11,
@@ -513,7 +555,8 @@
     "blocks1": 4,
     "codewords1": 22,
     "blocks2": 4,
-    "codewords2": 23
+    "codewords2": 23,
+    "remainder": 0
   },
   {
     "version": 11,
@@ -525,7 +568,8 @@
     "blocks1": 3,
     "codewords1": 12,
     "blocks2": 8,
-    "codewords2": 13
+    "codewords2": 13,
+    "remainder": 0
   },
   {
     "version": 12,
@@ -537,7 +581,8 @@
     "blocks1": 2,
     "codewords1": 92,
     "blocks2": 2,
-    "codewords2": 93
+    "codewords2": 93,
+    "remainder": 0
   },
   {
     "version": 12,
@@ -549,7 +594,8 @@
     "blocks1": 6,
     "codewords1": 36,
     "blocks2": 2,
-    "codewords2": 37
+    "codewords2": 37,
+    "remainder": 0
   },
   {
     "version": 12,
@@ -561,7 +607,8 @@
     "blocks1": 4,
     "codewords1": 20,
     "blocks2": 6,
-    "codewords2": 21
+    "codewords2": 21,
+    "remainder": 0
   },
   {
     "version": 12,
@@ -573,7 +620,8 @@
     "blocks1": 7,
     "codewords1": 14,
     "blocks2": 4,
-    "codewords2": 15
+    "codewords2": 15,
+    "remainder": 0
   },
   {
     "version": 13,
@@ -585,7 +633,8 @@
     "blocks1": 4,
     "codewords1": 107,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 0
   },
   {
     "version": 13,
@@ -597,7 +646,8 @@
     "blocks1": 8,
     "codewords1": 37,
     "blocks2": 1,
-    "codewords2": 38
+    "codewords2": 38,
+    "remainder": 0
   },
   {
     "version": 13,
@@ -609,7 +659,8 @@
     "blocks1": 8,
     "codewords1": 20,
     "blocks2": 4,
-    "codewords2": 21
+    "codewords2": 21,
+    "remainder": 0
   },
   {
     "version": 13,
@@ -621,7 +672,8 @@
     "blocks1": 12,
     "codewords1": 11,
     "blocks2": 4,
-    "codewords2": 12
+    "codewords2": 12,
+    "remainder": 0
   },
   {
     "version": 14,
@@ -633,7 +685,8 @@
     "blocks1": 3,
     "codewords1": 115,
     "blocks2": 1,
-    "codewords2": 116
+    "codewords2": 116,
+    "remainder": 3
   },
   {
     "version": 14,
@@ -645,7 +698,8 @@
     "blocks1": 4,
     "codewords1": 40,
     "blocks2": 5,
-    "codewords2": 41
+    "codewords2": 41,
+    "remainder": 3
   },
   {
     "version": 14,
@@ -657,7 +711,8 @@
     "blocks1": 11,
     "codewords1": 6,
     "blocks2": 5,
-    "codewords2": 17
+    "codewords2": 17,
+    "remainder": 3
   },
   {
     "version": 14,
@@ -669,7 +724,8 @@
     "blocks1": 11,
     "codewords1": 12,
     "blocks2": 5,
-    "codewords2": 13
+    "codewords2": 13,
+    "remainder": 3
   },
   {
     "version": 15,
@@ -681,7 +737,8 @@
     "blocks1": 5,
     "codewords1": 87,
     "blocks2": 1,
-    "codewords2": 88
+    "codewords2": 88,
+    "remainder": 3
   },
   {
     "version": 15,
@@ -693,7 +750,8 @@
     "blocks1": 5,
     "codewords1": 41,
     "blocks2": 5,
-    "codewords2": 42
+    "codewords2": 42,
+    "remainder": 3
   },
   {
     "version": 15,
@@ -705,7 +763,8 @@
     "blocks1": 5,
     "codewords1": 24,
     "blocks2": 7,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 3
   },
   {
     "version": 15,
@@ -717,7 +776,8 @@
     "blocks1": 11,
     "codewords1": 12,
     "blocks2": 7,
-    "codewords2": 13
+    "codewords2": 13,
+    "remainder": 3
   },
   {
     "version": 16,
@@ -729,7 +789,8 @@
     "blocks1": 5,
     "codewords1": 98,
     "blocks2": 1,
-    "codewords2": 99
+    "codewords2": 99,
+    "remainder": 3
   },
   {
     "version": 16,
@@ -741,7 +802,8 @@
     "blocks1": 7,
     "codewords1": 45,
     "blocks2": 3,
-    "codewords2": 46
+    "codewords2": 46,
+    "remainder": 3
   },
   {
     "version": 16,
@@ -753,7 +815,8 @@
     "blocks1": 15,
     "codewords1": 19,
     "blocks2": 2,
-    "codewords2": 20
+    "codewords2": 20,
+    "remainder": 3
   },
   {
     "version": 16,
@@ -765,7 +828,8 @@
     "blocks1": 3,
     "codewords1": 15,
     "blocks2": 13,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 17,
@@ -777,7 +841,8 @@
     "blocks1": 1,
     "codewords1": 107,
     "blocks2": 5,
-    "codewords2": 108
+    "codewords2": 108,
+    "remainder": 3
   },
   {
     "version": 17,
@@ -789,7 +854,8 @@
     "blocks1": 10,
     "codewords1": 46,
     "blocks2": 1,
-    "codewords2": 47
+    "codewords2": 47,
+    "remainder": 3
   },
   {
     "version": 17,
@@ -801,7 +867,8 @@
     "blocks1": 1,
     "codewords1": 22,
     "blocks2": 15,
-    "codewords2": 23
+    "codewords2": 23,
+    "remainder": 3
   },
   {
     "version": 17,
@@ -813,7 +880,8 @@
     "blocks1": 2,
     "codewords1": 14,
     "blocks2": 17,
-    "codewords2": 15
+    "codewords2": 15,
+    "remainder": 3
   },
   {
     "version": 18,
@@ -825,7 +893,8 @@
     "blocks1": 5,
     "codewords1": 120,
     "blocks2": 1,
-    "codewords2": 121
+    "codewords2": 121,
+    "remainder": 3
   },
   {
     "version": 18,
@@ -837,7 +906,8 @@
     "blocks1": 9,
     "codewords1": 43,
     "blocks2": 4,
-    "codewords2": 44
+    "codewords2": 44,
+    "remainder": 3
   },
   {
     "version": 18,
@@ -849,7 +919,8 @@
     "blocks1": 17,
     "codewords1": 22,
     "blocks2": 1,
-    "codewords2": 23
+    "codewords2": 23,
+    "remainder": 3
   },
   {
     "version": 18,
@@ -861,7 +932,8 @@
     "blocks1": 2,
     "codewords1": 14,
     "blocks2": 19,
-    "codewords2": 15
+    "codewords2": 15,
+    "remainder": 3
   },
   {
     "version": 19,
@@ -873,7 +945,8 @@
     "blocks1": 3,
     "codewords1": 113,
     "blocks2": 4,
-    "codewords2": 114
+    "codewords2": 114,
+    "remainder": 3
   },
   {
     "version": 19,
@@ -885,7 +958,8 @@
     "blocks1": 3,
     "codewords1": 44,
     "blocks2": 11,
-    "codewords2": 45
+    "codewords2": 45,
+    "remainder": 3
   },
   {
     "version": 19,
@@ -897,7 +971,8 @@
     "blocks1": 17,
     "codewords1": 21,
     "blocks2": 4,
-    "codewords2": 2
+    "codewords2": 2,
+    "remainder": 3
   },
   {
     "version": 19,
@@ -909,7 +984,8 @@
     "blocks1": 9,
     "codewords1": 13,
     "blocks2": 16,
-    "codewords2": 14
+    "codewords2": 14,
+    "remainder": 3
   },
   {
     "version": 20,
@@ -921,7 +997,8 @@
     "blocks1": 3,
     "codewords1": 107,
     "blocks2": 5,
-    "codewords2": 108
+    "codewords2": 108,
+    "remainder": 3
   },
   {
     "version": 20,
@@ -933,7 +1010,8 @@
     "blocks1": 3,
     "codewords1": 41,
     "blocks2": 13,
-    "codewords2": 42
+    "codewords2": 42,
+    "remainder": 3
   },
   {
     "version": 20,
@@ -945,7 +1023,8 @@
     "blocks1": 15,
     "codewords1": 24,
     "blocks2": 5,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 3
   },
   {
     "version": 20,
@@ -957,7 +1036,8 @@
     "blocks1": 15,
     "codewords1": 15,
     "blocks2": 10,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 21,
@@ -969,7 +1049,8 @@
     "blocks1": 4,
     "codewords1": 116,
     "blocks2": 4,
-    "codewords2": 117
+    "codewords2": 117,
+    "remainder": 4
   },
   {
     "version": 21,
@@ -981,7 +1062,8 @@
     "blocks1": 17,
     "codewords1": 42,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 4
   },
   {
     "version": 21,
@@ -993,7 +1075,8 @@
     "blocks1": 17,
     "codewords1": 22,
     "blocks2": 6,
-    "codewords2": 23
+    "codewords2": 23,
+    "remainder": 4
   },
   {
     "version": 21,
@@ -1005,7 +1088,8 @@
     "blocks1": 19,
     "codewords1": 16,
     "blocks2": 6,
-    "codewords2": 17
+    "codewords2": 17,
+    "remainder": 4
   },
   {
     "version": 22,
@@ -1017,7 +1101,8 @@
     "blocks1": 2,
     "codewords1": 111,
     "blocks2": 7,
-    "codewords2": 112
+    "codewords2": 112,
+    "remainder": 4
   },
   {
     "version": 22,
@@ -1029,7 +1114,8 @@
     "blocks1": 17,
     "codewords1": 46,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 4
   },
   {
     "version": 22,
@@ -1041,7 +1127,8 @@
     "blocks1": 7,
     "codewords1": 24,
     "blocks2": 16,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 4
   },
   {
     "version": 22,
@@ -1053,7 +1140,8 @@
     "blocks1": 34,
     "codewords1": 13,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 4
   },
   {
     "version": 23,
@@ -1065,7 +1153,8 @@
     "blocks1": 4,
     "codewords1": 121,
     "blocks2": 5,
-    "codewords2": 122
+    "codewords2": 122,
+    "remainder": 4
   },
   {
     "version": 23,
@@ -1077,7 +1166,8 @@
     "blocks1": 4,
     "codewords1": 47,
     "blocks2": 14,
-    "codewords2": 48
+    "codewords2": 48,
+    "remainder": 4
   },
   {
     "version": 23,
@@ -1089,7 +1179,8 @@
     "blocks1": 11,
     "codewords1": 24,
     "blocks2": 14,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 4
   },
   {
     "version": 23,
@@ -1101,7 +1192,8 @@
     "blocks1": 16,
     "codewords1": 15,
     "blocks2": 14,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 4
   },
   {
     "version": 24,
@@ -1113,7 +1205,8 @@
     "blocks1": 6,
     "codewords1": 117,
     "blocks2": 4,
-    "codewords2": 118
+    "codewords2": 118,
+    "remainder": 4
   },
   {
     "version": 24,
@@ -1125,7 +1218,8 @@
     "blocks1": 6,
     "codewords1": 45,
     "blocks2": 14,
-    "codewords2": 46
+    "codewords2": 46,
+    "remainder": 4
   },
   {
     "version": 24,
@@ -1137,7 +1231,8 @@
     "blocks1": 11,
     "codewords1": 24,
     "blocks2": 16,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 4
   },
   {
     "version": 24,
@@ -1149,7 +1244,8 @@
     "blocks1": 30,
     "codewords1": 16,
     "blocks2": 2,
-    "codewords2": 17
+    "codewords2": 17,
+    "remainder": 4
   },
   {
     "version": 25,
@@ -1161,7 +1257,8 @@
     "blocks1": 8,
     "codewords1": 106,
     "blocks2": 4,
-    "codewords2": 107
+    "codewords2": 107,
+    "remainder": 4
   },
   {
     "version": 25,
@@ -1173,7 +1270,8 @@
     "blocks1": 8,
     "codewords1": 47,
     "blocks2": 13,
-    "codewords2": 48
+    "codewords2": 48,
+    "remainder": 4
   },
   {
     "version": 25,
@@ -1185,7 +1283,8 @@
     "blocks1": 7,
     "codewords1": 24,
     "blocks2": 22,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 4
   },
   {
     "version": 25,
@@ -1197,7 +1296,8 @@
     "blocks1": 22,
     "codewords1": 15,
     "blocks2": 13,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 4
   },
   {
     "version": 26,
@@ -1209,7 +1309,8 @@
     "blocks1": 10,
     "codewords1": 114,
     "blocks2": 2,
-    "codewords2": 115
+    "codewords2": 115,
+    "remainder": 4
   },
   {
     "version": 26,
@@ -1221,7 +1322,8 @@
     "blocks1": 19,
     "codewords1": 46,
     "blocks2": 4,
-    "codewords2": 47
+    "codewords2": 47,
+    "remainder": 4
   },
   {
     "version": 26,
@@ -1233,7 +1335,8 @@
     "blocks1": 28,
     "codewords1": 22,
     "blocks2": 6,
-    "codewords2": 23
+    "codewords2": 23,
+    "remainder": 4
   },
   {
     "version": 26,
@@ -1245,7 +1348,8 @@
     "blocks1": 33,
     "codewords1": 16,
     "blocks2": 4,
-    "codewords2": 17
+    "codewords2": 17,
+    "remainder": 4
   },
   {
     "version": 27,
@@ -1257,7 +1361,8 @@
     "blocks1": 8,
     "codewords1": 122,
     "blocks2": 4,
-    "codewords2": 123
+    "codewords2": 123,
+    "remainder": 4
   },
   {
     "version": 27,
@@ -1269,7 +1374,8 @@
     "blocks1": 22,
     "codewords1": 45,
     "blocks2": 3,
-    "codewords2": 46
+    "codewords2": 46,
+    "remainder": 4
   },
   {
     "version": 27,
@@ -1281,7 +1387,8 @@
     "blocks1": 8,
     "codewords1": 23,
     "blocks2": 26,
-    "codewords2": 24
+    "codewords2": 24,
+    "remainder": 4
   },
   {
     "version": 27,
@@ -1293,7 +1400,8 @@
     "blocks1": 12,
     "codewords1": 15,
     "blocks2": 28,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 4
   },
   {
     "version": 28,
@@ -1305,7 +1413,8 @@
     "blocks1": 3,
     "codewords1": 117,
     "blocks2": 10,
-    "codewords2": 118
+    "codewords2": 118,
+    "remainder": 3
   },
   {
     "version": 28,
@@ -1317,7 +1426,8 @@
     "blocks1": 3,
     "codewords1": 45,
     "blocks2": 23,
-    "codewords2": 46
+    "codewords2": 46,
+    "remainder": 3
   },
   {
     "version": 28,
@@ -1329,7 +1439,8 @@
     "blocks1": 4,
     "codewords1": 24,
     "blocks2": 31,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 3
   },
   {
     "version": 28,
@@ -1341,7 +1452,8 @@
     "blocks1": 11,
     "codewords1": 15,
     "blocks2": 31,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 29,
@@ -1353,7 +1465,8 @@
     "blocks1": 7,
     "codewords1": 116,
     "blocks2": 7,
-    "codewords2": 117
+    "codewords2": 117,
+    "remainder": 3
   },
   {
     "version": 29,
@@ -1365,7 +1478,8 @@
     "blocks1": 21,
     "codewords1": 55,
     "blocks2": 7,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 29,
@@ -1377,7 +1491,8 @@
     "blocks1": 1,
     "codewords1": 23,
     "blocks2": 37,
-    "codewords2": 24
+    "codewords2": 24,
+    "remainder": 3
   },
   {
     "version": 29,
@@ -1389,7 +1504,8 @@
     "blocks1": 16,
     "codewords1": 15,
     "blocks2": 26,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 30,
@@ -1401,7 +1517,8 @@
     "blocks1": 5,
     "codewords1": 115,
     "blocks2": 10,
-    "codewords2": 116
+    "codewords2": 116,
+    "remainder": 3
   },
   {
     "version": 30,
@@ -1413,7 +1530,8 @@
     "blocks1": 19,
     "codewords1": 47,
     "blocks2": 10,
-    "codewords2": 48
+    "codewords2": 48,
+    "remainder": 3
   },
   {
     "version": 30,
@@ -1425,7 +1543,8 @@
     "blocks1": 15,
     "codewords1": 24,
     "blocks2": 25,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 3
   },
   {
     "version": 30,
@@ -1437,7 +1556,8 @@
     "blocks1": 23,
     "codewords1": 15,
     "blocks2": 25,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 31,
@@ -1449,7 +1569,8 @@
     "blocks1": 3,
     "codewords1": 115,
     "blocks2": 3,
-    "codewords2": 116
+    "codewords2": 116,
+    "remainder": 3
   },
   {
     "version": 31,
@@ -1461,7 +1582,8 @@
     "blocks1": 2,
     "codewords1": 46,
     "blocks2": 29,
-    "codewords2": 47
+    "codewords2": 47,
+    "remainder": 3
   },
   {
     "version": 31,
@@ -1473,7 +1595,8 @@
     "blocks1": 42,
     "codewords1": 24,
     "blocks2": 1,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 3
   },
   {
     "version": 31,
@@ -1485,7 +1608,8 @@
     "blocks1": 23,
     "codewords1": 15,
     "blocks2": 28,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 32,
@@ -1497,7 +1621,8 @@
     "blocks1": 17,
     "codewords1": 115,
     "blocks2": 0,
-    "codewords2": 0
+    "codewords2": 0,
+    "remainder": 3
   },
   {
     "version": 32,
@@ -1509,7 +1634,8 @@
     "blocks1": 10,
     "codewords1": 46,
     "blocks2": 23,
-    "codewords2": 47
+    "codewords2": 47,
+    "remainder": 3
   },
   {
     "version": 32,
@@ -1521,7 +1647,8 @@
     "blocks1": 10,
     "codewords1": 24,
     "blocks2": 35,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 3
   },
   {
     "version": 32,
@@ -1533,7 +1660,8 @@
     "blocks1": 19,
     "codewords1": 15,
     "blocks2": 35,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 33,
@@ -1545,7 +1673,8 @@
     "blocks1": 17,
     "codewords1": 115,
     "blocks2": 1,
-    "codewords2": 116
+    "codewords2": 116,
+    "remainder": 3
   },
   {
     "version": 33,
@@ -1557,7 +1686,8 @@
     "blocks1": 14,
     "codewords1": 46,
     "blocks2": 25,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 33,
@@ -1569,7 +1699,8 @@
     "blocks1": 29,
     "codewords1": 24,
     "blocks2": 19,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 3
   },
   {
     "version": 33,
@@ -1581,7 +1712,8 @@
     "blocks1": 11,
     "codewords1": 15,
     "blocks2": 46,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 3
   },
   {
     "version": 34,
@@ -1593,7 +1725,8 @@
     "blocks1": 13,
     "codewords1": 115,
     "blocks2": 6,
-    "codewords2": 116
+    "codewords2": 116,
+    "remainder": 3
   },
   {
     "version": 34,
@@ -1605,7 +1738,8 @@
     "blocks1": 14,
     "codewords1": 46,
     "blocks2": 23,
-    "codewords2": 47
+    "codewords2": 47,
+    "remainder": 3
   },
   {
     "version": 34,
@@ -1617,7 +1751,8 @@
     "blocks1": 44,
     "codewords1": 24,
     "blocks2": 7,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 3
   },
   {
     "version": 34,
@@ -1629,7 +1764,8 @@
     "blocks1": 59,
     "codewords1": 16,
     "blocks2": 1,
-    "codewords2": 17
+    "codewords2": 17,
+    "remainder": 3
   },
   {
     "version": 35,
@@ -1641,7 +1777,8 @@
     "blocks1": 12,
     "codewords1": 121,
     "blocks2": 7,
-    "codewords2": 122
+    "codewords2": 122,
+    "remainder": 0
   },
   {
     "version": 35,
@@ -1653,7 +1790,8 @@
     "blocks1": 12,
     "codewords1": 47,
     "blocks2": 26,
-    "codewords2": 48
+    "codewords2": 48,
+    "remainder": 0
   },
   {
     "version": 35,
@@ -1665,7 +1803,8 @@
     "blocks1": 39,
     "codewords1": 24,
     "blocks2": 14,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 0
   },
   {
     "version": 35,
@@ -1677,7 +1816,8 @@
     "blocks1": 22,
     "codewords1": 15,
     "blocks2": 41,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 0
   },
   {
     "version": 36,
@@ -1689,7 +1829,8 @@
     "blocks1": 6,
     "codewords1": 121,
     "blocks2": 14,
-    "codewords2": 122
+    "codewords2": 122,
+    "remainder": 0
   },
   {
     "version": 36,
@@ -1701,7 +1842,8 @@
     "blocks1": 6,
     "codewords1": 47,
     "blocks2": 34,
-    "codewords2": 48
+    "codewords2": 48,
+    "remainder": 0
   },
   {
     "version": 36,
@@ -1713,7 +1855,8 @@
     "blocks1": 46,
     "codewords1": 24,
     "blocks2": 10,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 0
   },
   {
     "version": 36,
@@ -1725,7 +1868,8 @@
     "blocks1": 2,
     "codewords1": 15,
     "blocks2": 64,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 0
   },
   {
     "version": 37,
@@ -1737,7 +1881,8 @@
     "blocks1": 17,
     "codewords1": 122,
     "blocks2": 4,
-    "codewords2": 123
+    "codewords2": 123,
+    "remainder": 0
   },
   {
     "version": 37,
@@ -1749,7 +1894,8 @@
     "blocks1": 29,
     "codewords1": 46,
     "blocks2": 14,
-    "codewords2": 47
+    "codewords2": 47,
+    "remainder": 0
   },
   {
     "version": 37,
@@ -1761,7 +1907,8 @@
     "blocks1": 49,
     "codewords1": 24,
     "blocks2": 10,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 0
   },
   {
     "version": 37,
@@ -1773,7 +1920,8 @@
     "blocks1": 24,
     "codewords1": 15,
     "blocks2": 46,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 0
   },
   {
     "version": 38,
@@ -1785,7 +1933,8 @@
     "blocks1": 4,
     "codewords1": 122,
     "blocks2": 18,
-    "codewords2": 123
+    "codewords2": 123,
+    "remainder": 0
   },
   {
     "version": 38,
@@ -1797,7 +1946,8 @@
     "blocks1": 13,
     "codewords1": 46,
     "blocks2": 32,
-    "codewords2": 47
+    "codewords2": 47,
+    "remainder": 0
   },
   {
     "version": 38,
@@ -1809,7 +1959,8 @@
     "blocks1": 48,
     "codewords1": 24,
     "blocks2": 14,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 0
   },
   {
     "version": 38,
@@ -1821,7 +1972,8 @@
     "blocks1": 42,
     "codewords1": 15,
     "blocks2": 32,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 0
   },
   {
     "version": 39,
@@ -1833,7 +1985,8 @@
     "blocks1": 20,
     "codewords1": 117,
     "blocks2": 4,
-    "codewords2": 118
+    "codewords2": 118,
+    "remainder": 0
   },
   {
     "version": 39,
@@ -1845,7 +1998,8 @@
     "blocks1": 40,
     "codewords1": 47,
     "blocks2": 7,
-    "codewords2": 48
+    "codewords2": 48,
+    "remainder": 0
   },
   {
     "version": 39,
@@ -1857,7 +2011,8 @@
     "blocks1": 43,
     "codewords1": 24,
     "blocks2": 22,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 0
   },
   {
     "version": 39,
@@ -1869,7 +2024,8 @@
     "blocks1": 10,
     "codewords1": 15,
     "blocks2": 67,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 0
   },
   {
     "version": 40,
@@ -1881,7 +2037,8 @@
     "blocks1": 19,
     "codewords1": 118,
     "blocks2": 6,
-    "codewords2": 119
+    "codewords2": 119,
+    "remainder": 0
   },
   {
     "version": 40,
@@ -1893,7 +2050,8 @@
     "blocks1": 18,
     "codewords1": 47,
     "blocks2": 31,
-    "codewords2": 48
+    "codewords2": 48,
+    "remainder": 0
   },
   {
     "version": 40,
@@ -1905,7 +2063,8 @@
     "blocks1": 34,
     "codewords1": 24,
     "blocks2": 34,
-    "codewords2": 25
+    "codewords2": 25,
+    "remainder": 0
   },
   {
     "version": 40,
@@ -1917,6 +2076,7 @@
     "blocks1": 20,
     "codewords1": 15,
     "blocks2": 61,
-    "codewords2": 16
+    "codewords2": 16,
+    "remainder": 0
   }
 ]

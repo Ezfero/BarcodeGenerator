@@ -19,9 +19,11 @@ protected:
 
 	VersionFactory versionFactory;
 
-	virtual shared_ptr<EncoderFactory> createEncoderFactory() = 0;
-
 	virtual shared_ptr<LogAntilogTable> createLogAntilogTable() = 0;
+
+	virtual shared_ptr<ResourceLoader> getResourceLoader() = 0;
+
+	virtual void* createCodeImage(int matrixSize, int** matrix) = 0;
 
 public:
 

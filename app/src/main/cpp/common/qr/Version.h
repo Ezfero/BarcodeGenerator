@@ -17,6 +17,7 @@ class Version {
 private:
 	const int initialSize = 21;
 
+	int remainder;
 	int corrections;
 	int barcodeSize;
 	int group1Blocks;
@@ -33,6 +34,7 @@ public:
 	Version() { }
 
 	Version(shared_ptr<Version> version) {
+		remainder = version->remainder;
 		corrections = version->corrections;
 		barcodeSize = version->barcodeSize;
 		group1Blocks = version->group1Blocks;
@@ -48,6 +50,7 @@ public:
 			return *this;
 		}
 
+		remainder = other.remainder;
 		corrections = other.corrections;
 		barcodeSize = other.barcodeSize;
 		group1Blocks = other.group1Blocks;
@@ -61,15 +64,17 @@ public:
 
 	Version(const Encoder& encoder, const VersionInfo& versionInfo);
 
-	int getCorrections() const;
+	int getRemainder() const;
 
-	int getVersionNumber() const;
+	int getCorrections() const;
 
 	int getBarcodeSize() const;
 
 	int getGroup1Blocks() const;
 
 	int getGroup2Blocks() const;
+
+	int getVersionNumber() const;
 
 	int getGroup1Codewords() const;
 

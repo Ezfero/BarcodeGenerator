@@ -15,11 +15,15 @@ class AndroidQRCodeGenerator : public QRCodeGenerator {
 private:
 	JNIEnv* jniEnv;
 	jobject* assetManager;
+	shared_ptr<ResourceLoader> assetLoader;
 
 protected:
-	virtual shared_ptr<EncoderFactory> createEncoderFactory() override;
 
 	virtual shared_ptr<LogAntilogTable> createLogAntilogTable() override;
+
+	virtual shared_ptr<ResourceLoader> getResourceLoader() override;
+
+	virtual void *createCodeImage(int matrixSize, int **matrix) override;
 
 public:
 
@@ -34,8 +38,6 @@ public:
 	}
 
 	virtual void loadVersionsDetails(const string& filename) override;
-
-
 
 };
 

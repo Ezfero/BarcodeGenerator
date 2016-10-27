@@ -7,15 +7,23 @@
 #include "qr/Version.h"
 
 void *QRCodeGenerator::generateQRCode(string& code) {
-	ErrorCorrector corrector("M");
+	shared_ptr<ErrorCorrector> corrector = make_shared<ErrorCorrector>("M");
 	auto table = createLogAntilogTable();
 	Polynomial::setLogAntilogTable(LogAntilogTable(*table.get()));
-	corrector.setLogAntilogTable(table);
 
-	auto encoder = createEncoderFactory()->getEncoder(code);
-	encoder->init();
+	EncoderFactory factory;
+	auto encoder = factory.getEncoder(code);
+	encoder->init(getResourceLoader());
 	encoder->setErrorCorrector(corrector);
-	encoder->setVersion(versionFactory.getVersion(*encoder, code));
-	encoder->encode(code);
-	return nullptr;
+
+	auto version = versionFactory.getVersion(*encoder, code);
+	corrector->setVersion(version);
+	encoder->setVersion(version);
+	int** matrix = encoder->encode(code);
+	void* image = createCodeImage(version->getBarcodeSize(), matrix);
+	for (int i = 0; i < version->getBarcodeSize(); i++) {
+		delete [] matrix[i];
+	}
+	delete [] matrix;
+	return image;
 }

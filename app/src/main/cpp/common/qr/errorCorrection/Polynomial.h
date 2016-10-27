@@ -31,7 +31,7 @@ private:
 	Mode mode;
 	vector<int> params;
 
-	int getNeutralElement();
+	int getNeutralElement() const;
 
 public:
 
@@ -50,17 +50,17 @@ public:
 
 	static void setLogAntilogTable(const LogAntilogTable& logAntilogTable);
 
-	Polynomial& operator+=(Polynomial& rhs);
+	Polynomial& operator+=(const Polynomial& rhs);
 
-	friend Polynomial& operator+(Polynomial& lhs, Polynomial& rhs);
+	friend Polynomial operator+(const Polynomial& lhs, const Polynomial& rhs);
 
-	Polynomial& operator-=(Polynomial& rhs);
+	Polynomial& operator-=(const Polynomial& rhs);
 
-	friend Polynomial& operator-(Polynomial& lhs, Polynomial& rhs);
+	friend Polynomial operator-(const Polynomial& lhs, const Polynomial& rhs);
 
 	Polynomial& operator*=(const Polynomial& rhs);
 
-	friend Polynomial& operator*(Polynomial& lhs, Polynomial& rhs);
+	friend Polynomial operator*(const Polynomial& lhs, const Polynomial& rhs);
 
 	Polynomial& operator /=(Polynomial& rhs);
 
@@ -71,6 +71,8 @@ public:
 	int getParam(int position) const;
 
 	void increaseDegree(int degree);
+
+	void updateDegree();
 
 	void toMode(Mode mode);
 };

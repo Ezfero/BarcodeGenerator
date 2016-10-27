@@ -13,6 +13,7 @@ class VersionInfo {
 
 private:
 	int version;
+	int remainder;
 	int corrections;
 	int group1Blocks;
 	int group2Blocks;
@@ -27,6 +28,10 @@ public:
 
 	int getVersion() const {
 		return version;
+	}
+
+	int getRemainder() const {
+		return remainder;
 	}
 
 	int getCorrections() const {
@@ -78,6 +83,11 @@ public:
 
 	VersionInfoBuilder& setVersion(int version) {
 		versionInfo.version = version;
+		return *this;
+	}
+
+	VersionInfoBuilder& setRemainder(int remainder) {
+		versionInfo.remainder = remainder;
 		return *this;
 	}
 

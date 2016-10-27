@@ -9,14 +9,26 @@
 #include "../errorCorrection/ErrorCorrector.h"
 #include "../Version.h"
 #include "../errorCorrection/Polynomial.h"
+#include "../masking/MatrixMasker.h"
 
 using namespace std;
 
 class Encoder {
 
 private:
-	vector<shared_ptr<Polynomial>> generatePolynomials(string& code);
-	vector<shared_ptr<Polynomial>> generateGroup(string& code, int start, int blocksCount, int codewordsCount);
+	shared_ptr<MatrixMasker> masker;
+
+	vector<int> loadAlignmentPatternPositions();
+
+	int** generateMatrix(string& code);
+	void addFinderPattern(int top, int left, int** matrix);
+	void addAlignmentPatterns(int** matrix, vector<int> positions);
+	void addTimingPatterns(int** matrix);
+	void reserveInfoAreas(int** matrix);
+	int** addCode(int** matrix, string& code);
+	int calculatePenalty(int** matrix);
+	int** createMaskedMatrix(const int **codeMatrix, const int **fullMatrix);
+	void addVersionInfo(int** matrix);
 
 protected:
 
@@ -24,7 +36,8 @@ protected:
 	string name;
 	string modeIndicator;
 	Version version;
-	ErrorCorrector errorCorrector;
+	shared_ptr<ResourceLoader> resourceLoder;
+	shared_ptr<ErrorCorrector> errorCorrector;
 
 	virtual shared_ptr<string> encodeData(string& data) = 0;
 
@@ -39,20 +52,19 @@ public:
 
 	virtual ~Encoder() { }
 
-	virtual void init() { }
+	virtual void init(shared_ptr<ResourceLoader> resourceLoader);
 
-	virtual string& encode(string& input);
+	virtual int** encode(string& input);
 
 	const string& getName() const;
 
-	const ErrorCorrector& getErrorCorrector() const;
+	const shared_ptr<ErrorCorrector> getErrorCorrector() const;
 
-	void setErrorCorrector(const ErrorCorrector& errorCorrector);
+	void setErrorCorrector(shared_ptr<ErrorCorrector> errorCorrector);
 
 	void setVersion(const Version& version);
 
 	bool canProcess(string& input);
-
 
 };
 

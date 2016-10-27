@@ -20,7 +20,9 @@ shared_ptr<string> AlphanumericEncoder::encodeData(string& data) {
 	return make_shared<string>(result);
 }
 
-void AlphanumericEncoder::init() {
+void AlphanumericEncoder::init(shared_ptr<ResourceLoader> resourceLoader) {
+	Encoder::init(resourceLoader);
+
 	//TODO: find a way to pass all the file names
 	string filename("qrAlphanumeric.json");
 	auto jsonString = resourceLoader->loadResource(filename);
@@ -35,3 +37,4 @@ void AlphanumericEncoder::init() {
 		codeValues[value] = code;
 	}
 }
+

@@ -8,95 +8,91 @@ LogAntilogTable Polynomial::logAntilogTable;
 const int Polynomial::normalNeutralElement = 0;
 const int Polynomial::galoisNeutralElement = -1;
 
-Polynomial& Polynomial::operator+=(Polynomial& rhs) {
-	int minDegree = min(degree, rhs.degree);
-	for (int i = 0; i <= minDegree; ++i) {
-		if (mode == Mode::GALOIS) {
-			if (params[i] != getNeutralElement() && rhs.params[i] != getNeutralElement()) {
-				params[i] = logAntilogTable.getDegree(logAntilogTable.getValue(params[i])
-													  ^ logAntilogTable.getValue(rhs.params[i]));
-			} else if (params[i] == getNeutralElement()) {
-				params[i] = rhs.params[i];
-			}
-		} else {
-			params[i] += rhs.params[i];
-		}
-	}
-
-	if (rhs.degree > minDegree) {
-		for (int i = minDegree; i <= rhs.degree; ++i) {
-			params.insert(params.begin(), rhs.params[i]);
-		}
-		degree = rhs.degree;
-	}
-
+Polynomial& Polynomial::operator+=(const Polynomial& rhs) {
+	*this = *this + rhs;
 	return *this;
 }
 
-Polynomial& operator+(Polynomial& lhs, Polynomial& rhs) {
-	return lhs += rhs;
+Polynomial operator+(const Polynomial& lhs, const Polynomial& rhs) {
+	int minDegree = min(lhs.degree, rhs.degree);
+	vector<int> sumParams(lhs.params);
+	for (int i = 0; i <= minDegree; ++i) {
+		if (lhs.mode == Polynomial::Mode::GALOIS) {
+			if (lhs.params[i] != lhs.getNeutralElement() && rhs.params[i] != rhs.getNeutralElement()) {
+				sumParams[i] = Polynomial::logAntilogTable
+						.getDegree(Polynomial::logAntilogTable.getValue(lhs.params[i])
+								   ^ Polynomial::logAntilogTable.getValue(rhs.params[i]));
+			} else if (rhs.params[i] != rhs.getNeutralElement()) {
+				sumParams[i] = rhs.params[i];
+			}
+		} else {
+			sumParams[i] ^= rhs.params[i];
+			if (sumParams[i] > 255) {
+				sumParams[i] ^= 285;
+			}
+		}
+	}
+
+//	if (rhs.degree > minDegree) {
+//		for (int i = minDegree; i <= rhs.degree; ++i) {
+//			sumParams.insert(sumParams.begin(), rhs.params[i]);
+//		}
+//	}
+	return Polynomial(sumParams, lhs.mode);
 }
 
 Polynomial& Polynomial::operator*=(const Polynomial& rhs) {
-	int length = degree + rhs.degree + 1;
-
-	if (mode == Mode::GALOIS) {
-		vector<vector<int>> multipliers((unsigned long) length);
-
-		for (int i = 0; i <= degree; ++i) {
-			for (int j = 0; j <= rhs.degree; ++j) {
-				if (params[i] != getNeutralElement() && rhs.params[j] != getNeutralElement()) {
-					multipliers[i + j].push_back((params[i] + rhs.params[j]) % 255);
-				} else {
-					multipliers[i + j].push_back(getNeutralElement());
-				}
-			}
-		}
-
-		params = vector<int>((unsigned long) length);
-
-		for (int i = 0; i < length; ++i) {
-			if (multipliers[i][0] == getNeutralElement()) {
-				params[i] = getNeutralElement();
-				continue;
-			}
-			auto element = logAntilogTable.getValue(multipliers[i][0]);
-			if (multipliers[i].size() > 1) {
-				for (int j = 1; j < multipliers[i].size(); ++j) {
-					element ^= logAntilogTable.getValue(multipliers[i][j]);
-				}
-			}
-			params[i] = logAntilogTable.getDegree(element) % 255;
-		}
-	} else {
-		auto temp = new int[length];
-		for (int i = 0; i < length; ++i) {
-			temp[i] = 0;
-		}
-
-		for (int i = 0; i < degree; ++i) {
-			for (int j = 0; j < rhs.degree; ++j) {
-				temp[i + j] += params[i] * rhs.params[j];
-			}
-		}
-		params = vector<int>(temp, temp + length);
-	}
-
-	degree = length - 1;
+	*this = *this * rhs;
 	return *this;
 }
 
-Polynomial& operator*(Polynomial& lhs, Polynomial& rhs) {
+Polynomial operator*(const Polynomial& lhs, const Polynomial& rhs) {
+	int length = lhs.degree + rhs.degree + 1;
+	auto params = vector<int>((unsigned long) length);
 
-	return lhs *= rhs;
+	if (lhs.mode == Polynomial::Mode::GALOIS) {
+		vector<vector<int>> multipliers((unsigned long) length);
+
+		for (int i = 0; i <= lhs.degree; ++i) {
+			for (int j = 0; j <= rhs.degree; ++j) {
+				if (lhs.params[i] != lhs.getNeutralElement() && rhs.params[j] != lhs.getNeutralElement()) {
+					multipliers[i + j].push_back((lhs.params[i] + rhs.params[j]) % 255);
+				} else {
+					multipliers[i + j].push_back(lhs.getNeutralElement());
+				}
+			}
+		}
+
+		for (int i = 0; i < length; ++i) {
+			if (multipliers[i][0] == lhs.getNeutralElement()) {
+				params[i] = lhs.getNeutralElement();
+				continue;
+			}
+			auto element = Polynomial::logAntilogTable.getValue(multipliers[i][0]);
+			if (multipliers[i].size() > 1) {
+				for (int j = 1; j < multipliers[i].size(); ++j) {
+					element ^= Polynomial::logAntilogTable.getValue(multipliers[i][j]);
+				}
+			}
+			params[i] = Polynomial::logAntilogTable.getDegree(element) % 255;
+		}
+	} else {
+		for (int i = 0; i < lhs.degree; ++i) {
+			for (int j = 0; j < rhs.degree; ++j) {
+				params[i + j] += lhs.params[i] * rhs.params[j];
+			}
+		}
+	}
+	return Polynomial(params, lhs.mode);
+
 }
 
-Polynomial& Polynomial::operator-=(Polynomial& rhs) {
+Polynomial& Polynomial::operator-=(const Polynomial& rhs) {
 	return *this += rhs;
 }
 
-Polynomial& operator-(Polynomial& lhs, Polynomial& rhs) {
-	return lhs -= rhs;
+Polynomial operator-(const Polynomial& lhs, const Polynomial& rhs) {
+	return lhs + rhs;
 }
 
 Polynomial& Polynomial::operator/=(Polynomial& rhs) {
@@ -168,7 +164,7 @@ int Polynomial::getDegree() const {
 	return degree;
 }
 
-int Polynomial::getNeutralElement() {
+int Polynomial::getNeutralElement() const {
 	return mode == Mode::NORMAL ? normalNeutralElement : galoisNeutralElement;
 }
 
@@ -179,11 +175,11 @@ void Polynomial::toMode(Polynomial::Mode mode) {
 
 	if (mode == Mode::NORMAL) {
 		for (int i = 0; i < params.size(); ++i) {
-			params[i] = logAntilogTable.getValue(params[i]);
+			params[i] = params[i] == getNeutralElement() ? normalNeutralElement : logAntilogTable.getValue(params[i]);
 		}
 	} else {
 		for (int i = 0; i < params.size(); ++i) {
-			params[i] = logAntilogTable.getDegree(params[i]);
+			params[i] = params[i] == getNeutralElement() ? galoisNeutralElement : logAntilogTable.getDegree(params[i]);
 		}
 	}
 	this->mode = mode;
@@ -191,4 +187,15 @@ void Polynomial::toMode(Polynomial::Mode mode) {
 
 int Polynomial::getParam(int position) const {
 	return params[position];
+}
+
+void Polynomial::updateDegree() {
+	vector<int> newParams;
+	for (auto& param : params) {
+		if (param != getNeutralElement() || newParams.size() != 0) {
+			newParams.push_back(param);
+		}
+	}
+	params = newParams;
+	degree = (int) (params.size() - 1);
 }

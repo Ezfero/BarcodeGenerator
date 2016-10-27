@@ -36,7 +36,7 @@ shared_ptr<Version> VersionFactory::getVersion(const Encoder encoder, const stri
 	auto corrector = encoder.getErrorCorrector();
 
 	for (auto& info : versionInfos) {
-		if (info.getErrorCorrectionLevel() != corrector.getLevelName()) {
+		if (info.getErrorCorrectionLevel() != corrector->getLevelName()) {
 			continue;
 		}
 		auto version = find((const int) length, encoder, info);

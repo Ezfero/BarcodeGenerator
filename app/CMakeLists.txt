@@ -18,6 +18,8 @@ add_library( barcodegenerator-lib SHARED
              src/main/cpp/common/qr/errorCorrection/ErrorCorrector.cpp
              src/main/cpp/common/qr/errorCorrection/Polynomial.cpp
              src/main/cpp/common/qr/errorCorrection/LogAntilogTable.cpp
+             src/main/cpp/common/qr/masking/MatrixMasker.cpp
+             src/main/cpp/common/qr/masking/MaskersFactory.cpp
 
              src/main/cpp/android/AssetLoader.cpp
              src/main/cpp/android/AndroidQRCodeGenerator.cpp
