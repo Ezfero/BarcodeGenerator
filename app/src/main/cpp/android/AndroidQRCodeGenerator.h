@@ -37,7 +37,7 @@ public:
 	virtual ~AndroidQRCodeGenerator() {
 	}
 
-	virtual void loadVersionsDetails(const string& filename) override;
+	virtual void loadVersionsDetails() override;
 
 };
 

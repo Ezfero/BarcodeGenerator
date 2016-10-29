@@ -4,6 +4,7 @@
 
 #include "AlphanumericEncoder.h"
 #include "../../json/json11.hpp"
+#include "../../DataFiles.h"
 
 const string AlphanumericEncoder::NAME = "alphanumeric";
 
@@ -23,12 +24,7 @@ shared_ptr<string> AlphanumericEncoder::encodeData(string& data) {
 void AlphanumericEncoder::init(shared_ptr<ResourceLoader> resourceLoader) {
 	Encoder::init(resourceLoader);
 
-	//TODO: find a way to pass all the file names
-	string filename("qrAlphanumeric.json");
-	auto jsonString = resourceLoader->loadResource(filename);
-
-	string err;
-	auto json = json11::Json::parse(*jsonString, err);
+	auto json = resourceLoader->loadJson(DataFiles::getAlphanumericDataFilename());
 
 	for (auto& k : json.array_items()) {
 		json11::Json row = k.object_items();

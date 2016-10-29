@@ -3,15 +3,10 @@
 //
 
 #include "LogAntilogTable.h"
-#include "../../json/json11.hpp"
+#include "../../DataFiles.h"
 
 void LogAntilogTable::init(shared_ptr<ResourceLoader> resourceLoader) {
-	//TODO: how to pass filenames?
-	string filename("logValues.json");
-	auto jsonString = resourceLoader->loadResource(filename);
-
-	string err;
-	auto json = json11::Json::parse(*jsonString, err);
+	auto json = resourceLoader->loadJson(DataFiles::getLogAntilogDataFilename());
 
 	for (auto& k : json.array_items()) {
 		json11::Json val = k.object_items();

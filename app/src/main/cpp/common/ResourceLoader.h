@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <string>
+#include "json/json11.hpp"
 
 using namespace std;
 
@@ -15,7 +16,10 @@ public:
 
 	virtual ~ResourceLoader() { }
 
-	virtual shared_ptr<string> loadResource(string& filename) = 0;
+	virtual shared_ptr<string> loadResource(const string& filename) = 0;
+
+	json11::Json loadJson(const string& filename);
 };
+
 
 #endif //BARCODEGENERATOR_RESOURCELOADER_H

@@ -4,8 +4,8 @@
 
 #include "AndroidQRCodeGenerator.h"
 
-void AndroidQRCodeGenerator::loadVersionsDetails(const string& filename) {
-	versionFactory = VersionFactory(filename);
+void AndroidQRCodeGenerator::loadVersionsDetails() {
+	versionFactory = VersionFactory();
 	versionFactory.init(getResourceLoader());
 }
 

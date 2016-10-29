@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		long start = System.currentTimeMillis();
-		Bitmap bitmap = BarcodeGenerator.generateQRCode("Hello World", getAssets());
+		Bitmap bitmap = BarcodeGenerator.generateQRCode("HI THERE", getAssets());
 		Log.d("debug", "time " + (System.currentTimeMillis() - start));
 
 		ImageView barcode = (ImageView) findViewById(R.id.barcode);

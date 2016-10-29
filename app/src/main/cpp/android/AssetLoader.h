@@ -29,7 +29,7 @@ public:
 			: jniEnv(jniEnv),
 			  assetManager(assetManager) { }
 
-	virtual shared_ptr<string> loadResource(string& filename) override;
+	virtual shared_ptr<string> loadResource(const string& filename) override;
 
 };
 

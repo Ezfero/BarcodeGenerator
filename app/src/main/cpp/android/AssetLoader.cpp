@@ -5,7 +5,7 @@
 #include <android/asset_manager_jni.h>
 #include "AssetLoader.h"
 
-shared_ptr<string> AssetLoader::loadResource(string& filename) {
+shared_ptr<string> AssetLoader::loadResource(const string& filename) {
 	AAssetManager* manager = AAssetManager_fromJava(jniEnv, *assetManager);
 	AAsset* asset = AAssetManager_open(manager, filename.c_str(), AASSET_MODE_STREAMING);
 

@@ -2,17 +2,14 @@
 // Created by Andriy on 10/17/16.
 //
 
+#include "../DataFiles.h"
 #include "VersionFactory.h"
-#include "../json/json11.hpp"
+#include "encoders/ByteEncoder.h"
 #include "encoders/NumericEncoder.h"
 #include "encoders/AlphanumericEncoder.h"
-#include "encoders/ByteEncoder.h"
 
 void VersionFactory::init(shared_ptr<ResourceLoader> resourceLoader) {
-	auto jsonString = resourceLoader->loadResource(infosFilename);
-
-	string err;
-	auto json = json11::Json::parse(*jsonString, err);
+	auto json = resourceLoader->loadJson(DataFiles::getQrVersionsDataFilename());
 
 	for (auto& k : json.array_items()) {
 		json11::Json val = k.object_items();

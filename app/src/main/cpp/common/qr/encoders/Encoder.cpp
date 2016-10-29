@@ -6,7 +6,7 @@
 #include <list>
 
 #include "Encoder.h"
-#include "../../json/json11.hpp"
+#include "../../DataFiles.h"
 #include "../masking/MaskersFactory.h"
 
 void Encoder::init(shared_ptr<ResourceLoader> resourceLoader) {
@@ -42,10 +42,7 @@ int** Encoder::encode(string& input) {
 
 	int requiredBitSize = version.getCodewordsAmount() * 8;
 
-	if (result.size() < requiredBitSize) {
-		result += string("0000").substr(
-				requiredBitSize - result.size() >= 4 ? 0 : 4 - (requiredBitSize - result.size()));
-	}
+	result += string("0000").substr(0, requiredBitSize - result.size() >= 4 ? 4 : requiredBitSize - result.size());
 
 	if (result.size() % 8 != 0) {
 		result += string("00000000").substr(result.size() % 8);
@@ -169,11 +166,7 @@ void Encoder::addAlignmentPatterns(int **matrix, vector<int> positions) {
 }
 
 vector<int> Encoder::loadAlignmentPatternPositions() {
-	string filename("qrAlignmentPatternLocation.json");
-	auto jsonString = resourceLoader->loadResource(filename);
-
-	string err;
-	auto json = json11::Json::parse(*jsonString, err);
+	auto json = resourceLoader->loadJson(DataFiles::getQrAlignmentPatternsDataFilename());
 	vector<int> result;
 
 	for (auto& k : json.array_items()) {
@@ -433,7 +426,8 @@ void Encoder::addVersionInfo(int **matrix) {
 	matrix[8][8] = formatString[7] == '1' ? 1 : 2;
 
 	if (version.getVersionNumber() >= 7) {
-		auto versionString = generateInfoString(18, bitset<6>(version.getVersionNumber()).to_string(), string("1111100100101"));
+		auto versionString = generateInfoString(18, bitset<6>(
+				(unsigned long long int) version.getVersionNumber()).to_string(), string("1111100100101"));
 
 		for (int i = 0; i < 6; ++i) {
 			for (int j = 0; j < 3; ++j) {

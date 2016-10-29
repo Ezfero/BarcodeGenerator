@@ -18,7 +18,6 @@ class VersionFactory {
 
 private:
 
-	string infosFilename;
 	vector<VersionInfo> versionInfos;
 
 	shared_ptr<Version> find(const int length, const Encoder& encoder, const VersionInfo& info);
@@ -26,9 +25,6 @@ private:
 public:
 
 	VersionFactory() { }
-
-	VersionFactory(const string& versionInfosJsonFile)
-			: infosFilename(versionInfosJsonFile) { };
 
 	void init(shared_ptr<ResourceLoader> resourceLoader);
 

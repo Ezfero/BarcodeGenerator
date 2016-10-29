@@ -8,6 +8,7 @@ add_library( barcodegenerator-lib SHARED
              src/main/cpp/android/AndroidBarcodeGenerator.cpp
 
              src/main/cpp/common/QRCodeGenerator.cpp
+             src/main/cpp/common/ResourceLoader.cpp
              src/main/cpp/common/qr/Version.cpp
              src/main/cpp/common/qr/VersionFactory.cpp
              src/main/cpp/common/qr/encoders/Encoder.cpp

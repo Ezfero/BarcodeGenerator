@@ -27,7 +27,7 @@ protected:
 
 public:
 
-	virtual void loadVersionsDetails(const string& filename) = 0;
+	virtual void loadVersionsDetails() = 0;
 
 	void* generateQRCode(string& code);
 

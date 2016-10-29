@@ -31,7 +31,7 @@ Java_com_silgrid_barcodegenerator_generator_BarcodeGenerator_generateQRCode(JNIE
 	string value(str);
 
 	AndroidQRCodeGenerator generator(env, &assetManager);
-	generator.loadVersionsDetails("qrVersionCapacities.json");
+	generator.loadVersionsDetails();
 	jobject bitmap = (jobject) generator.generateQRCode(value);
 
 	env->ReleaseStringUTFChars(string_, str);
