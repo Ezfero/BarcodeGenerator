@@ -7,5 +7,12 @@
 const string ByteEncoder::NAME = "byte";
 
 shared_ptr<string> ByteEncoder::encodeData(string& data) {
-	return make_shared<string>();
+	shared_ptr<string> result = make_shared<string>();
+
+	for (auto byte : data) {
+		int intVal = byte;
+		*result += bitset<8>(intVal).to_string();
+	}
+
+	return result;
 }

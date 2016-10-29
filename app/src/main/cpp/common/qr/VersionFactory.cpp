@@ -46,7 +46,7 @@ shared_ptr<Version> VersionFactory::getVersion(const Encoder encoder, const stri
 		}
 
 	}
-	throw exception();
+	return shared_ptr<Version>();
 }
 
 shared_ptr<Version> VersionFactory::find(const int length, const Encoder& encoder, const VersionInfo& info) {

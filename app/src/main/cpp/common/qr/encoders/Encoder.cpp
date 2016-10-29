@@ -44,7 +44,7 @@ int** Encoder::encode(string& input) {
 
 	if (result.size() < requiredBitSize) {
 		result += string("0000").substr(
-				requiredBitSize - result.size() > 4 ? 0 : 4 - requiredBitSize - result.size());
+				requiredBitSize - result.size() >= 4 ? 0 : 4 - (requiredBitSize - result.size()));
 	}
 
 	if (result.size() % 8 != 0) {

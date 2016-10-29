@@ -14,7 +14,7 @@ public:
 
 	static const string NAME;
 
-	ByteEncoder() : Encoder(regex("(\\d+)(\\w+)"), NAME, "0100") { }
+	ByteEncoder() : Encoder(regex(".+"), NAME, "0100") { }
 
 	shared_ptr<string> encodeData(string& data);
 
