@@ -10,7 +10,7 @@
 #include "../masking/MaskersFactory.h"
 
 void Encoder::init(shared_ptr<ResourceLoader> resourceLoader) {
-	this->resourceLoder = resourceLoader;
+	this->resourceLoader = resourceLoader;
 }
 
 bool Encoder::canProcess(string& input) {
@@ -159,8 +159,8 @@ void Encoder::addAlignmentPatterns(int **matrix, vector<int> positions) {
 				matrix[k][positions[j] + 1] = 2;
 			}
 			for (int k = positions[j] - 1; k < positions[j] + 2; ++k) {
-				matrix[positions[j] - 1][k] = 2;
-				matrix[positions[j] + 1][k] = 2;
+				matrix[positions[i] - 1][k] = 2;
+				matrix[positions[i] + 1][k] = 2;
 			}
 
 			matrix[positions[i]][positions[j]] = 1;
@@ -170,7 +170,7 @@ void Encoder::addAlignmentPatterns(int **matrix, vector<int> positions) {
 
 vector<int> Encoder::loadAlignmentPatternPositions() {
 	string filename("qrAlignmentPatternLocation.json");
-	auto jsonString = resourceLoder->loadResource(filename);
+	auto jsonString = resourceLoader->loadResource(filename);
 
 	string err;
 	auto json = json11::Json::parse(*jsonString, err);
@@ -252,7 +252,7 @@ int** Encoder::addCode(int **matrix, string& code) {
 		}
 
 		bool isLastRow = true;
-		if (currentCol == baseCol && matrix[row][currentCol - 1] == 0) {
+		if (currentCol == baseCol && matrix[row][baseCol - 1] == 0) {
 			isLastRow = false;
 		} else if (directionUpwards) {
 			for (int i = row - 1; i >= 0; --i) {
@@ -272,6 +272,7 @@ int** Encoder::addCode(int **matrix, string& code) {
 
 		if (isLastRow) {
 			directionUpwards = !directionUpwards;
+			row = directionUpwards ? version.getBarcodeSize() - 1 : 0;
 			baseCol -= 2;
 			if (baseCol == 6) {
 				--baseCol;
@@ -417,29 +418,7 @@ int** Encoder::createMaskedMatrix(const int **codeMatrix, const int **fullMatrix
 void Encoder::addVersionInfo(int **matrix) {
 	string value = bitset<2>((unsigned long long int) errorCorrector->getLevelValue()).to_string();
 	value += bitset<3>((unsigned long long int) masker->getNumber()).to_string();
-
-	string generator;
-
-	string divisor = value + "0000000000";
-	if ((int) divisor.find('1') >= 0) {
-		divisor = divisor.substr(divisor.find('1'));
-	} else {
-		divisor = "0000000000";
-	}
-	string zeros("000000000000000");
-
-	while (divisor.size() > 10) {
-		generator = "10100110111" + zeros.substr(0, divisor.size() - 11);
-		int res = (int) (strtol(divisor.c_str(), nullptr, 2) ^ strtol(generator.c_str(), nullptr, 2));
-		divisor = bitset<15>((unsigned long long int) res).to_string();
-		divisor = divisor.substr(divisor.find('1'));
-	}
-	if (divisor.size() < 10) {
-		divisor = zeros.substr(0, 10 - divisor.size()) + divisor;
-	}
-	divisor = value + divisor;
-	int masked = (int) (strtol(divisor.c_str(), nullptr, 2) ^ strtol("101010000010010", nullptr, 2));
-	string formatString = bitset<15>((unsigned long long int) masked).to_string();
+	auto formatString = generateInfoString(15, value, string("10100110111"));
 
 	for (int i = 0; i < 8; ++i) {
 		if (matrix[i][8] == -1) {
@@ -452,4 +431,43 @@ void Encoder::addVersionInfo(int **matrix) {
 	}
 	matrix[version.getBarcodeSize() - 9][8] = 1;
 	matrix[8][8] = formatString[7] == '1' ? 1 : 2;
+
+	if (version.getVersionNumber() >= 7) {
+		auto versionString = generateInfoString(18, bitset<6>(version.getVersionNumber()).to_string(), string("1111100100101"));
+
+		for (int i = 0; i < 6; ++i) {
+			for (int j = 0; j < 3; ++j) {
+				matrix[version.getBarcodeSize() - 11 + j][i] = versionString[i * 3 + j] == '1' ? 1 : 2;
+				matrix[i][version.getBarcodeSize() - 11 + j] = versionString[i * 3 + j] == '1' ? 1 : 2;
+			}
+		}
+	}
+}
+
+string Encoder::generateInfoString(int length, string infoValue, string baseGenerator) {
+	string divisor = infoValue + string("000000000000000").substr(0, length - infoValue.size());
+	if ((int) divisor.find('1') >= 0) {
+		divisor = divisor.substr(divisor.find('1'));
+	} else {
+		divisor = "0000000000";
+	}
+	string zeros("000000000000000");
+	string generator;
+
+	while (divisor.size() > length - infoValue.size()) {
+		generator = baseGenerator + zeros.substr(0, divisor.size() - baseGenerator.size());
+		long res = strtol(divisor.c_str(), nullptr, 2) ^ strtol(generator.c_str(), nullptr, 2);
+		divisor = bitset<18>((unsigned long long int) res).to_string();
+		divisor = divisor.substr(divisor.find('1'));
+	}
+	if (divisor.size() < length - infoValue.size()) {
+		divisor = zeros.substr(0, length - infoValue.size() - divisor.size()) + divisor;
+	}
+	divisor = infoValue + divisor;
+	if (length < 18) {
+		long masked = strtol(divisor.c_str(), nullptr, 2) ^ strtol("101010000010010", nullptr, 2);
+		return bitset<15>((unsigned long long int) masked).to_string();
+	} else {
+		return divisor;
+	}
 }

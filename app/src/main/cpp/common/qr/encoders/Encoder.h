@@ -29,6 +29,7 @@ private:
 	int calculatePenalty(int** matrix);
 	int** createMaskedMatrix(const int **codeMatrix, const int **fullMatrix);
 	void addVersionInfo(int** matrix);
+	string generateInfoString(int length, string infoValue, string generator);
 
 protected:
 
@@ -36,7 +37,7 @@ protected:
 	string name;
 	string modeIndicator;
 	Version version;
-	shared_ptr<ResourceLoader> resourceLoder;
+	shared_ptr<ResourceLoader> resourceLoader;
 	shared_ptr<ErrorCorrector> errorCorrector;
 
 	virtual shared_ptr<string> encodeData(string& data) = 0;
