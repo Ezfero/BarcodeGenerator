@@ -18,6 +18,7 @@ void VersionFactory::init(shared_ptr<ResourceLoader> resourceLoader) {
 		json11::Json val = k.object_items();
 		versionInfos.push_back(VersionInfoBuilder()
 				.setVersion(val["version"].int_value())
+				.setRemainder(val["remainder"].int_value())
 				.setErrorCorrectionLevel(val["errorType"].string_value()[0])
 				.setNumericModeSymbols(val["numeric"].int_value())
 				.setAlphanumericModeSymbols(val["alphanumeric"].int_value())

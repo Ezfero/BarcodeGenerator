@@ -397,7 +397,8 @@ int** Encoder::createMaskedMatrix(const int **codeMatrix, const int **fullMatrix
 	int penalty = -1;
 	auto maskers = MaskersFactory::getMatrixMaskers(version.getBarcodeSize(), (const int **) minMatrix, codeMatrix);
 
-	for (auto& masker : maskers) {
+	for (int i = 0; i < maskers.size(); ++i) {
+		auto& masker = maskers[i];
 		auto maskedMatrix = masker->applyMask();
 		int maskedPenalty = calculatePenalty(maskedMatrix);
 		if (maskedPenalty < penalty || penalty == -1) {
@@ -421,7 +422,12 @@ void Encoder::addVersionInfo(int **matrix) {
 	string generator;
 
 	string divisor = value + "0000000000";
-	divisor = divisor.substr(divisor.find('1'));
+	int pos = divisor.find('1');
+	if (pos >= 0) {
+		divisor = divisor.substr(divisor.find('1'));
+	} else {
+		divisor = "0000000000";
+	}
 	string zeros("000000000000000");
 
 	while (divisor.size() > 10) {
@@ -435,13 +441,17 @@ void Encoder::addVersionInfo(int **matrix) {
 	}
 	divisor = value + divisor;
 	int masked = (int) (strtol(divisor.c_str(), nullptr, 2) ^ strtol("101010000010010", nullptr, 2));
-	string formatString = bitset<15>(masked).to_string();
+	string formatString = bitset<15>((unsigned long long int) masked).to_string();
 
 	for (int i = 0; i < 8; ++i) {
 		if (matrix[i][8] == -1) {
 			matrix[i][8] = formatString[i] == '1' ? 1 : 2;
 			matrix[8][i] = formatString[formatString.size() - i] == '1' ? 1 : 2;
+
 		}
+		matrix[8][version.getBarcodeSize() - 1 - i] = formatString[i] == '1' ? 1 : 2;
+		matrix[version.getBarcodeSize() - 1 - i][8] = formatString[formatString.size() - i] == '1' ? 1 : 2;
+
 	}
 	matrix[8][8] = formatString[8] == '1' ? 1 : 2;
 }

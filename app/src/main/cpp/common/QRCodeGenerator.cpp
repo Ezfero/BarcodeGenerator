@@ -7,7 +7,7 @@
 #include "qr/Version.h"
 
 void *QRCodeGenerator::generateQRCode(string& code) {
-	shared_ptr<ErrorCorrector> corrector = make_shared<ErrorCorrector>("M");
+	shared_ptr<ErrorCorrector> corrector = make_shared<ErrorCorrector>("Q");
 	auto table = createLogAntilogTable();
 	Polynomial::setLogAntilogTable(LogAntilogTable(*table.get()));
 

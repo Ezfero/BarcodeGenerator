@@ -26,25 +26,26 @@ void ErrorCorrector::setVersion(shared_ptr<Version> version) {
 
 string ErrorCorrector::addErrorCorrection(string& value) {
 	auto polynomials = generatePolynomials(value);
-	auto baseDegree = polynomials[0]->getDegree();
-	auto maxDegree = baseDegree;
+	vector<Polynomial> basePolynomials;
 	for (auto poly : polynomials) {
-		if (poly->getDegree() > maxDegree) {
-			maxDegree = poly->getDegree();
-		}
-		poly->increaseDegree(poly->getDegree() + version->getCorrections());
+		basePolynomials.push_back(*poly);
 	}
+	auto maxDegree = polynomials[0]->getDegree();
 
 	auto generatorPolynomial = createGeneratorPolynomial(version->getCorrections());
 	string result;
-	vector<Polynomial> errorCorrectionCoderwords;
+	vector<Polynomial> errorCorrectionCodewords;
 
 	for (int j = 0; j < polynomials.size(); ++j) {
-
+		auto baseDegree = polynomials[j]->getDegree();
+		if (baseDegree > maxDegree) {
+			maxDegree = baseDegree;
+		}
+		polynomials[j]->increaseDegree(baseDegree + version->getCorrections());
 		auto generator = generatorPolynomial;
-		generator.increaseDegree(polynomials[0]->getDegree());
+		generator.increaseDegree(polynomials[j]->getDegree());
 
-		auto message = *polynomials[0].get();
+		auto message = *polynomials[j].get();
 
 		vector<int> multiplierVector(1);
 		for (int i = 0; i <= baseDegree; ++i) {
@@ -57,29 +58,29 @@ string ErrorCorrector::addErrorCorrection(string& value) {
 			message += multipliedGenerator;
 			message.updateDegree();
 		}
-		errorCorrectionCoderwords.push_back(message);
+		errorCorrectionCodewords.push_back(message);
 	}
 
 	for (int i = 0; i <= maxDegree; ++i) {
-		for (auto& polynomial : polynomials) {
-			if (polynomial->getDegree() >= i) {
-				result += bitset<8>(polynomial->getParam(i)).to_string();
-			}
-		}
-	}
-
-	for (int i = 0; i < version->getCorrections(); ++i) {
-		for (auto& polynomial : errorCorrectionCoderwords) {
+		for (auto polynomial : basePolynomials) {
 			if (polynomial.getDegree() >= i) {
 				result += bitset<8>(polynomial.getParam(i)).to_string();
 			}
 		}
 	}
 
-	result += string("00000000").substr((unsigned long) (8 - version->getRemainder()));
+	for (int i = 0; i < version->getCorrections(); ++i) {
+		for (auto polynomial : errorCorrectionCodewords) {
+			if (polynomial.getDegree() >= i) {
+				result += bitset<8>(polynomial.getParam(i)).to_string();
+			}
+		}
+	}
 
+	result += string("00000000").substr(0, (unsigned long) version->getRemainder());
 	return result;
 }
+
 
 Polynomial& ErrorCorrector::createGeneratorPolynomial(int degree) {
 	list<Polynomial> polynomials;
@@ -121,7 +122,7 @@ vector<shared_ptr<Polynomial>> ErrorCorrector::generateGroup(string& code, int s
 	for (auto i = 0; i < blocksCount; i++) {
 		vector<int> polynomialParams;
 		for (auto j = 0; j < codewordsCount; j++) {
-			string byte = code.substr((unsigned long) ((start + i + j) * 8), 8);
+			string byte = code.substr((unsigned long) (start + j) * 8 + i * codewordsCount * 8, 8);
 			int val = (int) strtol(byte.c_str(), nullptr, 2);
 			polynomialParams.push_back(val);
 		}
