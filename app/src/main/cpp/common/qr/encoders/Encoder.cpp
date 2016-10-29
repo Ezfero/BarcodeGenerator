@@ -254,17 +254,16 @@ int** Encoder::addCode(int **matrix, string& code) {
 		bool isLastRow = true;
 		if (currentCol == baseCol && matrix[row][currentCol - 1] == 0) {
 			isLastRow = false;
-		}
-		else if (directionUpwards) {
+		} else if (directionUpwards) {
 			for (int i = row - 1; i >= 0; --i) {
-				if (matrix[i][baseCol] == 0 || matrix[i][currentCol] == 0) {
+				if (matrix[i][baseCol] == 0 || matrix[i][baseCol - 1] == 0) {
 					isLastRow = false;
 					break;
 				}
 			}
 		} else {
 			for (int i = row + 1; i < version.getBarcodeSize(); ++i) {
-				if (matrix[i][baseCol] == 0 || matrix[i][currentCol] == 0) {
+				if (matrix[i][baseCol] == 0 || matrix[i][baseCol - 1] == 0) {
 					isLastRow = false;
 					break;
 				}
@@ -406,8 +405,8 @@ int** Encoder::createMaskedMatrix(const int **codeMatrix, const int **fullMatrix
 			minMatrix = maskedMatrix;
 			this->masker = masker;
 		} else {
-			for (int i = 0; i < version.getBarcodeSize(); ++i) {
-				delete [] maskedMatrix[i];
+			for (int j = 0; j < version.getBarcodeSize(); ++j) {
+				delete [] maskedMatrix[j];
 			}
 			delete [] maskedMatrix;
 		}
@@ -422,8 +421,7 @@ void Encoder::addVersionInfo(int **matrix) {
 	string generator;
 
 	string divisor = value + "0000000000";
-	int pos = divisor.find('1');
-	if (pos >= 0) {
+	if ((int) divisor.find('1') >= 0) {
 		divisor = divisor.substr(divisor.find('1'));
 	} else {
 		divisor = "0000000000";
@@ -437,7 +435,7 @@ void Encoder::addVersionInfo(int **matrix) {
 		divisor = divisor.substr(divisor.find('1'));
 	}
 	if (divisor.size() < 10) {
-		divisor += zeros.substr(0, 10 - divisor.size());
+		divisor = zeros.substr(0, 10 - divisor.size()) + divisor;
 	}
 	divisor = value + divisor;
 	int masked = (int) (strtol(divisor.c_str(), nullptr, 2) ^ strtol("101010000010010", nullptr, 2));
@@ -445,13 +443,13 @@ void Encoder::addVersionInfo(int **matrix) {
 
 	for (int i = 0; i < 8; ++i) {
 		if (matrix[i][8] == -1) {
-			matrix[i][8] = formatString[i] == '1' ? 1 : 2;
-			matrix[8][i] = formatString[formatString.size() - i] == '1' ? 1 : 2;
+			matrix[i][8] = formatString[formatString.size() - i - 1] == '1' ? 1 : 2;
+			matrix[8][i] = formatString[i] == '1' ? 1 : 2;
 
 		}
-		matrix[8][version.getBarcodeSize() - 1 - i] = formatString[i] == '1' ? 1 : 2;
-		matrix[version.getBarcodeSize() - 1 - i][8] = formatString[formatString.size() - i] == '1' ? 1 : 2;
-
+		matrix[8][version.getBarcodeSize() - 1 - i] = formatString[formatString.size() - i - 1] == '1' ? 1 : 2;
+		matrix[version.getBarcodeSize() - 1 - i][8] = formatString[i] == '1' ? 1 : 2;
 	}
-	matrix[8][8] = formatString[8] == '1' ? 1 : 2;
+	matrix[version.getBarcodeSize() - 9][8] = 1;
+	matrix[8][8] = formatString[7] == '1' ? 1 : 2;
 }
