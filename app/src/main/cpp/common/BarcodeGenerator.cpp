@@ -2,8 +2,8 @@
 // Created by Andriy on 10/12/16.
 //
 
+#include "DataFiles.h"
 #include "BarcodeGenerator.h"
-#include "json/json11.hpp"
 
 void* BarcodeGenerator::generateBarcode(string &code) {
 	CharacterSet set = detectCharacterSet(code);
@@ -45,9 +45,8 @@ const string& BarcodeGenerator::calculateChecksum(const string &str, CharacterSe
 	return characterSet.getRow(remainder).getBinaryPattern();
 }
 
-void BarcodeGenerator::parseCharacterSetsJson(const string &jsonString) {
-	string err;
-	auto json = json11::Json::parse(jsonString, err);
+void BarcodeGenerator::loadCharacterSets() {
+	auto json = getResourceLoader()->loadJson(DataFiles::getCode128DataFilename());
 
 	for (auto& k : json.array_items()) {
 		json11::Json val = k.object_items();
@@ -60,3 +59,5 @@ void BarcodeGenerator::parseCharacterSetsJson(const string &jsonString) {
 		addToSet(index, asciiCode, val["typeCValue"].string_value(), binary, characterSets["C"]);
 	}
 }
+
+

@@ -12,6 +12,10 @@ using namespace std;
 class DataFiles {
 
 public:
+	static string getCode128DataFilename() {
+		return string("code128.json");
+	}
+
 	static string getAlphanumericDataFilename() {
 		return string("qrAlphanumeric.json");
 	}

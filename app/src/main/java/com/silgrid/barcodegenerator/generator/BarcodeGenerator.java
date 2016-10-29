@@ -14,7 +14,11 @@ public class BarcodeGenerator {
 		return generateBarcode(string, context.getAssets());
 	}
 
+	public static Bitmap generateQRCode(String string, Context context) {
+		return generateQRCode(string, context.getAssets());
+	}
+
 	private static native Bitmap generateBarcode(String string, AssetManager assetManager);
 
-	public static native Bitmap generateQRCode(String string, AssetManager assetManager);
+	private static native Bitmap generateQRCode(String string, AssetManager assetManager);
 }

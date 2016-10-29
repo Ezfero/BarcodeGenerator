@@ -16,6 +16,9 @@ private:
 
 protected:
 
+
+	virtual shared_ptr<ResourceLoader> getResourceLoader() override;
+
 	virtual void* createBitmap(const string& binaryRepresentation);
 
 public:
@@ -24,8 +27,6 @@ public:
 			: BarcodeGenerator(),
 			  jniEnv(jniEnv),
 			  assetManager(assetManager) { }
-
-	virtual void loadCharacterSets(string filename);
 };
 
 

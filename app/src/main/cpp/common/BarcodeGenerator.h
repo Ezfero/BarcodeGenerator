@@ -8,6 +8,7 @@
 #include <regex>
 #include <vector>
 
+#include "ResourceLoader.h"
 #include "code128/CharacterSet.h"
 
 class BarcodeGenerator {
@@ -21,11 +22,11 @@ private:
 
 protected:
 
+	virtual shared_ptr<ResourceLoader> getResourceLoader() = 0;
+
 	const CharacterSet& detectCharacterSet(const string& str);
 
 	const string& calculateChecksum(const string& str, CharacterSet& characterSet);
-
-	void parseCharacterSetsJson(const string& json);
 
 	virtual void* createBitmap(const string& binaryRepresentation) = 0;
 
@@ -33,8 +34,8 @@ public:
 
 	BarcodeGenerator() {
 		characterSets["C"] = CharacterSet("C", regex("(\\d\\d)+"));
-		characterSets["A"] = CharacterSet("A", regex("(([A-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*[A-Z0-9]*)*)"));
-		characterSets["B"] = CharacterSet("B", regex("(([a-zA-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,`]*[a-zA-Z0-9]*)*)"));
+		characterSets["A"] = CharacterSet("A", regex("(([A-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*[A-Z0-9]*)*)"));
+		characterSets["B"] = CharacterSet("B", regex("(([a-zA-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*[a-zA-Z0-9]*)*)"));
 
 		setsOrder.push_back("C");
 		setsOrder.push_back("A");
@@ -43,7 +44,7 @@ public:
 
     virtual ~BarcodeGenerator() { }
 
-	virtual void loadCharacterSets(string filename) = 0;
+	void loadCharacterSets();
 
 	void* generateBarcode(string& code);
 };
