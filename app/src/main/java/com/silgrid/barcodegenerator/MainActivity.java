@@ -25,12 +25,14 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		long start = System.currentTimeMillis();
-		Bitmap bitmap = BarcodeGenerator.generateQRCode("HI THERE", this, BarcodeGenerator.ErrorCorrection.HIGH);
-		Log.d("debug", "time " + (System.currentTimeMillis() - start));
+		BarcodeGenerator.generateQRCode("HI THERE", this, BarcodeGenerator.ErrorCorrection.HIGH, new BarcodeGenerator.Callback() {
+			@Override
+			public void onCodeGenerated(Bitmap code) {
+				ImageView barcode = (ImageView) findViewById(R.id.barcode);
+				barcode.setImageBitmap(code);
+			}
+		});
 
-		ImageView barcode = (ImageView) findViewById(R.id.barcode);
-		barcode.setImageBitmap(bitmap);
 	}
 
 }
