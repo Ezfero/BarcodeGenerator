@@ -7,10 +7,25 @@
 
 #include "Encoder.h"
 #include "../../DataFiles.h"
+#include "../util/MatrixUtil.h"
 #include "../masking/MaskersFactory.h"
 
 void Encoder::init(shared_ptr<ResourceLoader> resourceLoader) {
 	this->resourceLoader = resourceLoader;
+
+	auto json = resourceLoader->loadJson(DataFiles::getQrAlignmentPatternsDataFilename());
+
+	for (auto& k : json.array_items()) {
+		json11::Json row = k.object_items();
+		auto version = row["version"].int_value();
+		if (version == this->version.getVersionNumber()) {
+			auto positions = row["positions"].array_items();
+			for (auto& position : positions) {
+				alignmentPatternPositions.push_back(position.int_value());
+			}
+			break;
+		}
+	}
 }
 
 bool Encoder::canProcess(string& input) {
@@ -48,11 +63,9 @@ int** Encoder::encode(string& input) {
 		result += string("00000000").substr(result.size() % 8);
 	}
 
-	if (result.size() < requiredBitSize) {
-		int bytesMissing = (int) ((requiredBitSize - result.size()) / 8);
-		while (bytesMissing-- > 0) {
-			result += bytesMissing % 2 == 1 ? "11101100" : "00010001";
-		}
+	int bytesMissing = (int) ((requiredBitSize - result.size()) / 8);
+	while (bytesMissing-- > 0) {
+		result += bytesMissing % 2 == 1 ? "11101100" : "00010001";
 	}
 
 	result = errorCorrector->addErrorCorrection(result);
@@ -61,32 +74,21 @@ int** Encoder::encode(string& input) {
 }
 
 int **Encoder::generateMatrix(string& code) {
-	int** matrix = new int*[version.getBarcodeSize()];
-	for (int i = 0; i < version.getBarcodeSize(); ++i) {
-		matrix[i] = new int[version.getBarcodeSize()];
-		for (int j = 0; j < version.getBarcodeSize(); ++j) {
-			matrix[i][j] = 0;
-		}
-	}
+	auto matrix = MatrixUtil::newMatrix(version.getBarcodeSize());
 
 	addFinderPattern(0, 0, matrix);
 	addFinderPattern(0, version.getBarcodeSize() - 7, matrix);
 	addFinderPattern(version.getBarcodeSize() - 7, 0, matrix);
 
-	addAlignmentPatterns(matrix, loadAlignmentPatternPositions());
+	addAlignmentPatterns(matrix);
 	addTimingPatterns(matrix);
-
-	matrix[version.getBarcodeSize() - 8][8] = 1;
 	reserveInfoAreas(matrix);
+
 	auto codeMatrix = addCode(matrix, code);
 	auto maskedMatrix = createMaskedMatrix((const int **) codeMatrix, (const int **) matrix);
 
-	for (int i = 0; i < version.getBarcodeSize(); ++i) {
-		delete[] codeMatrix[i];
-		delete[] matrix[i];
-	}
-	delete[] codeMatrix;
-	delete[] matrix;
+	MatrixUtil::deleteMatrix(version.getBarcodeSize(), matrix);
+	MatrixUtil::deleteMatrix(version.getBarcodeSize(), codeMatrix);
 
 	addVersionInfo(maskedMatrix);
 
@@ -95,136 +97,112 @@ int **Encoder::generateMatrix(string& code) {
 
 void Encoder::addFinderPattern(int top, int left, int **matrix) {
 	for (int i = top; i < top + 7; ++i) {
-		matrix[i][left] = 1;
-		matrix[i][left + 6] = 1;
+		matrix[i][left] = blackCell;
+		matrix[i][left + 6] = blackCell;
 	}
 	for (int i = left; i < left + 7; ++i) {
-		matrix[top][i] = 1;
-		matrix[top + 6][i] = 1;
+		matrix[top][i] = blackCell;
+		matrix[top + 6][i] = blackCell;
 	}
 
 	for (int i = top + 1; i < top + 6; ++i) {
-		matrix[i][left + 1] = 2;
-		matrix[i][left + 5] = 2;
+		matrix[i][left + 1] = whiteCell;
+		matrix[i][left + 5] = whiteCell;
 	}
 	for (int i = left + 1; i < left + 6; ++i) {
-		matrix[top + 1][i] = 2;
-		matrix[top + 5][i] = 2;
+		matrix[top + 1][i] = whiteCell;
+		matrix[top + 5][i] = whiteCell;
 	}
 
 	for (int i = top + 2; i < top + 5; ++i) {
 		for (int j = left + 2; j < left + 5; ++j) {
-			matrix[i][j] = 1;
+			matrix[i][j] = blackCell;
 		}
 	}
 
 	int topSeparatorLine = top == 0 ? top + 7 : top - 1;
 	for (int i = left; i < left + 7; ++i) {
-		matrix[topSeparatorLine][i] = 2;
+		matrix[topSeparatorLine][i] = whiteCell;
 	}
 
 	int sideSeparatorLine = left == 0 ? left + 7 : left - 1;
 	for (int i = top; i < top + 7; ++i) {
-		matrix[i][sideSeparatorLine] = 2;
+		matrix[i][sideSeparatorLine] = whiteCell;
 	}
-	matrix[7][7] = 2;
-	matrix[7][version.getBarcodeSize() - 8] = 2;
-	matrix[version.getBarcodeSize() - 8][7] = 2;
+	matrix[7][7] = whiteCell;
+	matrix[7][version.getBarcodeSize() - 8] = whiteCell;
+	matrix[version.getBarcodeSize() - 8][7] = whiteCell;
 }
 
-void Encoder::addAlignmentPatterns(int **matrix, vector<int> positions) {
-	for (int i = 0; i < positions.size(); ++i) {
-		for (int j = 0; j < positions.size(); ++j) {
+void Encoder::addAlignmentPatterns(int **matrix) {
+	for (int i = 0; i < alignmentPatternPositions.size(); ++i) {
+		for (int j = 0; j < alignmentPatternPositions.size(); ++j) {
 
-			if ((positions[i] < 10 && positions[j] < 10)
-					|| (positions[i] < 10 && positions[j] > version.getBarcodeSize() - 10)
-					|| (positions[j] < 10 && positions[i] > version.getBarcodeSize() - 10)) {
+			if ((alignmentPatternPositions[i] < 10 && alignmentPatternPositions[j] < 10)
+					|| (alignmentPatternPositions[i] < 10 && alignmentPatternPositions[j] > version.getBarcodeSize() - 10)
+					|| (alignmentPatternPositions[j] < 10 && alignmentPatternPositions[i] > version.getBarcodeSize() - 10)) {
 				continue;
 			}
 
-			for (int k = positions[i] - 2; k < positions[i] + 3; ++k) {
-				matrix[k][positions[j] - 2] = 1;
-				matrix[k][positions[j] + 2] = 1;
+			for (int k = alignmentPatternPositions[i] - 2; k < alignmentPatternPositions[i] + 3; ++k) {
+				matrix[k][alignmentPatternPositions[j] - 2] = blackCell;
+				matrix[k][alignmentPatternPositions[j] + 2] = blackCell;
 			}
-			for (int k = positions[j] - 2; k < positions[j] + 3; ++k) {
-				matrix[positions[i] - 2][k] = 1;
-				matrix[positions[i] + 2][k] = 1;
-			}
-
-			for (int k = positions[i] - 1; k < positions[i] + 2; ++k) {
-				matrix[k][positions[j] - 1] = 2;
-				matrix[k][positions[j] + 1] = 2;
-			}
-			for (int k = positions[j] - 1; k < positions[j] + 2; ++k) {
-				matrix[positions[i] - 1][k] = 2;
-				matrix[positions[i] + 1][k] = 2;
+			for (int k = alignmentPatternPositions[j] - 2; k < alignmentPatternPositions[j] + 3; ++k) {
+				matrix[alignmentPatternPositions[i] - 2][k] = blackCell;
+				matrix[alignmentPatternPositions[i] + 2][k] = blackCell;
 			}
 
-			matrix[positions[i]][positions[j]] = 1;
+			for (int k = alignmentPatternPositions[i] - 1; k < alignmentPatternPositions[i] + 2; ++k) {
+				matrix[k][alignmentPatternPositions[j] - 1] = whiteCell;
+				matrix[k][alignmentPatternPositions[j] + 1] = whiteCell;
+			}
+			for (int k = alignmentPatternPositions[j] - 1; k < alignmentPatternPositions[j] + 2; ++k) {
+				matrix[alignmentPatternPositions[i] - 1][k] = whiteCell;
+				matrix[alignmentPatternPositions[i] + 1][k] = whiteCell;
+			}
+
+			matrix[alignmentPatternPositions[i]][alignmentPatternPositions[j]] = blackCell;
 		}
 	}
-}
-
-vector<int> Encoder::loadAlignmentPatternPositions() {
-	auto json = resourceLoader->loadJson(DataFiles::getQrAlignmentPatternsDataFilename());
-	vector<int> result;
-
-	for (auto& k : json.array_items()) {
-		json11::Json row = k.object_items();
-		auto version = row["version"].int_value();
-		if (version == this->version.getVersionNumber()) {
-			auto positions = row["positions"].array_items();
-			for (auto& position : positions) {
-				result.push_back(position.int_value());
-			}
-			break;
-		}
-	}
-	return result;
 }
 
 void Encoder::addTimingPatterns(int **matrix) {
-	int color = 1;
+	int color = blackCell;
 	for (int i = 8; i < version.getBarcodeSize() - 8; ++i) {
 		matrix[i][6] = color;
 		matrix[6][i] = color;
-		color = color % 2 + 1;
+		color = color == whiteCell ? blackCell : whiteCell;
 	}
 }
 
 void Encoder::reserveInfoAreas(int **matrix) {
 	for (int i = 0; i < 8; i++) {
 		if (matrix[i][8] == 0) {
-			matrix[i][8] = -1;
-			matrix[8][i] = -1;
+			matrix[i][8] = reservedCell;
+			matrix[8][i] = reservedCell;
 		}
-		matrix[8][version.getBarcodeSize() - 1 - i] = -1;
+		matrix[8][version.getBarcodeSize() - 1 - i] = reservedCell;
 
 		if (matrix[version.getBarcodeSize() -1 - i][8] == 0) {
-			matrix[version.getBarcodeSize() -1 - i][8] = -1;
+			matrix[version.getBarcodeSize() -1 - i][8] = reservedCell;
 		}
 	}
 
-	matrix[8][8] = -1;
+	matrix[8][8] = reservedCell;
 
 	if (version.getVersionNumber() >= 7) {
 		for (int i = 0; i < 6; ++i) {
 			for (int j = 0; j < 3; ++j) {
-				matrix[version.getBarcodeSize() - 9 - j][i] = -1;
-				matrix[i][version.getBarcodeSize() - 9 - j] = -1;
+				matrix[version.getBarcodeSize() - 9 - j][i] = reservedCell;
+				matrix[i][version.getBarcodeSize() - 9 - j] = reservedCell;
 			}
 		}
 	}
 }
 
 int** Encoder::addCode(int **matrix, string& code) {
-	int** codeMatrix = new int*[version.getBarcodeSize()];
-	for (int i = 0; i < version.getBarcodeSize(); ++i) {
-		codeMatrix[i] = new int[version.getBarcodeSize()];
-		for (int j = 0; j < version.getBarcodeSize(); ++j) {
-			codeMatrix[i][j] = 0;
-		}
-	}
+	auto codeMatrix = MatrixUtil::newMatrix(version.getBarcodeSize());
 
 	int row = version.getBarcodeSize() - 1;
 	int baseCol = version.getBarcodeSize() - 1;
@@ -238,7 +216,7 @@ int** Encoder::addCode(int **matrix, string& code) {
 
 	while (charsProcessed < charsToProcess) {
 		if (matrix[row][currentCol] == 0) {
-			int val = code[charsProcessed] == '1' ? 1 : 2;
+			int val = code[charsProcessed] == '1' ? blackCell : whiteCell;
 			matrix[row][currentCol] = val;
 			codeMatrix[row][currentCol] = val;
 			++charsProcessed;
@@ -330,7 +308,7 @@ int Encoder::calculatePenalty(int **matrix) {
 		}
 	}
 
-	int patterns[2][11] = {{1, 2, 1, 1, 1, 2, 1, 2, 2, 2, 2},
+	static int patterns[2][11] = {{1, 2, 1, 1, 1, 2, 1, 2, 2, 2, 2},
 						   {2, 2, 2, 2, 1, 2, 1, 1, 1, 2, 1}};
 
 	list<int> pattern;
@@ -380,15 +358,9 @@ int Encoder::calculatePenalty(int **matrix) {
 }
 
 int** Encoder::createMaskedMatrix(const int **codeMatrix, const int **fullMatrix) {
-	auto minMatrix = new int*[version.getBarcodeSize()];
-	for (int i = 0; i < version.getBarcodeSize(); ++i) {
-		minMatrix[i] = new int[version.getBarcodeSize()];
-		for (int j = 0; j < version.getBarcodeSize(); ++j) {
-			minMatrix[i][j] = fullMatrix[i][j];
-		}
-	}
+	int **minMatrix = nullptr;
 	int penalty = -1;
-	auto maskers = MaskersFactory::getMatrixMaskers(version.getBarcodeSize(), (const int **) minMatrix, codeMatrix);
+	auto maskers = MaskersFactory::getMatrixMaskers(version.getBarcodeSize(), fullMatrix, codeMatrix);
 
 	for (int i = 0; i < maskers.size(); ++i) {
 		auto& masker = maskers[i];
@@ -399,10 +371,7 @@ int** Encoder::createMaskedMatrix(const int **codeMatrix, const int **fullMatrix
 			minMatrix = maskedMatrix;
 			this->masker = masker;
 		} else {
-			for (int j = 0; j < version.getBarcodeSize(); ++j) {
-				delete [] maskedMatrix[j];
-			}
-			delete [] maskedMatrix;
+			MatrixUtil::deleteMatrix(version.getBarcodeSize(), maskedMatrix);
 		}
 	}
 	return minMatrix;
@@ -415,15 +384,15 @@ void Encoder::addVersionInfo(int **matrix) {
 
 	for (int i = 0; i < 8; ++i) {
 		if (matrix[i][8] == -1) {
-			matrix[i][8] = formatString[formatString.size() - i - 1] == '1' ? 1 : 2;
-			matrix[8][i] = formatString[i] == '1' ? 1 : 2;
+			matrix[i][8] = formatString[formatString.size() - i - 1] == '1' ? blackCell : whiteCell;
+			matrix[8][i] = formatString[i] == '1' ? blackCell : whiteCell;
 
 		}
-		matrix[8][version.getBarcodeSize() - 1 - i] = formatString[formatString.size() - i - 1] == '1' ? 1 : 2;
-		matrix[version.getBarcodeSize() - 1 - i][8] = formatString[i] == '1' ? 1 : 2;
+		matrix[8][version.getBarcodeSize() - 1 - i] = formatString[formatString.size() - i - 1] == '1' ? blackCell : whiteCell;
+		matrix[version.getBarcodeSize() - 1 - i][8] = formatString[i] == '1' ? blackCell : whiteCell;
 	}
-	matrix[version.getBarcodeSize() - 9][8] = 1;
-	matrix[8][8] = formatString[7] == '1' ? 1 : 2;
+	matrix[version.getBarcodeSize() - 8][8] = blackCell;
+	matrix[8][8] = formatString[7] == '1' ? blackCell : whiteCell;
 
 	if (version.getVersionNumber() >= 7) {
 		auto versionString = generateInfoString(18, bitset<6>(
@@ -431,21 +400,21 @@ void Encoder::addVersionInfo(int **matrix) {
 
 		for (int i = 0; i < 6; ++i) {
 			for (int j = 0; j < 3; ++j) {
-				matrix[version.getBarcodeSize() - 11 + j][i] = versionString[i * 3 + j] == '1' ? 1 : 2;
-				matrix[i][version.getBarcodeSize() - 11 + j] = versionString[i * 3 + j] == '1' ? 1 : 2;
+				matrix[version.getBarcodeSize() - 11 + j][i] = versionString[i * 3 + j] == '1' ? blackCell : whiteCell;
+				matrix[i][version.getBarcodeSize() - 11 + j] = versionString[i * 3 + j] == '1' ? blackCell : whiteCell;
 			}
 		}
 	}
 }
 
 string Encoder::generateInfoString(int length, string infoValue, string baseGenerator) {
-	string divisor = infoValue + string("000000000000000").substr(0, length - infoValue.size());
+	string zeros("000000000000000");
+	string divisor = infoValue + zeros.substr(0, length - infoValue.size());
 	if ((int) divisor.find('1') >= 0) {
 		divisor = divisor.substr(divisor.find('1'));
 	} else {
 		divisor = "0000000000";
 	}
-	string zeros("000000000000000");
 	string generator;
 
 	while (divisor.size() > length - infoValue.size()) {

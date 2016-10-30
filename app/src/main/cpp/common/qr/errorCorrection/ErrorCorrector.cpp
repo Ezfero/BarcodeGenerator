@@ -64,7 +64,7 @@ string ErrorCorrector::addErrorCorrection(string& value) {
 	for (int i = 0; i <= maxDegree; ++i) {
 		for (auto polynomial : basePolynomials) {
 			if (polynomial.getDegree() >= i) {
-				result += bitset<8>(polynomial.getParam(i)).to_string();
+				result += bitset<8>((unsigned long long int) polynomial.getParam(i)).to_string();
 			}
 		}
 	}
@@ -72,7 +72,7 @@ string ErrorCorrector::addErrorCorrection(string& value) {
 	for (int i = 0; i < version->getCorrections(); ++i) {
 		for (auto polynomial : errorCorrectionCodewords) {
 			if (polynomial.getDegree() >= i) {
-				result += bitset<8>(polynomial.getParam(i)).to_string();
+				result += bitset<8>((unsigned long long int) polynomial.getParam(i)).to_string();
 			}
 		}
 	}
@@ -96,8 +96,8 @@ Polynomial& ErrorCorrector::createGeneratorPolynomial(int degree) {
 		polynomials.pop_front();
 		Polynomial multiplier2 = polynomials.front();
 		polynomials.pop_front();
-		Polynomial res = multiplier1 * multiplier2;
-		polynomials.push_front(res);
+		Polynomial multiplication = multiplier1 * multiplier2;
+		polynomials.push_front(multiplication);
 	} while (polynomials.size() > 1);
 
 	return polynomials.front();

@@ -3,13 +3,12 @@
 //
 
 #include "QRCodeGenerator.h"
-#include "qr/encoders/EncoderFactory.h"
-#include "qr/Version.h"
 
-void *QRCodeGenerator::generateQRCode(string& code) {
-	shared_ptr<ErrorCorrector> corrector = make_shared<ErrorCorrector>("Q");
-	auto table = createLogAntilogTable();
-	Polynomial::setLogAntilogTable(LogAntilogTable(*table.get()));
+void *QRCodeGenerator::generateQRCode(string& code, string errorCorrection) {
+	shared_ptr<ErrorCorrector> corrector = make_shared<ErrorCorrector>(errorCorrection);
+	logAntilogTable = make_shared<LogAntilogTable>();
+	logAntilogTable->init(getResourceLoader());
+	Polynomial::setLogAntilogTable(LogAntilogTable(*logAntilogTable.get()));
 
 	EncoderFactory factory;
 	auto encoder = factory.getEncoder(code);

@@ -9,12 +9,6 @@ void AndroidQRCodeGenerator::loadVersionsDetails() {
 	versionFactory.init(getResourceLoader());
 }
 
-shared_ptr<LogAntilogTable> AndroidQRCodeGenerator::createLogAntilogTable() {
-	shared_ptr<LogAntilogTable> table = make_shared<LogAntilogTable>();
-	table->init(getResourceLoader());
-	return table;
-}
-
 shared_ptr<ResourceLoader> AndroidQRCodeGenerator::getResourceLoader() {
 	if (!assetLoader) {
 		assetLoader = make_shared<AssetLoader>(jniEnv, assetManager);
@@ -37,7 +31,7 @@ void *AndroidQRCodeGenerator::createCodeImage(int matrixSize, int **matrix) {
 	for (int i = 0; i < matrixSize; ++i) {
 		for (int j = 0; j < matrixSize; ++j) {
 			matrixArray[i * matrixSize + j] = matrix[i][j] == 1 ? 0xff000000
-																: matrix[i][j] == 2 ? 0xffffffff : matrix[i][j] == -1 ? 0x9000ff00 : 0x90ff0000;
+																: matrix[i][j] == 2 ? 0xffffffff : 0x90ff0000;
 		}
 	}
 	jniEnv->SetIntArrayRegion(pixels, 0, matrixSize * matrixSize, matrixArray);

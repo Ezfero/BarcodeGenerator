@@ -10,8 +10,7 @@ shared_ptr<string> ByteEncoder::encodeData(string& data) {
 	shared_ptr<string> result = make_shared<string>();
 
 	for (auto byte : data) {
-		int intVal = byte;
-		*result += bitset<8>(intVal).to_string();
+		*result += bitset<8>((unsigned long long int) byte).to_string();
 	}
 
 	return result;

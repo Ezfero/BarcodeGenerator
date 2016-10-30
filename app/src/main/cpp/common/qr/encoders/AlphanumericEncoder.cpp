@@ -2,9 +2,8 @@
 // Created by Andriy on 10/16/16.
 //
 
-#include "AlphanumericEncoder.h"
-#include "../../json/json11.hpp"
 #include "../../DataFiles.h"
+#include "AlphanumericEncoder.h"
 
 const string AlphanumericEncoder::NAME = "alphanumeric";
 

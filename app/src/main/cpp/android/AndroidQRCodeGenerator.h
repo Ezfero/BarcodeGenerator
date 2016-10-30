@@ -19,8 +19,6 @@ private:
 
 protected:
 
-	virtual shared_ptr<LogAntilogTable> createLogAntilogTable() override;
-
 	virtual shared_ptr<ResourceLoader> getResourceLoader() override;
 
 	virtual void *createCodeImage(int matrixSize, int **matrix) override;

@@ -6,9 +6,10 @@
 #define BARCODEGENERATOR_QRCODEGENERATOR_H
 
 #include <string>
-#include "qr/encoders/Encoder.h"
+
 #include "qr/VersionInfo.h"
 #include "qr/VersionFactory.h"
+#include "qr/encoders/Encoder.h"
 #include "qr/encoders/EncoderFactory.h"
 
 using namespace std;
@@ -18,8 +19,7 @@ class QRCodeGenerator {
 protected:
 
 	VersionFactory versionFactory;
-
-	virtual shared_ptr<LogAntilogTable> createLogAntilogTable() = 0;
+	shared_ptr<LogAntilogTable> logAntilogTable;
 
 	virtual shared_ptr<ResourceLoader> getResourceLoader() = 0;
 
@@ -29,7 +29,7 @@ public:
 
 	virtual void loadVersionsDetails() = 0;
 
-	void* generateQRCode(string& code);
+	void* generateQRCode(string& code, string errorCorrection);
 
 };
 

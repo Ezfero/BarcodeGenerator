@@ -16,13 +16,17 @@ using namespace std;
 class Encoder {
 
 private:
+	const int blackCell = 1;
+	const int whiteCell = 2;
+	const int reservedCell = -1;
+
 	shared_ptr<MatrixMasker> masker;
 
-	vector<int> loadAlignmentPatternPositions();
+	vector<int> alignmentPatternPositions;
 
 	int** generateMatrix(string& code);
 	void addFinderPattern(int top, int left, int** matrix);
-	void addAlignmentPatterns(int** matrix, vector<int> positions);
+	void addAlignmentPatterns(int** matrix);
 	void addTimingPatterns(int** matrix);
 	void reserveInfoAreas(int** matrix);
 	int** addCode(int** matrix, string& code);
