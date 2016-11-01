@@ -8,17 +8,19 @@
 
 #include "Encoder.h"
 
-class NumericEncoder : public Encoder {
+namespace silgrid {
 
-public:
+	class NumericEncoder : public Encoder {
 
-	static const string NAME;
+	public:
 
-	NumericEncoder() : Encoder(regex("\\d+"), NAME, "0001") { }
+		static const std::string NAME;
 
-	shared_ptr<string> encodeData(string& data);
+		NumericEncoder() : Encoder(std::regex("\\d+"), NAME, "0001") { }
 
-};
+		std::shared_ptr<std::string> encodeData(std::string& data);
 
+	};
+}
 
 #endif //BARCODEGENERATOR_NUMERICENCODING_H

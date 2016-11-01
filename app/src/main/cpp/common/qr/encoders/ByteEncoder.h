@@ -8,16 +8,19 @@
 
 #include "Encoder.h"
 
-class ByteEncoder : public Encoder {
+namespace silgrid {
 
-public:
+	class ByteEncoder : public Encoder {
 
-	static const string NAME;
+	public:
 
-	ByteEncoder() : Encoder(regex(".+"), NAME, "0100") { }
+		static const std::string NAME;
 
-	shared_ptr<string> encodeData(string& data);
+		ByteEncoder() : Encoder(std::regex(".+"), NAME, "0100") { }
 
-};
+		std::shared_ptr<std::string> encodeData(std::string& data);
+
+	};
+}
 
 #endif //BARCODEGENERATOR_BYTEENCODING_H

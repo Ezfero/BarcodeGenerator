@@ -10,34 +10,36 @@
 #include "../common/QRCodeGenerator.h"
 #include "AssetLoader.h"
 
-class AndroidQRCodeGenerator : public QRCodeGenerator {
+namespace silgrid {
 
-private:
-	JNIEnv* jniEnv;
-	jobject* assetManager;
-	shared_ptr<ResourceLoader> assetLoader;
+	class AndroidQRCodeGenerator : public QRCodeGenerator {
 
-protected:
+	private:
+		JNIEnv *jniEnv;
+		jobject *assetManager;
+		std::shared_ptr<ResourceLoader> assetLoader;
 
-	virtual shared_ptr<ResourceLoader> getResourceLoader() override;
+	protected:
 
-	virtual void *createCodeImage(int matrixSize, int **matrix) override;
+		virtual std::shared_ptr<ResourceLoader> getResourceLoader() override;
 
-public:
+		virtual void *createCodeImage(int matrixSize, int **matrix) override;
 
-	AndroidQRCodeGenerator(JNIEnv *jniEnv, jobject *assetManager)
-			: QRCodeGenerator(),
-			  jniEnv(jniEnv),
-			  assetManager(assetManager) {
-	}
+	public:
+
+		AndroidQRCodeGenerator(JNIEnv *jniEnv, jobject *assetManager)
+				: QRCodeGenerator(),
+				  jniEnv(jniEnv),
+				  assetManager(assetManager) {
+		}
 
 
-	virtual ~AndroidQRCodeGenerator() {
-	}
+		virtual ~AndroidQRCodeGenerator() {
+		}
 
-	virtual void loadVersionsDetails() override;
+		virtual void loadVersionsDetails() override;
 
-};
-
+	};
+}
 
 #endif //BARCODEGENERATOR_ANDROIDRQCODEGENERATOR_H

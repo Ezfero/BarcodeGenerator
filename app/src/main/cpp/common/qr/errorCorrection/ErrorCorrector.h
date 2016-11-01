@@ -13,39 +13,42 @@
 #include "LogAntilogTable.h"
 #include "../../ResourceLoader.h"
 
-using namespace std;
+namespace silgrid {
 
-class ErrorCorrector {
-private:
+	class ErrorCorrector {
+	private:
 
-	string levelName;
+		std::string levelName;
 
-	shared_ptr<Version> version;
+		std::shared_ptr<Version> version;
 
-	Polynomial& createGeneratorPolynomial(int degree);
-	vector<shared_ptr<Polynomial>> generatePolynomials(string& code);
-	vector<shared_ptr<Polynomial>> generateGroup(string& code, int start, int blocksCount, int codewordsCount);
+		Polynomial& createGeneratorPolynomial(int degree);
 
-public:
+		std::vector<std::shared_ptr<Polynomial>> generatePolynomials(std::string& code);
 
-	ErrorCorrector() { }
+		std::vector<std::shared_ptr<Polynomial>> generateGroup(std::string& code, int start,
+															   int blocksCount, int codewordsCount);
 
-	ErrorCorrector(const string& levelName)
-			: levelName(levelName) { }
+	public:
 
-	ErrorCorrector(const ErrorCorrector& other)
-			: levelName(other.levelName),
-			  version(other.version) { }
+		ErrorCorrector() { }
 
-	const char getLevelName() const;
+		ErrorCorrector(const std::string& levelName)
+				: levelName(levelName) { }
+
+		ErrorCorrector(const ErrorCorrector& other)
+				: levelName(other.levelName),
+				  version(other.version) { }
+
+		const char getLevelName() const;
 
 
-	int getLevelValue() const;
+		int getLevelValue() const;
 
-	void setVersion(shared_ptr<Version> version);
+		void setVersion(std::shared_ptr<Version> version);
 
-	string addErrorCorrection(string& value);
-};
-
+		std::string addErrorCorrection(std::string& value);
+	};
+}
 
 #endif //BARCODEGENERATOR_ERRORCORRECTOR_H

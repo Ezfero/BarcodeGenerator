@@ -11,41 +11,41 @@
 
 #include "CharacterRow.h"
 
-using namespace std;
+namespace silgrid {
 
-class CharacterSet {
+	class CharacterSet {
 
-private:
+	private:
 
-	regex typeRegex;
-	string setType;
-	map<string, CharacterRow> rows;
-	map<int, string> rowKeys;
+		std::regex typeRegex;
+		std::string setType;
+		std::map<std::string, CharacterRow> rows;
+		std::map<int, std::string> rowKeys;
 
-public:
+	public:
 
-	CharacterSet() {
-	}
+		CharacterSet() {
+		}
 
-	CharacterSet(const string &setType, const regex& typeRegex)
-			: setType(setType),
-			  typeRegex(typeRegex) {
-	}
+		CharacterSet(const std::string& setType, const std::regex& typeRegex)
+				: setType(setType),
+				  typeRegex(typeRegex) {
+		}
 
 
-	virtual ~CharacterSet() {
-	}
+		virtual ~CharacterSet() {
+		}
 
-	bool canProcess(const string &value) const;
+		bool canProcess(const std::string& value) const;
 
-	void addRow(CharacterRow&);
+		void addRow(CharacterRow&);
 
-	CharacterRow& getRow(string value);
+		CharacterRow& getRow(std::string value);
 
-	CharacterRow& getRow(int index);
+		CharacterRow& getRow(int index);
 
-	shared_ptr<vector<string>> split(const string& input);
-};
-
+		std::shared_ptr<std::vector<std::string>> split(const std::string& input);
+	};
+}
 
 #endif //BARCODEGENERATOR_CHARACTERSET_H

@@ -4,24 +4,21 @@
 
 #include "CharacterRow.h"
 
+namespace silgrid {
 
-int CharacterRow::getAsciiCode() const {
-	return asciiCode;
+	int CharacterRow::getAsciiCode() const {
+		return asciiCode;
+	}
+
+	const std::string& CharacterRow::getCharacter() const {
+		return character;
+	}
+
+	const std::string& CharacterRow::getBinaryPattern() const {
+		return binaryPattern;
+	}
+
+	int CharacterRow::getIndex() const {
+		return index;
+	}
 }
-
-const string &CharacterRow::getCharacter() const {
-	return character;
-}
-
-const string& CharacterRow::getBinaryPattern() const {
-	return binaryPattern;
-}
-
-int CharacterRow::getIndex() const {
-	return index;
-}
-
-
-
-
-

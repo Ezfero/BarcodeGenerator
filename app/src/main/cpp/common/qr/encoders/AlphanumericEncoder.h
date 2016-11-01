@@ -9,24 +9,26 @@
 #include "Encoder.h"
 #include "../../ResourceLoader.h"
 
+namespace silgrid {
 
-class AlphanumericEncoder : public Encoder {
+	class AlphanumericEncoder : public Encoder {
 
-private:
+	private:
 
-	map<char, int> codeValues;
+		std::map<char, int> codeValues;
 
-public:
+	public:
 
-	static const string NAME;
+		static const std::string NAME;
 
-	AlphanumericEncoder() : Encoder(regex("(([A-Z0-9]+)|([$%*+-./: ]+))+"), NAME, "0010") { }
+		AlphanumericEncoder() : Encoder(std::regex("(([A-Z0-9]+)|([$%*+-./: ]+))+"), NAME,
+										"0010") { }
 
-	shared_ptr<string> encodeData(string& data) override;
+		std::shared_ptr<std::string> encodeData(std::string& data) override;
 
-	virtual void init(shared_ptr<ResourceLoader> resourceLoader) override;
+		virtual void init(std::shared_ptr<ResourceLoader> resourceLoader) override;
 
-};
-
+	};
+}
 
 #endif //BARCODEGENERATOR_ALPHANUMERICENCODING_H

@@ -12,25 +12,27 @@
 #include "ByteEncoder.h"
 #include "../../ResourceLoader.h"
 
-class EncoderFactory {
-private:
+namespace silgrid {
 
-	vector<shared_ptr<Encoder>> encoders;
+	class EncoderFactory {
+	private:
 
-public:
+		std::vector<std::shared_ptr<Encoder>> encoders;
 
-	EncoderFactory() {
-		encoders.push_back(make_shared<NumericEncoder>());
-		encoders.push_back(make_shared<AlphanumericEncoder>());
-		encoders.push_back(make_shared<ByteEncoder>());
-	}
+	public:
 
-	virtual ~EncoderFactory() {
-	}
+		EncoderFactory() {
+			encoders.push_back(std::make_shared<NumericEncoder>());
+			encoders.push_back(std::make_shared<AlphanumericEncoder>());
+			encoders.push_back(std::make_shared<ByteEncoder>());
+		}
 
-	shared_ptr<Encoder> getEncoder(string& code);
+		virtual ~EncoderFactory() {
+		}
 
-};
+		std::shared_ptr<Encoder> getEncoder(std::string& code);
 
+	};
+}
 
 #endif //BARCODEGENERATOR_ENCODERFACTORY_H

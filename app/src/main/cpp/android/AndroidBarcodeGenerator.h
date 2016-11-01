@@ -8,26 +8,28 @@
 #include <jni.h>
 #include "../common/BarcodeGenerator.h"
 
-class AndroidBarcodeGenerator : public BarcodeGenerator {
+namespace silgrid {
 
-private:
-	JNIEnv* jniEnv;
-	jobject* assetManager;
+	class AndroidBarcodeGenerator : public BarcodeGenerator {
 
-protected:
+	private:
+		JNIEnv *jniEnv;
+		jobject *assetManager;
+
+	protected:
 
 
-	virtual shared_ptr<ResourceLoader> getResourceLoader() override;
+		virtual std::shared_ptr<ResourceLoader> getResourceLoader() override;
 
-	virtual void* createBitmap(const string& binaryRepresentation);
+		virtual void *createBitmap(const std::string& binaryRepresentation);
 
-public:
+	public:
 
-	AndroidBarcodeGenerator(JNIEnv *jniEnv, jobject *assetManager)
-			: BarcodeGenerator(),
-			  jniEnv(jniEnv),
-			  assetManager(assetManager) { }
-};
-
+		AndroidBarcodeGenerator(JNIEnv *jniEnv, jobject *assetManager)
+				: BarcodeGenerator(),
+				  jniEnv(jniEnv),
+				  assetManager(assetManager) { }
+	};
+}
 
 #endif //BARCODEGENERATOR_ANDROIDBARCODEGENERATOR_H

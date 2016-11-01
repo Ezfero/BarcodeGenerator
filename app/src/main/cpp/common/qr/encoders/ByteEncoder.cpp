@@ -4,14 +4,17 @@
 
 #include "ByteEncoder.h"
 
-const string ByteEncoder::NAME = "byte";
+namespace silgrid {
 
-shared_ptr<string> ByteEncoder::encodeData(string& data) {
-	shared_ptr<string> result = make_shared<string>();
+	const std::string ByteEncoder::NAME = "byte";
 
-	for (auto byte : data) {
-		*result += bitset<8>((unsigned long long int) byte).to_string();
+	std::shared_ptr<std::string> ByteEncoder::encodeData(std::string& data) {
+		std::shared_ptr<std::string> result = std::make_shared<std::string>();
+
+		for (auto byte : data) {
+			*result += std::bitset<8>((unsigned long long int) byte).to_string();
+		}
+
+		return result;
 	}
-
-	return result;
 }

@@ -9,13 +9,14 @@
 #include <memory>
 
 #include "MatrixMasker.h"
+namespace silgrid {
 
-using namespace std;
-
-class MaskersFactory {
-public:
-	static vector<shared_ptr<MatrixMasker>> getMatrixMaskers(const int matrixSize, const int** fullMatrix, const int** valuesToMask);
-};
-
+	class MaskersFactory {
+	public:
+		static std::vector<std::shared_ptr<MatrixMasker>> getMatrixMaskers(const int matrixSize,
+																		   const int **fullMatrix,
+																		   const int **valuesToMask);
+	};
+}
 
 #endif //BARCODEGENERATOR_MASKERSFACTORY_H

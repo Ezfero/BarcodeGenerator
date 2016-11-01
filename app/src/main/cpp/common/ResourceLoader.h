@@ -9,17 +9,17 @@
 #include <string>
 #include "json/json11.hpp"
 
-using namespace std;
+namespace silgrid {
 
-class ResourceLoader {
-public:
+	class ResourceLoader {
+	public:
 
-	virtual ~ResourceLoader() { }
+		virtual ~ResourceLoader() { }
 
-	virtual shared_ptr<string> loadResource(const string& filename) = 0;
+		virtual std::shared_ptr<std::string> loadResource(const std::string& filename) = 0;
 
-	json11::Json loadJson(const string& filename);
-};
-
+		json11::Json loadJson(const std::string& filename);
+	};
+}
 
 #endif //BARCODEGENERATOR_RESOURCELOADER_H

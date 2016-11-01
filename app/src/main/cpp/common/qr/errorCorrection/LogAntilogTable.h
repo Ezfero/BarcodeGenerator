@@ -8,27 +8,27 @@
 #include <map>
 #include "../../ResourceLoader.h"
 
-using namespace std;
+namespace silgrid {
 
-class LogAntilogTable {
-private:
-	map<int, int> degreesToValues;
-	map<int, int> valuesToDegrees;
+	class LogAntilogTable {
+	private:
+		std::map<int, int> degreesToValues;
+		std::map<int, int> valuesToDegrees;
 
-public:
+	public:
 
-	LogAntilogTable() { }
+		LogAntilogTable() { }
 
-	LogAntilogTable(const LogAntilogTable& other)
-			: degreesToValues(other.degreesToValues),
-			  valuesToDegrees(other.valuesToDegrees) { }
+		LogAntilogTable(const LogAntilogTable& other)
+				: degreesToValues(other.degreesToValues),
+				  valuesToDegrees(other.valuesToDegrees) { }
 
-	void init(shared_ptr<ResourceLoader> resourceLoader);
+		void init(std::shared_ptr<ResourceLoader> resourceLoader);
 
-	int getValue(int degree);
+		int getValue(int degree);
 
-	int getDegree(int value);
-};
-
+		int getDegree(int value);
+	};
+}
 
 #endif //BARCODEGENERATOR_LOGANTILOGTABLE_H

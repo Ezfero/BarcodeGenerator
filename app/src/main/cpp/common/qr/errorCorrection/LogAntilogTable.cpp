@@ -5,20 +5,23 @@
 #include "LogAntilogTable.h"
 #include "../../DataFiles.h"
 
-void LogAntilogTable::init(shared_ptr<ResourceLoader> resourceLoader) {
-	auto json = resourceLoader->loadJson(DataFiles::getLogAntilogDataFilename());
+namespace silgrid {
 
-	for (auto& k : json.array_items()) {
-		json11::Json val = k.object_items();
-		degreesToValues[val["degree"].int_value()] = val["value"].int_value();
-		valuesToDegrees[val["value"].int_value()] = val["degree"].int_value();
+	void LogAntilogTable::init(std::shared_ptr<ResourceLoader> resourceLoader) {
+		auto json = resourceLoader->loadJson(DataFiles::getLogAntilogDataFilename());
+
+		for (auto& k : json.array_items()) {
+			json11::Json val = k.object_items();
+			degreesToValues[val["degree"].int_value()] = val["value"].int_value();
+			valuesToDegrees[val["value"].int_value()] = val["degree"].int_value();
+		}
 	}
-}
 
-int LogAntilogTable::getValue(int degree) {
-	return degreesToValues[degree];
-}
+	int LogAntilogTable::getValue(int degree) {
+		return degreesToValues[degree];
+	}
 
-int LogAntilogTable::getDegree(int value) {
-	return valuesToDegrees[value];
+	int LogAntilogTable::getDegree(int value) {
+		return valuesToDegrees[value];
+	}
 }

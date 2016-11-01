@@ -4,26 +4,29 @@
 
 #include "MatrixMasker.h"
 
-int MatrixMasker::getNumber() const {
-	return number;
-}
+namespace silgrid {
 
-int **MatrixMasker::applyMask() {
-	int** maskedMatrix = new int*[matrixSize];
-	for (int i = 0; i < matrixSize; ++i) {
-		maskedMatrix[i] = new int[matrixSize];
-		for (int j = 0; j < matrixSize; ++j) {
-			maskedMatrix[i][j] = fullMatrix[i][j];
-		}
+	int MatrixMasker::getNumber() const {
+		return number;
 	}
 
-	for (int i = 0; i < matrixSize; ++i) {
-		for (int j = 0; j < matrixSize; ++j) {
-			if (valuesToMask[i][j] != 0 && shouldMaskFunction(i, j)) {
-				maskedMatrix[i][j] = maskedMatrix[i][j] == 1 ? 2 : 1;
+	int **MatrixMasker::applyMask() {
+		int **maskedMatrix = new int *[matrixSize];
+		for (int i = 0; i < matrixSize; ++i) {
+			maskedMatrix[i] = new int[matrixSize];
+			for (int j = 0; j < matrixSize; ++j) {
+				maskedMatrix[i][j] = fullMatrix[i][j];
 			}
 		}
-	}
 
-	return maskedMatrix;
+		for (int i = 0; i < matrixSize; ++i) {
+			for (int j = 0; j < matrixSize; ++j) {
+				if (valuesToMask[i][j] != 0 && shouldMaskFunction(i, j)) {
+					maskedMatrix[i][j] = maskedMatrix[i][j] == 1 ? 2 : 1;
+				}
+			}
+		}
+
+		return maskedMatrix;
+	}
 }

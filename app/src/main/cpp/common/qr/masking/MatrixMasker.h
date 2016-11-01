@@ -6,33 +6,37 @@
 #define BARCODEGENERATOR_MATRIXMASKER_H
 
 #include <functional>
+namespace silgrid {
 
-using namespace std;
+	class MatrixMasker {
+	private:
+		int number;
+		int matrixSize;
+		const int **fullMatrix;
+		const int **valuesToMask;
+		std::function<bool(int, int)> shouldMaskFunction;
 
-class MatrixMasker {
-private:
-	int number;
-	int matrixSize;
-	const int** fullMatrix;
-	const int** valuesToMask;
-	function<bool (int, int)> shouldMaskFunction;
+	public:
 
-public:
+		MatrixMasker() { }
 
-	MatrixMasker() { }
-
-	MatrixMasker(int number, const int matrixSize, const int **fullMatrix, const int **valuesToMask,
-				 const function<bool(int, int)>& shouldMaskFunction) : number(number),
-																	   matrixSize(matrixSize),
-																	   fullMatrix(fullMatrix),
-																	   valuesToMask(valuesToMask),
-																	   shouldMaskFunction(shouldMaskFunction) { }
+		MatrixMasker(int number, const int matrixSize, const int **fullMatrix,
+					 const int **valuesToMask,
+					 const std::function<bool(int, int)>& shouldMaskFunction) : number(number),
+																				matrixSize(
+																						matrixSize),
+																				fullMatrix(
+																						fullMatrix),
+																				valuesToMask(
+																						valuesToMask),
+																				shouldMaskFunction(
+																						shouldMaskFunction) { }
 
 
-	int getNumber() const;
+		int getNumber() const;
 
-	int** applyMask();
-};
-
+		int **applyMask();
+	};
+}
 
 #endif //BARCODEGENERATOR_MATRIXMASKER_H

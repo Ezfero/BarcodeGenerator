@@ -6,71 +6,83 @@
 #define BARCODEGENERATOR_ENCODING_H
 
 #include <regex>
-#include "../errorCorrection/ErrorCorrector.h"
+
 #include "../Version.h"
-#include "../errorCorrection/Polynomial.h"
 #include "../masking/MatrixMasker.h"
+#include "../errorCorrection/Polynomial.h"
+#include "../errorCorrection/ErrorCorrector.h"
 
-using namespace std;
+namespace silgrid {
 
-class Encoder {
+	class Encoder {
 
-private:
-	const int blackCell = 1;
-	const int whiteCell = 2;
-	const int reservedCell = -1;
+	private:
+		const int blackCell = 1;
+		const int whiteCell = 2;
+		const int reservedCell = -1;
 
-	shared_ptr<MatrixMasker> masker;
+		std::shared_ptr<MatrixMasker> masker;
 
-	vector<int> alignmentPatternPositions;
+		std::vector<int> alignmentPatternPositions;
 
-	int** generateMatrix(string& code);
-	void addFinderPattern(int top, int left, int** matrix);
-	void addAlignmentPatterns(int** matrix);
-	void addTimingPatterns(int** matrix);
-	void reserveInfoAreas(int** matrix);
-	int** addCode(int** matrix, string& code);
-	int calculatePenalty(int** matrix);
-	int** createMaskedMatrix(const int **codeMatrix, const int **fullMatrix);
-	void addVersionInfo(int** matrix);
-	string generateInfoString(int length, string infoValue, string generator);
+		int **generateMatrix(std::string& code);
 
-protected:
+		void addFinderPattern(int top, int left, int **matrix);
 
-	regex stringValidationRegex;
-	string name;
-	string modeIndicator;
-	Version version;
-	shared_ptr<ResourceLoader> resourceLoader;
-	shared_ptr<ErrorCorrector> errorCorrector;
+		void addAlignmentPatterns(int **matrix);
 
-	virtual shared_ptr<string> encodeData(string& data) = 0;
+		void addTimingPatterns(int **matrix);
 
-public:
+		void reserveInfoAreas(int **matrix);
 
-	Encoder() { }
+		int **addCode(int **matrix, std::string& code);
 
-	Encoder(const regex& stringValidationRegex, const string& name, const string& modeIndicator)
-			: stringValidationRegex(stringValidationRegex),
-			  name(name),
-			  modeIndicator(modeIndicator) { }
+		int calculatePenalty(int **matrix);
 
-	virtual ~Encoder() { }
+		int **createMaskedMatrix(const int **codeMatrix, const int **fullMatrix);
 
-	virtual void init(shared_ptr<ResourceLoader> resourceLoader);
+		void addVersionInfo(int **matrix);
 
-	virtual int** encode(string& input);
+		std::string generateInfoString(int length, std::string infoValue, std::string generator);
 
-	const string& getName() const;
+	protected:
 
-	const shared_ptr<ErrorCorrector> getErrorCorrector() const;
+		std::regex stringValidationRegex;
+		std::string name;
+		std::string modeIndicator;
+		Version version;
+		std::shared_ptr<ResourceLoader> resourceLoader;
+		std::shared_ptr<ErrorCorrector> errorCorrector;
 
-	void setErrorCorrector(shared_ptr<ErrorCorrector> errorCorrector);
+		virtual std::shared_ptr<std::string> encodeData(std::string& data) = 0;
 
-	void setVersion(const Version& version);
+	public:
 
-	bool canProcess(string& input);
+		Encoder() { }
 
-};
+		Encoder(const std::regex& stringValidationRegex, const std::string& name,
+				const std::string& modeIndicator)
+				: stringValidationRegex(stringValidationRegex),
+				  name(name),
+				  modeIndicator(modeIndicator) { }
+
+		virtual ~Encoder() { }
+
+		virtual void init(std::shared_ptr<ResourceLoader> resourceLoader);
+
+		virtual int **encode(std::string& input);
+
+		const std::string& getName() const;
+
+		const std::shared_ptr<ErrorCorrector> getErrorCorrector() const;
+
+		void setErrorCorrector(std::shared_ptr<ErrorCorrector> errorCorrector);
+
+		void setVersion(const Version& version);
+
+		bool canProcess(std::string& input);
+
+	};
+}
 
 #endif //BARCODEGENERATOR_ENCODING_H

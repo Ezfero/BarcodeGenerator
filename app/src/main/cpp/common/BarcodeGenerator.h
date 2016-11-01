@@ -10,44 +10,48 @@
 
 #include "ResourceLoader.h"
 #include "code128/CharacterSet.h"
+namespace silgrid {
 
-class BarcodeGenerator {
+	class BarcodeGenerator {
 
-private:
+	private:
 
-	vector<string> setsOrder;
-	map<string, CharacterSet> characterSets;
+		std::vector<std::string> setsOrder;
+		std::map<std::string, CharacterSet> characterSets;
 
-	void addToSet(int index, int ascii, string value, string binary, CharacterSet &set);
+		void addToSet(int index, int ascii, std::string value, std::string binary,
+					  CharacterSet& set);
 
-protected:
+	protected:
 
-	virtual shared_ptr<ResourceLoader> getResourceLoader() = 0;
+		virtual std::shared_ptr<ResourceLoader> getResourceLoader() = 0;
 
-	const CharacterSet& detectCharacterSet(const string& str);
+		const CharacterSet& detectCharacterSet(const std::string& str);
 
-	const string& calculateChecksum(const string& str, CharacterSet& characterSet);
+		const std::string& calculateChecksum(const std::string& str, CharacterSet& characterSet);
 
-	virtual void* createBitmap(const string& binaryRepresentation) = 0;
+		virtual void *createBitmap(const std::string& binaryRepresentation) = 0;
 
-public:
+	public:
 
-	BarcodeGenerator() {
-		characterSets["C"] = CharacterSet("C", regex("(\\d\\d)+"));
-		characterSets["A"] = CharacterSet("A", regex("(([A-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*[A-Z0-9]*)*)"));
-		characterSets["B"] = CharacterSet("B", regex("(([a-zA-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*[a-zA-Z0-9]*)*)"));
+		BarcodeGenerator() {
+			characterSets["C"] = CharacterSet("C", std::regex("(\\d\\d)+"));
+			characterSets["A"] = CharacterSet("A", std::regex(
+					"(([A-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*[A-Z0-9]*)*)"));
+			characterSets["B"] = CharacterSet("B", std::regex(
+					"(([a-zA-Z0-9]*[!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*)*)(([!@#$%^&*()_+-=\\[\\]{}\\\\';:<>/.,` ]*[a-zA-Z0-9]*)*)"));
 
-		setsOrder.push_back("C");
-		setsOrder.push_back("A");
-		setsOrder.push_back("B");
-	}
+			setsOrder.push_back("C");
+			setsOrder.push_back("A");
+			setsOrder.push_back("B");
+		}
 
-    virtual ~BarcodeGenerator() { }
+		virtual ~BarcodeGenerator() { }
 
-	void loadCharacterSets();
+		void loadCharacterSets();
 
-	void* generateBarcode(string& code);
-};
-
+		void *generateBarcode(std::string& code);
+	};
+}
 
 #endif //BARCODEGENERATOR_BARCODEGENERATOR_H

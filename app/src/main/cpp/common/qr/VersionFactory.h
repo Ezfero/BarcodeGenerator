@@ -11,26 +11,26 @@
 #include "VersionInfo.h"
 #include "../ResourceLoader.h"
 #include "Version.h"
+namespace silgrid {
 
-using namespace std;
+	class VersionFactory {
 
-class VersionFactory {
+	private:
 
-private:
+		std::vector<VersionInfo> versionInfos;
 
-	vector<VersionInfo> versionInfos;
+		std::shared_ptr<Version> find(const int length, const Encoder& encoder,
+									  const VersionInfo& info);
 
-	shared_ptr<Version> find(const int length, const Encoder& encoder, const VersionInfo& info);
+	public:
 
-public:
+		VersionFactory() { }
 
-	VersionFactory() { }
+		void init(std::shared_ptr<ResourceLoader> resourceLoader);
 
-	void init(shared_ptr<ResourceLoader> resourceLoader);
+		std::shared_ptr<Version> getVersion(const Encoder encoder, const std::string& code);
 
-	shared_ptr<Version> getVersion(const Encoder encoder, const string& code);
-
-};
-
+	};
+}
 
 #endif //BARCODEGENERATOR_VERSIONFACTORY_H

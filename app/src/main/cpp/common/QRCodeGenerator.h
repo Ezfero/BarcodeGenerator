@@ -11,27 +11,26 @@
 #include "qr/VersionFactory.h"
 #include "qr/encoders/Encoder.h"
 #include "qr/encoders/EncoderFactory.h"
+namespace silgrid {
 
-using namespace std;
+	class QRCodeGenerator {
 
-class QRCodeGenerator {
+	protected:
 
-protected:
+		VersionFactory versionFactory;
+		std::shared_ptr<LogAntilogTable> logAntilogTable;
 
-	VersionFactory versionFactory;
-	shared_ptr<LogAntilogTable> logAntilogTable;
+		virtual std::shared_ptr<ResourceLoader> getResourceLoader() = 0;
 
-	virtual shared_ptr<ResourceLoader> getResourceLoader() = 0;
+		virtual void *createCodeImage(int matrixSize, int **matrix) = 0;
 
-	virtual void* createCodeImage(int matrixSize, int** matrix) = 0;
+	public:
 
-public:
+		virtual void loadVersionsDetails() = 0;
 
-	virtual void loadVersionsDetails() = 0;
+		void *generateQRCode(std::string& code, std::string errorCorrection);
 
-	void* generateQRCode(string& code, string errorCorrection);
-
-};
-
+	};
+}
 
 #endif //BARCODEGENERATOR_QRCODEGENERATOR_H

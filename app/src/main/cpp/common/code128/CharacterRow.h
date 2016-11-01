@@ -4,36 +4,38 @@
 
 #ifndef BARCODEGENERATOR_CHARACTERROW_H
 #define BARCODEGENERATOR_CHARACTERROW_H
+
 #include <string>
 
-using namespace std;
+namespace silgrid {
 
-class CharacterRow {
+	class CharacterRow {
 
-private:
-	int index = 0;
-	int asciiCode = 0;
-	string character;
-	string binaryPattern;
+	private:
+		int index = 0;
+		int asciiCode = 0;
+		std::string character;
+		std::string binaryPattern;
 
-public:
+	public:
 
-	CharacterRow() { }
-
-
-	CharacterRow(int index, int asciiCode, const string &character, const string &binaryPattern)
-			: index(index), asciiCode(asciiCode), character(character),
-			  binaryPattern(binaryPattern) { }
+		CharacterRow() { }
 
 
-	int getIndex() const;
+		CharacterRow(int index, int asciiCode, const std::string& character,
+					 const std::string& binaryPattern)
+				: index(index), asciiCode(asciiCode), character(character),
+				  binaryPattern(binaryPattern) { }
 
-	int getAsciiCode() const;
 
-	const string &getCharacter() const;
+		int getIndex() const;
 
-	const string &getBinaryPattern() const;
-};
+		int getAsciiCode() const;
 
+		const std::string& getCharacter() const;
+
+		const std::string& getBinaryPattern() const;
+	};
+}
 
 #endif //BARCODEGENERATOR_CHARACTERROW_H

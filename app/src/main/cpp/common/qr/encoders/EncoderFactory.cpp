@@ -4,11 +4,14 @@
 
 #include "EncoderFactory.h"
 
-shared_ptr<Encoder> EncoderFactory::getEncoder(string& code) {
-	for (auto& encoder : encoders) {
-		if (encoder->canProcess(code)) {
-			return encoder;
+namespace silgrid {
+
+	std::shared_ptr<Encoder> EncoderFactory::getEncoder(std::string& code) {
+		for (auto& encoder : encoders) {
+			if (encoder->canProcess(code)) {
+				return encoder;
+			}
 		}
+		return std::shared_ptr<Encoder>();
 	}
-	return shared_ptr<Encoder>();
 }

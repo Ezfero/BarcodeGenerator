@@ -6,32 +6,32 @@
 #define BARCODEGENERATOR_ASSETLOADER_H
 
 #include <string>
-
 #include <jni.h>
-#include <android/asset_manager.h>
 #include <memory>
+#include <android/asset_manager.h>
+
 #include "../common/ResourceLoader.h"
 
-using namespace std;
+namespace silgrid {
 
-class AssetLoader : public ResourceLoader {
+	class AssetLoader : public ResourceLoader {
 
-private:
+	private:
 
-	JNIEnv* jniEnv;
-	jobject* assetManager;
+		JNIEnv *jniEnv;
+		jobject *assetManager;
 
-public:
+	public:
 
-	AssetLoader() { }
+		AssetLoader() { }
 
-	AssetLoader(JNIEnv *jniEnv, jobject *assetManager)
-			: jniEnv(jniEnv),
-			  assetManager(assetManager) { }
+		AssetLoader(JNIEnv *jniEnv, jobject *assetManager)
+				: jniEnv(jniEnv),
+				  assetManager(assetManager) { }
 
-	virtual shared_ptr<string> loadResource(const string& filename) override;
+		virtual std::shared_ptr<std::string> loadResource(const std::string& filename) override;
 
-};
-
+	};
+}
 
 #endif //BARCODEGENERATOR_ASSETLOADER_H
